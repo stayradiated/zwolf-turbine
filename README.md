@@ -189,3 +189,85 @@ export default handleAddFriend = (event, dispatch) => {
   }
 }
 ```
+
+## Fanout Config
+
+We should host all the SQS topics in a JSON file that is accessible online.
+
+E.g: https://events.mish.guru
+
+- This JSON file is generated using code
+  - It is version controlled with git 
+  - It is built on CircleCI and uploaded to an S3 bucket
+- We should be able to validate the schema against previous events in a given
+  time range
+   - This allows us to check that any changes to the schema will not cause
+     any unexpected validation errors
+
+**Using constants with async events**
+
+If we want to use constants instead of strings:
+
+```javascript
+import { GET_STORIES } from '@mishguru/events'
+
+...
+
+dispatch({ type: GET_STORIES })
+```
+
+Then we need a way to support these without actually knowing which topics are
+availble at initial runtime (because we haven't finished downloading the topic
+list JSON yet).
+
+```
+> ERROR: Could not read 'GET_STORIES' of undefined.
+```
+
+But we also want a way to make sure that any typos in the topic names are
+caught.
+
+```javascript
+import { GEET_STORIES } from '@mishguru/events'
+```
+
+One way to do this is to allow all constants to be accessed from
+`@mishguru/events`, but keep track of them all in a set. When we have
+downloaded the topic list JSON, we check that are all valid. If not, we throw
+an error and stop the service.
+
+```javascript
+// mishguru/events
+
+const TOPIC_PENDING = 'PENDING'
+const TOPIC_READY = 'READY'
+
+class Topic {
+  constructor (name) {
+    this.name = id
+    this.status = TOPIC_PENDING
+  }
+}
+
+const topics = new Map()
+
+const proxy = new Proxy({}, {
+  get (_, key) { 
+    if (topics.has(key)) {
+      return topics.get(key)
+    }
+
+    const value = new Topic(value)
+    topics.set(key, value)
+    return value
+  }
+})
+
+module.exports = proxy
+```
+
+```javascript
+import { GEET_STORIES } from '@mishguru/events'
+
+console.log(GEET_STORIES) // { name: 'GEET_STORIES', status: 'PENDING' }
+```

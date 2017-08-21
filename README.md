@@ -52,6 +52,21 @@ service.listen()
 Idea about how files and folders could be structured (roughly based on all
 updates).
 
+Notice that:
+
+- There is no longer a `server.js` file (it has become `index.js`)
+- All subfolders of `handlers` match a topic name
+- `commands` has been renamed to `mutations` to fit in with the GraphQL
+  terminology
+- `queries` is still `queries` but should only be for database queries
+- `topics` is a new folder
+- `steps` (name could change) is used to break up the handler into multiple
+  sections, but also makes it clear which order they are excecuted in. The
+  steps shouldn't call each other, but instead rely on `handler/*/index.js`
+  calling them in order.
+
+
+```
 - index.js
 - handlers/
   - snapchatAccountOutOfDate/
@@ -78,6 +93,7 @@ updates).
       - 5_processAllUpdates.js
       - 6_saveFriends.js
       - 7_updatePrivacySettings.js
+```
 
 ## The Message Object
 

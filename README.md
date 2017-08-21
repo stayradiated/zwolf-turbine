@@ -24,7 +24,7 @@ import snapchatAccountOutOfDateHandler from './handlers/snapchatAccountOutOfDate
 
 const service = createService()
 
-service.configure(require('../package.json"))
+service.configure(require('../package.json'))
 
 service.initializeDatabase(db)
 

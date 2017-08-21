@@ -28,6 +28,8 @@ service.configure(require('../package.json"))
 
 service.initializeDatabase(db)
 
+// service.handle( [topic name], [actions that may be published], [callback] )
+
 service.handle(LOAD_MORE_SNAPS, [
   LOAD_MORE_SNAPS_RECEIVED,
   FINISHED_PARSING_LOAD_MORE_SNAPS,
@@ -52,7 +54,7 @@ updates).
 
 - index.js
 - handlers/
-  - snapchatAccountOutOfDateHandler/
+  - snapchatAccountOutOfDate/
     - index.js
     - topics/
       - allUpdatesReceived.js
@@ -76,3 +78,19 @@ updates).
       - 5_processAllUpdates.js
       - 6_saveFriends.js
       - 7_updatePrivacySettings.js
+
+## Dispatch function
+
+Instead of calling `authenticatedPublish` or `rejectAnyway`, handlers are given
+a dispatch function that can be used to publish messages.
+
+```
+service.handle(DO_THE_THING, [THE_THING_HAS_BEEN_DONE], (event, dispatch) => {
+  const { id } = event.payload
+
+  dispatch({
+    type: THE_THING_HAS_BEEN_DONE,
+    payload: { id }
+  })
+})
+```

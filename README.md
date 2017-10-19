@@ -244,7 +244,7 @@ But we also want a way to make sure that any typos in the topic names are
 caught.
 
 ```javascript
-import { GEET_STORIES } from '@mishguru/events'
+import { GET_STORIES } from '@mishguru/events'
 ```
 
 One way to do this is to allow all constants to be accessed from
@@ -283,7 +283,7 @@ module.exports = proxy
 ```
 
 ```javascript
-import { GEET_STORIES } from '@mishguru/events'
+import { GET_STORIES } from '@mishguru/events'
 
-console.log(GEET_STORIES) // { name: 'GEET_STORIES', status: 'PENDING' }
+console.log(GET_STORIES) // { name: 'GET_STORIES', status: 'PENDING' }
 ```

@@ -215,7 +215,43 @@ But we should access all the SQS topics through our database.
 This table should NOT be edited manually, instead we should build
 a tool that controls it based on the schema.
 
-The format of the text file needs to be decided.
+### Format
+
+We should start with JSON Schema. In the future we should consider using
+trying to convert flow types into JSON Schema.
+
+Each topic should have a schema that looks something like this:
+
+```json
+{
+ "name": "allUpdatesReceived",
+ "type": "object",
+ "properties": {
+  "allUpdatesPath": {
+    "type": string"
+  },
+  "allUpdatesBucket": {
+    "type": "string"
+  },
+  "allUpdatesS3Key": {
+    "type": "string"
+  },
+  "allUpdatesDate": {
+    "type": "string"
+  },
+  "userId": {
+    "type": "integer"
+  }
+ },
+ "required": [
+   "allUpdatesPath", 
+   "allUpdatesBucket",
+   "allUpdatesS3Key",
+   "allUpdatesDate",
+   "userId"
+ ]
+}
+```
 
 ### Validation
 

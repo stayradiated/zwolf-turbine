@@ -228,7 +228,7 @@ Each topic should have a schema that looks something like this:
  "type": "object",
  "properties": {
   "allUpdatesPath": {
-    "type": string"
+    "type": "string"
   },
   "allUpdatesBucket": {
     "type": "string"

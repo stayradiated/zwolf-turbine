@@ -253,6 +253,36 @@ Each topic should have a schema that looks something like this:
 }
 ```
 
+### Database Table
+
+We should create three tables in the database:
+
+`turbineQueues`
+`turbineTopics`.
+`turbineTopicQueues`.
+
+**turbineQueues**
+
+Should have the following columns:
+
+- `id`: primary, integer, auto incrementing
+- `name`: string
+
+**turbineTopic**
+
+Should have the following columns:
+
+- `id`: primary, integer, auto incrementing
+- `name`: string
+- `schema`: string
+
+**turbineTopicQueues**
+
+Should have the following columns:
+
+- `turbineQueueId`: primary, integer
+- `turbineTopicId`: primary, integer
+
 ### Validation
 
 It would be really neat if we could validate the schema against previous real

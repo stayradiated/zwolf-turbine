@@ -208,19 +208,27 @@ export default handleAddFriend = (event, dispatch) => {
 
 ## Fanout Config
 
-We should host all the SQS topics in a JSON file that is accessible online.
+We should manage the topic shema as a text file in a git repo.
 
-E.g: https://events.mish.guru
+But we should access all the SQS topics through our database.
 
-- This JSON file is generated using code
-  - It is version controlled with git 
-  - It is built on CircleCI and uploaded to an S3 bucket
-- We should be able to validate the schema against previous events in a given
-  time range
-   - This allows us to check that any changes to the schema will not cause
-     any unexpected validation errors
+This table should NOT be edited manually, instead we should build
+a tool that controls it based on the schema.
 
-**Using constants with async events**
+The format of the text file needs to be decided.
+
+### Validation
+
+It would be really neat if we could validate the schema against previous real
+world events in a given time range.
+
+This would allow us to check that any changes to the schema will not cause any
+unexpected validation errors.
+
+This is important because if we update the config in the database, any services
+will pick up the ...
+
+### Accessing topics as constants synchronously
 
 If we want to use constants instead of strings:
 

@@ -7,16 +7,7 @@ import createService from '@mishguru/service'
 import db from '@mishguru/data'
 import {
   LOAD_MORE_SNAPS,
-  RETRY_ALL_UPDATES,
-
-  LOAD_MORE_SNAPS_RECEIVED,
-  FINISHED_PARSING_LOAD_MORE_SNAPS,
-  LOAD_MORE_SNAPS_AGAIN,
-
-  FINISHED_PARSING_ALL_UPDATES
-  GET_STORIES
-  ALL_UPDATES_RECEIVED,
-  SNAPCHAT_USER_FOUND_FROM_RECEIVED_SNAP
+  SNAPCHAT_ACCOUNT_OUT_OF_DATE
 } from '@mishguru/events'
 
 import loadMoreSnapsHandler from './handlers/loadMoreSnaps'
@@ -28,21 +19,11 @@ service.configure(require('../package.json'))
 
 service.initializeDatabase(db)
 
-// service.handle( [topic name], [actions that may be published], [callback] )
+// service.handle( [topic name], [callback] )
 
-service.handle(LOAD_MORE_SNAPS, [
-  LOAD_MORE_SNAPS_RECEIVED,
-  FINISHED_PARSING_LOAD_MORE_SNAPS,
-  LOAD_MORE_SNAPS_AGAIN
-], loadMoreSnapsHandler)
+service.handle(LOAD_MORE_SNAPS, loadMoreSnapsHandler)
 
-service.handle(SNAPCHAT_ACCOUNT_OUT_OF_DATE, [
-  ALL_UPDATES_RECEIVED,
-  FINISHED_PARSING_ALL_UPDATES
-  GET_STORIES
-  LOAD_MORE_SNAPS,
-  SNAPCHAT_USER_FOUND_FROM_RECEIVED_SNAP
-], snapchatAccountOutOfDateHandler)
+service.handle(SNAPCHAT_ACCOUNT_OUT_OF_DATE, snapchatAccountOutOfDateHandler)
 
 service.listen()
 ```
@@ -255,18 +236,22 @@ Each topic should have a schema that looks something like this:
 
 ### Database Table
 
-We should create three tables in the database:
+We should create three tables in the **meta** database:
 
-`turbineQueues`
-`turbineTopics`.
-`turbineTopicQueues`.
+`turbineQueue`
+`turbineTopic`.
+`turbineTopicQueue`.
 
-**turbineQueues**
+**turbineQueue**
 
 Should have the following columns:
 
 - `id`: primary, integer, auto incrementing
 - `name`: string
+
+Notice that queues no longer have any constraints or validation. The idea is
+that all validation should be part of the topic - this means that any queue can
+support any topic.
 
 **turbineTopic**
 
@@ -276,7 +261,7 @@ Should have the following columns:
 - `name`: string
 - `schema`: string
 
-**turbineTopicQueues**
+**turbineTopicQueue**
 
 Should have the following columns:
 
@@ -318,7 +303,7 @@ But we also want a way to make sure that any typos in the topic names are
 caught.
 
 ```javascript
-import { GET_STORIES } from '@mishguru/events'
+import { GEET_STORIES } from '@mishguru/events'
 ```
 
 One way to do this is to allow all constants to be accessed from

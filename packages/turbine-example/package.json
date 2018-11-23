@@ -1,0 +1,26 @@
+{
+  "name": "@mishguru/turbine-example",
+  "version": "1.0.0",
+  "description": "Example turbine project",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "build": "../../node_modules/.bin/tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mishguruorg/turbine.git"
+  },
+  "author": "Mish Guru <devs@mish.guru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mishguruorg/turbine/issues"
+  },
+  "homepage": "https://github.com/mishguruorg/turbine#readme",
+  "dependencies": {
+    "@mishguru/turbine": "^1.0.0",
+    "@mishguru/turbine-driver-amqplib": "^1.0.0",
+    "@mishguru/turbine-driver-fanservice": "^1.0.0"
+  }
+}

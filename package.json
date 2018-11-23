@@ -1,22 +1,12 @@
 {
-  "name": "@mishguru/turbine",
-  "version": "1.0.0",
-  "description": "Rethinking fanservice events",
-  "main": "index.js",
+  "name": "root",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mishguruorg/turbine.git"
-  },
-  "author": "George Czabania <george@mish.guru>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mishguruorg/turbine/issues"
-  },
-  "homepage": "https://github.com/mishguruorg/turbine#readme",
-  "dependencies": {
-    "@mishguru/fanservice": "^4.9.0"
+  "devDependencies": {
+    "lerna": "^3.4.3",
+    "typescript": "^3.1.6"
   }
 }

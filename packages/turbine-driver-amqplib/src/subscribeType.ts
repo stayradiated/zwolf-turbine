@@ -1,5 +1,5 @@
-import { SubscribeFn } from '@mishguru/turbine-types'
 import { Channel } from 'amqplib'
+import { SubscriptionHandlerFn } from '@mishguru/turbine-types'
 
 import { EXCHANGE } from './config'
 
@@ -7,7 +7,7 @@ interface Options {
   channel: Channel
   serviceName: string
   type: string
-  callback: SubscribeFn
+  callback: SubscriptionHandlerFn
 }
 
 const subscribeType = async (options: Options) => {

@@ -1,10 +1,10 @@
 import { v4 as uuid } from 'uuid'
-import { Service, ServiceConfig, Message, SubscribeFn, DispatchOptions } from '@mishguru/turbine-types'
+import { Service, ServiceConfig, Message, EventList, MessageTemplate } from '@mishguru/turbine-types'
 
 const createService = (config: ServiceConfig): Service => {
   const { serviceName, driver } = config
 
-  const createDispatch = (parent?: Message) => (options: DispatchOptions) => {
+  const createDispatch = (parent?: Message) => (options: MessageTemplate) => {
     const { type, payload } = options
     const message = {
       id: uuid(),
@@ -16,7 +16,7 @@ const createService = (config: ServiceConfig): Service => {
     return driver.publish(message)
   }
 
-  const events: Array<[string, SubscribeFn]> = []
+  const events: EventList = []
   const hasStarted = false
 
   return {

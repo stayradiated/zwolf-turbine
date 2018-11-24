@@ -1,11 +1,11 @@
 import createService from '@mishguru/turbine'
 import createAmqplibDriver from '@mishguru/turbine-driver-amqplib'
 import createFanserviceDriver from '@mishguru/turbine-driver-fanservice'
+import createMockDriver from '@mishguru/turbine-driver-mock'
 
 const service = createService({
   serviceName: 'something-amazing',
-  // driver: createAmqplibDriver('amqp://localhost')
-  driver: createFanserviceDriver()
+  driver: createAmqplibDriver('amqp://localhost')
 })
 
 service.handle('debug', async (message, dispatch) => {
@@ -20,7 +20,6 @@ service.handle('debug', async (message, dispatch) => {
       info: 'this is a test'
     }
   })
-
 })
 
 service.start()

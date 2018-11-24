@@ -1,6 +1,7 @@
 {
   "name": "@mishguru/turbine-example",
   "version": "1.0.0",
+  "private": true,
   "description": "Example turbine project",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",

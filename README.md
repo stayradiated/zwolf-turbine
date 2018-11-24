@@ -43,3 +43,17 @@ As well as a driver to use.
 - `@mishguru/turbine-driver-amqplib`
 - `@mishguru/turbine-driver-fanservice`
 - `@mishguru/turbine-driver-mock`
+
+## Development
+
+```
+git clone https://github.com/mishguruorg/turbine
+npm run bootstrap
+npm run build
+```
+
+### Publishing
+
+```
+npm run publish
+```

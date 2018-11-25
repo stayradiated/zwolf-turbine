@@ -1,17 +1,15 @@
 import { SubscribeOptions } from '@mishguru/turbine-types'
 import {
-  decodeNameFromTopicArn,
   createFanoutForEnvironment,
-  getAwsCredentials,
-  getFanoutEnv,
-  createServer
+  createServer,
+  rejectAnyway
 } from '@mishguru/fanout-helpers'
 
-const FANOUT_ENV = getFanoutEnv()
-const AWS_CREDENTIALS = getAwsCredentials()
+import { FANOUT_ENV, AWS_CREDENTIALS } from './constants'
+import parseRawMessage from './parseRawMessage'
 
 const subscribe = async (options: SubscribeOptions) => {
-  const { events } = options
+  const { serviceName, events } = options
 
   const routeMap = events.reduce((map, event) => {
     const [ type, callback ] = event
@@ -21,19 +19,36 @@ const subscribe = async (options: SubscribeOptions) => {
 
   await createFanoutForEnvironment(AWS_CREDENTIALS, FANOUT_ENV)
 
-  const server = await createServer(async (message) => {
-    const type = decodeNameFromTopicArn(FANOUT_ENV, message.TopicArn)
+  const server = await createServer(async (rawMessage) => {
+    const message = parseRawMessage(rawMessage)
+    const { type, payload } = message
+
     if (routeMap.has(type)) {
       const callback = routeMap.get(type)
-      const payload = JSON.parse(message.Message)
-      await callback({
-        type,
-        payload
-      })
+      try {
+        await callback({
+          type,
+          payload
+        })
+      } catch (error) {
+        console.error(error)
+        if (error != null || error.published === true) {
+          const userId = payload.userId || 0
+
+          return rejectAnyway('unexpectedError', {
+            userId,
+            message,
+            info: `Unexpected error in "${serviceName}"`,
+            error: error.message
+          }, error)
+        }
+
+        throw error
+      }
     }
   }, async () => {
     // TODO(george): have a real healthcheck
-    console.log('healthcheck')
+    console.log('> fake healthcheck')
   })
 
   await server.start(() => {

@@ -9,7 +9,7 @@ const subscribe = async (channel: Channel, options: SubscribeOptions) => {
 
   for (const event of events) {
     const [ type, callback ] = event
-    subscribeType({
+    await subscribeType({
       channel,
       serviceName,
       type,

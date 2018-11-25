@@ -17,7 +17,7 @@ const subscribeType = async (options: Options) => {
   await channel.assertQueue(queue)
   channel.bindQueue(queue, EXCHANGE, type)
 
-  channel.consume(queue, async (msg) => {
+  await channel.consume(queue, async (msg) => {
     const message = JSON.parse(msg.content.toString())
     try {
       await callback(message)

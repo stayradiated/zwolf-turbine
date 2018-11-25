@@ -8,8 +8,9 @@ import {
 import { FANOUT_ENV, AWS_CREDENTIALS } from './constants'
 import parseRawMessage from './parseRawMessage'
 
-const subscribe = async (options: SubscribeOptions) => {
-  const { serviceName, events } = options
+const subscribe = async (driverOptions: DriverOptions, subscribeOptions: SubscribeOptions) => {
+  const { healthcheck } = driverOptions
+  const { serviceName, events } = subscribeOptions
 
   const routeMap = events.reduce((map, event) => {
     const [ type, callback ] = event
@@ -46,10 +47,7 @@ const subscribe = async (options: SubscribeOptions) => {
         throw error
       }
     }
-  }, async () => {
-    // TODO(george): have a real healthcheck
-    console.log('> fake healthcheck')
-  })
+  }, healthcheck)
 
   await server.start(() => {
     server.log('info', 'Server running at: ' + server.info.uri)

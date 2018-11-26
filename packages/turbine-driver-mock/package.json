@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-driver-mock",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A fake turbine driver that just logs to console. Good for tests.",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
-    "@mishguru/turbine-types": "^1.0.0"
+    "@mishguru/turbine-types": "^2.0.0"
   }
 }

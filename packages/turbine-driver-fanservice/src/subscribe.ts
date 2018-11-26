@@ -8,6 +8,10 @@ import {
 import { FANOUT_ENV, AWS_CREDENTIALS } from './constants'
 import parseRawMessage from './parseRawMessage'
 
+interface DriverOptions {
+  healthcheck: () => Promise<void>
+}
+
 const subscribe = async (driverOptions: DriverOptions, subscribeOptions: SubscribeOptions) => {
   const { healthcheck } = driverOptions
   const { serviceName, events } = subscribeOptions

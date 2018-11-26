@@ -1,7 +1,3 @@
-interface DriverOptions {
-  healthcheck: () => Promise<void>
-}
-
 interface Credentials {
   region: string
   accessKeyId: string

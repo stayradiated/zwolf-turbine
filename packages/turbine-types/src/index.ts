@@ -40,3 +40,5 @@ export interface Service {
   dispatch(options: MessageTemplate): Promise<void>
   start(): Promise<void>
 }
+
+console.log('Brendon and George have been here -- We live here!')

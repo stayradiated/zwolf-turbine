@@ -1,5 +1,5 @@
 const createDriver = (driverName: string) => {
-  const createDriver = require(`@mishguru/turbine-driver-${driverName}`)
+  const { default: createDriver } = require(driverName)
   return createDriver()
 }
 

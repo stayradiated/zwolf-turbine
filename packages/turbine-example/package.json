@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-example",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "private": true,
   "description": "Example turbine project",
   "main": "dist/index.js",
@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
-    "@mishguru/turbine": "^2.0.0",
-    "@mishguru/turbine-driver-amqplib": "^2.0.0",
-    "@mishguru/turbine-driver-fanservice": "^2.0.0",
-    "@mishguru/turbine-driver-mock": "^2.0.0"
+    "@mishguru/turbine": "^2.1.0",
+    "@mishguru/turbine-driver-amqplib": "^2.1.0",
+    "@mishguru/turbine-driver-fanservice": "^2.1.0",
+    "@mishguru/turbine-driver-mock": "^2.1.0"
   }
 }

@@ -1,7 +1,7 @@
 export type PublishFn = (message: Message) => Promise<void>
 export type SubscriptionHandlerFn = (message: Message) => Promise<void>
-export type SubscribeFn = (options: SubscribeOptions) => Promise<void>
-export type HandlerFn = (message: Message, dispatch: DispatchFn) => void
+export type SubscribeFn = (options: SubscribeOptions) => Promise<any>
+export type HandlerFn = (message: Message, dispatch: DispatchFn) => Promise<void>
 export type DispatchFn = (message: MessageTemplate) => Promise<void>
 
 export type Event = [string, SubscriptionHandlerFn]

@@ -39,8 +39,8 @@ const createService = (config: ServiceConfig): Service => {
       return createDispatch(null)(options)
     },
 
-    async start () {
-      await driver.subscribe({ serviceName, events })
+    async start (): Promise<any> {
+      return driver.subscribe({ serviceName, events })
     }
   }
 }

@@ -4,10 +4,7 @@ const publish = async (message) => {
     console.log(`Publishing message: ${JSON.stringify(message, null, 2)}`);
 };
 const subscribe = async (options) => {
-    options.events.forEach((event) => {
-        const [type, callback] = event;
-        console.log(`Subscribing to message type: "${type}" with "${callback.toString().slice(0, 100)}..."`);
-    });
+    return options;
 };
 const createDriver = () => {
     return {

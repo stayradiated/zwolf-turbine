@@ -2,13 +2,9 @@ import { Driver } from '@mishguru/turbine-types'
 import subscribe from './subscribe'
 import publish from './publish'
 
-interface DriverOptions {
-  healthcheck: () => Promise<void>
-}
-
-const createDriver = (driverOptions: DriverOptions): Driver => ({
+const createDriver = (): Driver => ({
   publish,
-  subscribe: (subscribeOptions) => subscribe(driverOptions, subscribeOptions),
+  subscribe
 })
 
 export default createDriver

@@ -1,0 +1,23 @@
+{
+  "name": "@mishguru/turbine-driver-switch",
+  "version": "1.0.0",
+  "description": "Select which turbine driver to use at runtime.",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "../../node_modules/.bin/tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mishguruorg/turbine.git"
+  },
+  "author": "Mish Guru <devs@mish.guru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mishguruorg/turbine/issues"
+  },
+  "homepage": "https://github.com/mishguruorg/turbine#readme",
+  "devDependencies": {
+    "@types/node": "^10.12.10"
+  }
+}

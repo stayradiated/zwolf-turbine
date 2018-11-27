@@ -8,12 +8,9 @@ import {
 import { FANOUT_ENV, AWS_CREDENTIALS } from './constants'
 import parseRawMessage from './parseRawMessage'
 
-interface DriverOptions {
-  healthcheck: () => Promise<void>
-}
+const HEALTH_CHECK = async (): Promise<void> => undefined
 
-const subscribe = async (driverOptions: DriverOptions, subscribeOptions: SubscribeOptions) => {
-  const { healthcheck } = driverOptions
+const subscribe = async (subscribeOptions: SubscribeOptions) => {
   const { serviceName, events } = subscribeOptions
 
   const routeMap = events.reduce((map, event) => {
@@ -23,6 +20,7 @@ const subscribe = async (driverOptions: DriverOptions, subscribeOptions: Subscri
   }, new Map())
 
   await createFanoutForEnvironment(AWS_CREDENTIALS, FANOUT_ENV)
+
 
   const server = await createServer(async (rawMessage) => {
     const message = parseRawMessage(rawMessage)
@@ -51,7 +49,7 @@ const subscribe = async (driverOptions: DriverOptions, subscribeOptions: Subscri
         throw error
       }
     }
-  }, healthcheck)
+  }, HEALTH_CHECK)
 
   await server.start(() => {
     server.log('info', 'Server running at: ' + server.info.uri)

@@ -24,5 +24,3 @@ service.handle('debug', async (message, dispatch) => {
 
 service.start()
   .catch(console.error) 
-
-console.log('This is the only thing that needs to change')

@@ -1,15 +1,15 @@
-interface Credentials {
+declare interface Credentials {
   region: string
   accessKeyId: string
   secretAccessKey: string
 }
 
-interface Message {
+declare interface Message {
   TopicArn: string
   Message: string
 }
 
-interface Server {
+declare interface Server {
   start: (fn: () => void) => Promise<void>
   log: (...message: string[]) => void
   info: {

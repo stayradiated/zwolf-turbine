@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-driver-amqplib",
-  "version": "2.1.0",
+  "version": "2.4.0",
   "description": "Turbine driver for RabbitMQ (via amqplib)",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",

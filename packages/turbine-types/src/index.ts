@@ -2,7 +2,7 @@ export type PublishFn = (message: Message) => Promise<void>
 export type SubscriptionHandlerFn = (message: Message) => Promise<void>
 export type SubscribeFn = (options: SubscribeOptions) => Promise<any>
 export type HandlerFn = (message: Message, dispatch: DispatchFn) => Promise<void>
-export type DispatchFn = (message: MessageTemplate) => Promise<void>
+export type DispatchFn = (message: MessageTemplate) => Promise<Message>
 
 export type Event = [string, SubscriptionHandlerFn]
 export type EventList = Array<Event>
@@ -37,6 +37,6 @@ export interface ServiceConfig {
 
 export interface Service {
   handle(type: string, callback: HandlerFn): Promise<void>
-  dispatch(options: MessageTemplate): Promise<void>
+  dispatch: DispatchFn
   start(): Promise<void>
 }

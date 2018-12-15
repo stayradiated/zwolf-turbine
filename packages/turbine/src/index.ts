@@ -4,7 +4,7 @@ import { Service, ServiceConfig, Message, EventList, MessageTemplate } from '@mi
 const createService = (config: ServiceConfig): Service => {
   const { serviceName, driver } = config
 
-  const createDispatch = (parent?: Message) => (options: MessageTemplate) => {
+  const createDispatch = (parent?: Message) => async (options: MessageTemplate) => {
     const { type, payload } = options
     const message = {
       id: uuid(),
@@ -13,7 +13,8 @@ const createService = (config: ServiceConfig): Service => {
       type,
       payload,
     }
-    return driver.publish(message)
+    await driver.publish(message)
+    return message
   }
 
   const events: EventList = []

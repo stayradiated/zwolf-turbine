@@ -14,7 +14,7 @@ export interface MessageTemplate {
 
 export interface Message {
   id: string
-  parentId: string
+  parentId?: string
   sentAt: number
   type: string
   payload: any

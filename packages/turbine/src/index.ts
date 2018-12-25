@@ -1,18 +1,21 @@
 import { v4 as uuid } from 'uuid'
 import { Service, ServiceConfig, Message, EventList, MessageTemplate } from '@mishguru/turbine-types'
 
+const createMessage = (type: string, payload: any, parentId?: string) => ({
+  id: uuid(),
+  parentId,
+  sentAt: Date.now(),
+  type,
+  payload,
+})
+
 const createService = (config: ServiceConfig): Service => {
   const { serviceName, driver } = config
 
   const createDispatch = (parent?: Message) => async (options: MessageTemplate) => {
     const { type, payload } = options
-    const message = {
-      id: uuid(),
-      parentId: parent != null ? parent.id : null,
-      sentAt: Date.now(),
-      type,
-      payload,
-    }
+    const parentId = (parent != null) ? parent.id : null
+    const message = createMessage(type, payload, parentId)
     await driver.publish(message)
     return message
   }
@@ -47,3 +50,7 @@ const createService = (config: ServiceConfig): Service => {
 }
 
 export default createService
+
+export {
+  createMessage
+}

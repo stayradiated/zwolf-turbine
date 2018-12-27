@@ -4,7 +4,7 @@ import publish from './publish'
 
 const createDriver = (): Driver => ({
   publish,
-  subscribe
+  subscribe,
 })
 
 export default createDriver

@@ -5,7 +5,7 @@ import createMockDriver from '@mishguru/turbine-driver-mock'
 
 const service = createService({
   serviceName: 'something-amazing',
-  driver: createAmqplibDriver('amqp://localhost')
+  driver: createAmqplibDriver('amqp://localhost'),
 })
 
 service.handle('debug', async (message, dispatch) => {
@@ -17,10 +17,9 @@ service.handle('debug', async (message, dispatch) => {
     type: 'debug',
     payload: {
       userId: 0,
-      info: 'this is a test'
-    }
+      info: 'this is a test',
+    },
   })
 })
 
-service.start()
-  .catch(console.error) 
+service.start().catch(console.error)

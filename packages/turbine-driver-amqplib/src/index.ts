@@ -1,7 +1,7 @@
 import memoize from 'memoizee'
 import amqp, { Channel } from 'amqplib'
 import delay from 'delay'
-import  { Message, SubscribeOptions } from '@mishguru/turbine-types'
+import { Message, SubscribeOptions } from '@mishguru/turbine-types'
 
 import subscribe from './subscribe'
 import publish from './publish'
@@ -33,7 +33,7 @@ const createDriver = (url: string) => {
     subscribe: async (options: SubscribeOptions) => {
       const channel = await assertChannel(url)
       return subscribe(channel, options)
-    }
+    },
   }
 }
 

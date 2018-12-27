@@ -1,14 +1,17 @@
 export type PublishFn = (message: Message) => Promise<void>
 export type SubscriptionHandlerFn = (message: Message) => Promise<void>
 export type SubscribeFn = (options: SubscribeOptions) => Promise<any>
-export type HandlerFn = (message: Message, dispatch: DispatchFn) => Promise<void>
+export type HandlerFn = (
+  message: Message,
+  dispatch: DispatchFn,
+) => Promise<void>
 export type DispatchFn = (message: MessageTemplate) => Promise<Message>
 
 export type Event = [string, SubscriptionHandlerFn]
 export type EventList = Array<Event>
 
 export interface MessageTemplate {
-  type: string,
+  type: string
   payload: any
 }
 

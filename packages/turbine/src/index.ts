@@ -1,21 +1,31 @@
 import { v4 as uuid } from 'uuid'
-import { Service, ServiceConfig, Message, EventList, MessageTemplate } from '@mishguru/turbine-types'
+import {
+  Service,
+  ServiceConfig,
+  Message,
+  EventList,
+  MessageTemplate,
+} from '@mishguru/turbine-types'
 
-const createMessage = (type: string, payload: any, parentId?: string) => ({
+const createMessage = (options: {
+  type: string
+  payload: any
+  parentId?: string
+}) => ({
   id: uuid(),
-  parentId,
   sentAt: Date.now(),
-  type,
-  payload,
+  ...options,
 })
 
 const createService = (config: ServiceConfig): Service => {
   const { serviceName, driver } = config
 
-  const createDispatch = (parent?: Message) => async (options: MessageTemplate) => {
+  const createDispatch = (parent?: Message) => async (
+    options: MessageTemplate,
+  ) => {
     const { type, payload } = options
-    const parentId = (parent != null) ? parent.id : null
-    const message = createMessage(type, payload, parentId)
+    const parentId = parent != null ? parent.id : null
+    const message = createMessage({ type, payload, parentId })
     await driver.publish(message)
     return message
   }
@@ -24,7 +34,7 @@ const createService = (config: ServiceConfig): Service => {
   const hasStarted = false
 
   return {
-    async handle (type, handlerFn) {
+    async handle(type, handlerFn) {
       if (hasStarted) {
         throw new Error('Cannot add new event after service has started.')
       }
@@ -39,18 +49,16 @@ const createService = (config: ServiceConfig): Service => {
       events.push([type, callback])
     },
 
-    dispatch (options) {
+    dispatch(options) {
       return createDispatch(null)(options)
     },
 
-    async start (): Promise<any> {
+    async start(): Promise<any> {
       return driver.subscribe({ serviceName, events })
-    }
+    },
   }
 }
 
 export default createService
 
-export {
-  createMessage
-}
+export { createMessage }

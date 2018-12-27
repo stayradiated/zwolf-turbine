@@ -1,4 +1,4 @@
-import { decodeNameFromTopicArn, } from '@mishguru/fanout-helpers'
+import { decodeNameFromTopicArn } from '@mishguru/fanout-helpers'
 
 import { FANOUT_ENV } from './constants'
 
@@ -8,13 +8,11 @@ const parseRawMessage = (message: Message) => {
       ? decodeNameFromTopicArn(FANOUT_ENV, message.TopicArn)
       : ''
 
-  const payload = message && message.Message
-    ? JSON.parse(message.Message)
-    : {}
+  const payload = message && message.Message ? JSON.parse(message.Message) : {}
 
   return {
     type,
-    payload
+    payload,
   }
 }
 

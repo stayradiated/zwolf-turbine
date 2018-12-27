@@ -2,7 +2,7 @@ import { SubscribeOptions } from '@mishguru/turbine-types'
 import {
   createFanoutForEnvironment,
   createServer,
-  rejectAnyway
+  rejectAnyway,
 } from '@mishguru/fanout-helpers'
 
 import { FANOUT_ENV, AWS_CREDENTIALS } from './constants'
@@ -14,13 +14,12 @@ const subscribe = async (subscribeOptions: SubscribeOptions) => {
   const { serviceName, events } = subscribeOptions
 
   const routeMap = events.reduce((map, event) => {
-    const [ type, callback ] = event
+    const [type, callback] = event
     map.set(type, callback)
     return map
   }, new Map())
 
   await createFanoutForEnvironment(AWS_CREDENTIALS, FANOUT_ENV)
-
 
   const server = await createServer(async (rawMessage) => {
     const message = parseRawMessage(rawMessage)
@@ -31,19 +30,23 @@ const subscribe = async (subscribeOptions: SubscribeOptions) => {
       try {
         await callback({
           type,
-          payload
+          payload,
         })
       } catch (error) {
         console.error(error)
         if (error != null || error.published === true) {
           const userId = payload.userId || 0
 
-          return rejectAnyway('unexpectedError', {
-            userId,
-            message,
-            info: `Unexpected error in "${serviceName}"`,
-            error: error.message
-          }, error)
+          return rejectAnyway(
+            'unexpectedError',
+            {
+              userId,
+              message,
+              info: `Unexpected error in "${serviceName}"`,
+              error: error.message,
+            },
+            error,
+          )
         }
 
         throw error

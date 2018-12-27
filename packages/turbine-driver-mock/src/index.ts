@@ -1,7 +1,7 @@
 import { PublishFn, SubscribeFn } from '@mishguru/turbine-types'
 
 interface Options {
-  publish?: PublishFn,
+  publish?: PublishFn
   subscribe?: SubscribeFn
 }
 
@@ -11,16 +11,13 @@ const mockPublish: PublishFn = async (message) => {
 
 const mockSubscribe: SubscribeFn = async (options) => {
   options.events.forEach((event) => {
-    const [ type ] = event
+    const [type] = event
     console.log(`Subscribing to message type: "${type}"`)
   })
 }
 
 const createDriver = (options: Options = {}) => {
-  const {
-    publish = mockPublish,
-    subscribe = mockSubscribe
-  } = options
+  const { publish = mockPublish, subscribe = mockSubscribe } = options
 
   return {
     publish,

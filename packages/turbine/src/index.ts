@@ -10,6 +10,7 @@ import {
 const createMessage = (options: {
   type: string
   payload: any
+  sentFrom?: string
   parentId?: string
 }) => ({
   id: uuid(),
@@ -25,7 +26,7 @@ const createService = (config: ServiceConfig): Service => {
   ) => {
     const { type, payload } = options
     const parentId = parent != null ? parent.id : null
-    const message = createMessage({ type, payload, parentId })
+    const message = createMessage({ type, payload, parentId, sentFrom: serviceName })
     await driver.publish(message)
     return message
   }

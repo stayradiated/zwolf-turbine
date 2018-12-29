@@ -20,7 +20,7 @@
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
     "@mishguru/turbine-types": "^3.0.0",
-    "amqplib": "^0.5.2",
+    "amqplib": "^0.5.3",
     "delay": "^4.1.0",
     "memoizee": "^0.4.14"
   },

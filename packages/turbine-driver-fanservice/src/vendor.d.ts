@@ -1,10 +1,10 @@
-declare interface Credentials {
+declare type Credentials = {
   region: string
   accessKeyId: string
   secretAccessKey: string
 }
 
-declare interface Message {
+declare type FanserviceMessage = {
   TopicArn: string
   Message: string
 }
@@ -35,7 +35,7 @@ declare module '@mishguru/fanout-helpers' {
   ): Promise<void>
   export function decodeNameFromTopicArn(fanoutEnv: string, arn: string): string
   export function createServer(
-    handler: (message: Message) => Promise<void>,
+    handler: (message: FanserviceMessage) => Promise<void>,
     healthCheck: () => Promise<void>,
   ): Promise<Server>
 }

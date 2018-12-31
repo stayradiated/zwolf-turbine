@@ -1,40 +1,42 @@
-export type PublishFn = (message: Message) => Promise<void>
-export type SubscriptionHandlerFn = (message: Message) => Promise<void>
+export type PublishFn = (message: AnyMessage) => Promise<void>
+export type SubscriptionHandlerFn = (message: AnyMessage) => Promise<void>
 export type SubscribeFn = (options: SubscribeOptions) => Promise<any>
 export type HandlerFn = (
-  message: Message,
+  message: AnyMessage,
   dispatch: DispatchFn,
 ) => Promise<void>
-export type DispatchFn = (message: MessageTemplate) => Promise<Message>
+export type DispatchFn = (message: MessageTemplate) => Promise<AnyMessage>
 
 export type Event = [string, SubscriptionHandlerFn]
 export type EventList = Array<Event>
 
-export interface MessageTemplate {
+export type MessageTemplate = {
   type: string
   payload: any
 }
 
-export interface Message {
+export type Message<T> = {
   id: string
   parentId?: string
   sentFrom?: string
   sentAt: number
   type: string
-  payload: any
+  payload: T
 }
 
-export interface SubscribeOptions {
+export type AnyMessage = Message<any>
+
+export type SubscribeOptions = {
   serviceName: string
   events: EventList
 }
 
-export interface Driver {
+export type Driver = {
   publish: PublishFn
   subscribe: SubscribeFn
 }
 
-export interface ServiceConfig {
+export type ServiceConfig = {
   serviceName: string
   driver: Driver
 }

@@ -1,7 +1,7 @@
 import memoize from 'memoizee'
 import amqp, { Channel } from 'amqplib'
 import delay from 'delay'
-import { Message, SubscribeOptions } from '@mishguru/turbine-types'
+import { AnyMessage, SubscribeOptions } from '@mishguru/turbine-types'
 
 import subscribe from './subscribe'
 import publish from './publish'
@@ -26,7 +26,7 @@ const assertChannel = memoize(createChannel, { promise: true })
 
 const createDriver = (url: string) => {
   return {
-    publish: async (message: Message) => {
+    publish: async (message: AnyMessage) => {
       const channel = await assertChannel(url)
       return publish(channel, message)
     },

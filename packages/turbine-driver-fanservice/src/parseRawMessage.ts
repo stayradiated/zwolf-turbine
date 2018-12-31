@@ -2,7 +2,7 @@ import { decodeNameFromTopicArn } from '@mishguru/fanout-helpers'
 
 import { FANOUT_ENV } from './constants'
 
-const parseRawMessage = (message: Message) => {
+const parseRawMessage = (message: FanserviceMessage) => {
   const type =
     message && message.TopicArn
       ? decodeNameFromTopicArn(FANOUT_ENV, message.TopicArn)

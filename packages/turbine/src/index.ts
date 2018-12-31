@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid'
 import {
   Service,
   ServiceConfig,
-  Message,
+  AnyMessage,
   EventList,
   MessageTemplate,
 } from '@mishguru/turbine-types'
@@ -21,7 +21,7 @@ const createMessage = (options: {
 const createService = (config: ServiceConfig): Service => {
   const { serviceName, driver } = config
 
-  const createDispatch = (parent?: Message) => async (
+  const createDispatch = (parent?: AnyMessage) => async (
     options: MessageTemplate,
   ) => {
     const { type, payload } = options
@@ -39,7 +39,7 @@ const createService = (config: ServiceConfig): Service => {
       if (hasStarted) {
         throw new Error('Cannot add new event after service has started.')
       }
-      const callback = async (message: Message) => {
+      const callback = async (message: AnyMessage) => {
         const dispatch = createDispatch(message)
         try {
           await handlerFn(message, dispatch)

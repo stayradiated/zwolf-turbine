@@ -23,8 +23,15 @@ const subscribe = async (subscribeOptions: SubscribeOptions) => {
     return map
   }, new Map())
 
+  console.log('Subscribing to the following gevents:')
+  for (const key of routeMap.keys()) {
+    console.log(`- ${key}`)
+  }
+
+  console.info('Updating fanout environment...')
   await createFanoutForEnvironment(AWS_CREDENTIALS, FANOUT_ENV)
 
+  console.info('Polling for messages...')
   await pollForMessages(routeMap, serviceName)
 }
 
@@ -47,14 +54,17 @@ const pollForMessages = async (routeMap: RouteMap, serviceName: string): Promise
 
 const handleMessage = async (routeMap: RouteMap, serviceName: string, rawMessage: FanserviceMessage) => {
   const message = parseRawMessage(rawMessage)
-  const { type, payload } = message
+  const { id, sentAt, type, payload } = message
 
-  if (routeMap.has(type)) {
+  if (routeMap.has(type) === false) {
+    console.info(`Warning! Unhandled event received: "${type}"`)
+  } else {
+    console.info(`--- ${type} ---\n${JSON.stringify(payload, null, 2)}\n`)
     const callback = routeMap.get(type)
     try {
       await callback({
-        id: payload.__turbine__ != null ? payload.__turbine__.id : null,
-        sentAt: payload.__turbine__ != null ? payload.__turbine.sentAt : null,
+        id,
+        sentAt,
         type,
         payload,
       })

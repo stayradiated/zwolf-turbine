@@ -5,17 +5,29 @@ declare type Credentials = {
 }
 
 declare type FanserviceMessage = {
+  Type: string
+  MessageId: string
   TopicArn: string
   Message: string
+  Timestamp: string
+  SignatureVersion: string
+  Signature: string
+  SigningCertURL: string
+  UnsubscribeURL: string
 }
 
 declare type ReceivedMessage = {
+  MessageId: string
   Body: string
   ReceiptHandle: string
+  MD5OfBody: string
 }
 
 declare type ReceivedMessageList = {
   Messages: ReceivedMessage[]
+  ResponseMetadata: {
+    RequestId: string
+  }
 }
 
 declare module '@mishguru/fanout-helpers' {

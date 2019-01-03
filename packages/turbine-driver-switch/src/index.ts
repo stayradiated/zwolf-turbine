@@ -1,4 +1,21 @@
-const createDriver = (driverName: string) => {
+type Options = {
+  defaultDriver?: string
+}
+
+const createDriver = (options: Options) => {
+  const { defaultDriver } = options
+  const { TURBINE_DRIVER } = process.env
+
+  const driverName = typeof TURBINE_DRIVER === 'string' && TURBINE_DRIVER.trim().length > 0
+    ? TURBINE_DRIVER
+    : defaultDriver
+
+  if (typeof driverName !== 'string' || driverName.trim().length === 0) {
+    throw new Error('Invalid turbine driver name supplied to turbine-driver-switch.')
+  }
+
+  console.info(`[turbine] Using driver "${driverName}"`)
+
   const { default: createDriver } = require(driverName)
   return createDriver()
 }

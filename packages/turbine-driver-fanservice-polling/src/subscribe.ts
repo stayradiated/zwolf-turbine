@@ -1,14 +1,12 @@
 import { SubscribeOptions, SubscriptionHandlerFn } from '@mishguru/turbine-types'
-import Raven from '@mishguru/raven-helper'
+import { parseRawMessage, FANOUT_ENV, AWS_CREDENTIALS } from '@mishguru/turbine-utils-fanservice'
 import {
+  FanserviceMessage,
   createFanoutForEnvironment,
   authenticatedDeleteMessage,
   authenticatedReceiveMessage,
   rejectAnyway,
 } from '@mishguru/fanout-helpers'
-
-import { FANOUT_ENV, AWS_CREDENTIALS } from './constants'
-import parseRawMessage from './parseRawMessage'
 
 type RouteMap = Map<string, SubscriptionHandlerFn>
 
@@ -46,7 +44,7 @@ const pollForMessages = async (routeMap: RouteMap, serviceName: string): Promise
       }))
     }
   } catch (error) {
-    Raven.captureException(error)
+    console.error(error)
   } finally {
     return pollForMessages(routeMap, serviceName)
   }
@@ -69,7 +67,6 @@ const handleMessage = async (routeMap: RouteMap, serviceName: string, rawMessage
         payload,
       })
     } catch (error) {
-      console.error(error)
       if (error != null || error.published === true) {
         const userId = payload.userId || 0
 

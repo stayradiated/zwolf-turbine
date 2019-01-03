@@ -1,12 +1,11 @@
 import { SubscribeOptions } from '@mishguru/turbine-types'
+import { parseRawMessage, FANOUT_ENV, AWS_CREDENTIALS } from '@mishguru/turbine-utils-fanservice'
+import Raven from '@mishguru/raven-helper'
 import {
   createFanoutForEnvironment,
   createServer,
   rejectAnyway,
 } from '@mishguru/fanout-helpers'
-
-import { FANOUT_ENV, AWS_CREDENTIALS } from './constants'
-import parseRawMessage from './parseRawMessage'
 
 const HEALTH_CHECK = async (): Promise<void> => undefined
 
@@ -34,6 +33,8 @@ const subscribe = async (subscribeOptions: SubscribeOptions) => {
         })
       } catch (error) {
         console.error(error)
+        Raven.captureException(error)
+
         if (error != null || error.published === true) {
           const userId = payload.userId || 0
 

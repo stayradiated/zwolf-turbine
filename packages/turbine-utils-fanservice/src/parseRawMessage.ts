@@ -2,11 +2,23 @@ import { decodeNameFromTopicArn } from '@mishguru/fanout-helpers'
 
 import { FANOUT_ENV } from './constants'
 
+type FanserviceMessage = {
+  Type: string
+  MessageId: string
+  TopicArn: string
+  Message: string
+  Timestamp: string
+  SignatureVersion: string
+  Signature: string
+  SigningCertURL: string
+  UnsubscribeURL: string
+}
+
 const parseRawMessage = (message: FanserviceMessage) => {
   const type =
     message && message.TopicArn
       ? decodeNameFromTopicArn(FANOUT_ENV, message.TopicArn)
-      : ''
+      : 'EB_CRON_JOB'
 
   const payload = message != null && message.Message != null ? JSON.parse(message.Message) : {}
 

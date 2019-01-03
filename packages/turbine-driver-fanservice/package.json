@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-driver-fanservice",
-  "version": "3.2.0",
+  "version": "3.6.0",
   "description": "Turbine driver using for SQS/SNS queues via fanservice",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -22,8 +22,8 @@
     "@mishguru/fanout-helpers": "^15.14.0",
     "@mishguru/raven-helper": "^2.2.0",
     "@mishguru/turbine-types": "^3.2.0",
-    "@mishguru/turbine-utils-fanservice": "^3.2.0",
-    "@types/mishguru__fanout-helpers": "^3.2.0",
-    "@types/mishguru__raven-helper": "^3.2.0"
+    "@mishguru/turbine-utils-fanservice": "^3.6.0",
+    "@types/mishguru__fanout-helpers": "^3.6.0",
+    "@types/mishguru__raven-helper": "^3.6.0"
   }
 }

@@ -1,0 +1,26 @@
+{
+  "name": "@mishguru/turbine-driver-fanservice-polling",
+  "version": "3.2.0",
+  "description": "Turbine driver using for SQS/SNS queues via fanservice (with polling)",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "../../node_modules/.bin/tsc",
+    "tidy": "../../node_modules/.bin/prettier --config ../../prettier.json --write \"**/*.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mishguruorg/turbine.git"
+  },
+  "author": "Mish Guru <devs@mish.guru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mishguruorg/turbine/issues"
+  },
+  "homepage": "https://github.com/mishguruorg/turbine#readme",
+  "dependencies": {
+    "@mishguru/fanout-helpers": "^15.14.0",
+    "@mishguru/raven-helper": "^2.2.0",
+    "@mishguru/turbine-types": "^3.2.0"
+  }
+}

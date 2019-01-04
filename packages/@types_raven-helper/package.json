@@ -1,7 +1,0 @@
-{
-  "name": "@types/mishguru__raven-helper",
-  "private": true,
-  "version": "3.6.0",
-  "description": "Typescript type definitions for @mishguru/raven-helper",
-  "types": "./index.d.ts"
-}

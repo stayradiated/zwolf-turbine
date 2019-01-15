@@ -8,9 +8,13 @@ import publish from './publish'
 
 import { EXCHANGE } from './config'
 
-const createChannel = async (url: string): Promise<Channel> => {
+type DriverConfig = {
+  url: string
+}
+
+const createChannel = async (config: DriverConfig): Promise<Channel> => {
   try {
-    const conn = await amqp.connect(url)
+    const conn = await amqp.connect(config.url)
     const channel = await conn.createChannel()
     channel.assertExchange(EXCHANGE, 'topic', { durable: false })
     return channel
@@ -18,22 +22,22 @@ const createChannel = async (url: string): Promise<Channel> => {
     console.error(error)
     console.log('Could not create channel. Waiting 10 seconds...')
     await delay(10 * 1000)
-    return createChannel(url)
+    return createChannel(config)
   }
 }
 
 const assertChannel = memoize(createChannel, { promise: true })
 
-const createDriver = (url: string) => {
+const createDriver = (config: DriverConfig) => {
   return {
     publish: async (message: AnyMessage) => {
-      const channel = await assertChannel(url)
+      const channel = await assertChannel(config)
       return publish(channel, message)
     },
     subscribe: async (options: SubscribeOptions) => {
-      const channel = await assertChannel(url)
+      const channel = await assertChannel(config)
       return subscribe(channel, options)
-    },
+    }
   }
 }
 

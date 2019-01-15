@@ -8,7 +8,7 @@ import createAmqpDriver from '@mishguru/turbine-driver-amqplib'
 
 const service = createService({
   serviceName: 'scheduler',
-  driver: createAmqpDriver('amqp://localhost')
+  driver: createAmqpDriver({url: 'amqp://localhost'})
 })
 
 service.handle('schedule', (message, dispatch) => {

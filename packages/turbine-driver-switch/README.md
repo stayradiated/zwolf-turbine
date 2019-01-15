@@ -19,4 +19,5 @@ const service = createService({
 
 ```shell
 TURBINE_DRIVER=@mishguru/turbine-driver-fanservice-polling npm start
+TURBINE_DRIVER_ARGS_JSON='{"url":"amqp://localhost"}'
 ```

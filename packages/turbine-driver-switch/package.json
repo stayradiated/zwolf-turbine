@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-driver-switch",
-  "version": "3.11.1",
+  "version": "4.0.0",
   "description": "Select which turbine driver to use at runtime.",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",

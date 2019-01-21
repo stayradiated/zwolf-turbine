@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-driver-fanservice-polling",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Turbine driver using for SQS/SNS queues via fanservice (with polling)",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -21,6 +21,6 @@
   "dependencies": {
     "@mishguru/fanout-helpers": "16.0.3",
     "@mishguru/turbine-types": "^4.0.0",
-    "@mishguru/turbine-utils-fanservice": "^4.0.0"
+    "@mishguru/turbine-utils-fanservice": "^4.1.0"
   }
 }

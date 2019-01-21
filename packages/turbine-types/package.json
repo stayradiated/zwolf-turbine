@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "../../node_modules/.bin/tsc",
+    "build": "npm run build:ts && npm run build:flow",
+    "build:ts": "../../node_modules/.bin/tsc",
+    "build:flow": "flow check && cp ./src/index.js.flow ./dist",
     "tidy": "../../node_modules/.bin/prettier --config ../../prettier.json --write \"**/*.ts\""
   },
   "repository": {
@@ -17,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/mishguruorg/turbine/issues"
   },
-  "homepage": "https://github.com/mishguruorg/turbine#readme"
+  "homepage": "https://github.com/mishguruorg/turbine#readme",
+  "devDependencies": {
+    "flow-bin": "^0.91.0"
+  }
 }

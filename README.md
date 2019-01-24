@@ -48,6 +48,7 @@ As well as a driver to use.
 
 ```
 git clone https://github.com/mishguruorg/turbine
+npm install
 npm run bootstrap
 npm run build
 ```

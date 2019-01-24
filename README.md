@@ -54,6 +54,10 @@ npm run build
 
 ### Publishing
 
+When publishing changes, you should not use `npm publish` manually.
+
+Instead use `lerna publish`. This is also available as:
+
 ```
 npm run publish
 ```

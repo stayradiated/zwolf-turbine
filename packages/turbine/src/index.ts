@@ -41,11 +41,7 @@ const createService = (config: ServiceConfig): Service => {
       }
       const callback = async (message: AnyMessage) => {
         const dispatch = createDispatch(message)
-        try {
-          await handlerFn(message, dispatch)
-        } catch (error) {
-          console.error(`Error handling "${message.type}" message!`, error)
-        }
+        await handlerFn(message, dispatch)
       }
       events.push([type, callback])
     },

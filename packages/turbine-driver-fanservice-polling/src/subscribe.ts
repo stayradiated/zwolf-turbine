@@ -44,7 +44,7 @@ const pollForMessages = async (routeMap: RouteMap, serviceName: string): Promise
       }))
     }
   } catch (error) {
-    console.error(error)
+    console.error('Error polling for messages!', error)
   } finally {
     return pollForMessages(routeMap, serviceName)
   }
@@ -67,6 +67,8 @@ const handleMessage = async (routeMap: RouteMap, serviceName: string, rawMessage
         payload,
       })
     } catch (error) {
+      console.error(`Error handling "${type}" message!`, error)
+
       if (error != null || error.published === true) {
         const userId = payload.userId || 0
 

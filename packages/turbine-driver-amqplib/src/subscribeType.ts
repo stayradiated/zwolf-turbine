@@ -21,8 +21,8 @@ const subscribeType = async (options: Options) => {
     const message = JSON.parse(msg.content.toString())
     try {
       await callback(message)
-    } catch {
-      // failed to handle message
+    } catch (error) {
+      console.error(`Error handling "${message.type}" message!`, error)
       return
     }
     await channel.ack(msg)

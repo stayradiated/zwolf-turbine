@@ -1,3 +1,6 @@
 export * from './constants'
+export * from './types'
 export { default as publish } from './publish'
-export { default as parseRawMessage } from './parseRawMessage'
+export { default as parseFanserviceMessage } from './parseFanserviceMessage'
+export { default as createRouteMap } from './createRouteMap'
+export { default as handleFanserviceMessage } from './handleFanserviceMessage'

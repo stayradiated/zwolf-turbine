@@ -22,7 +22,7 @@ const handleCallback = async (
       payload,
     })
   } catch (error) {
-    console.error(`Error handling "${type}" message!`, error)
+    console.error(`Error handling "${type}" message.`, error)
     Raven.captureException(error)
 
     if (error != null || error.published === true) {
@@ -33,8 +33,8 @@ const handleCallback = async (
         {
           userId,
           message,
-          info: `Unexpected error in "${serviceName}"`,
-          error: error.message,
+          info: `Uncaught error in "${serviceName}" while handling "${type}" message.`,
+          error: error.toString(),
         },
         error,
       )
@@ -52,7 +52,9 @@ const handleFanserviceMessage = async (
   const message = parseFanserviceMessage(rawMessage)
   const { type, payload } = message
 
-  console.info(`--- ${type} ---\n${JSON.stringify(payload, null, 2)}\n`)
+  if (process.env.TURBINE_DEBUG) {
+    console.info(`--- ${type} ---\n${JSON.stringify(payload, null, 2)}\n`)
+  }
 
   let handled = false
 

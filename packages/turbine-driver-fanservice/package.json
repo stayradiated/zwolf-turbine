@@ -20,7 +20,6 @@
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
     "@mishguru/fanout-helpers": "16.0.6",
-    "@mishguru/raven-helper": "^2.4.0",
     "@mishguru/turbine-types": "^4.6.0",
     "@mishguru/turbine-utils-fanservice": "^4.7.0"
   }

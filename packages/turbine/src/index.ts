@@ -26,7 +26,12 @@ const createService = (config: ServiceConfig): Service => {
   ) => {
     const { type, payload } = options
     const parentId = parent != null ? parent.id : null
-    const message = createMessage({ type, payload, parentId, sentFrom: serviceName })
+    const message = createMessage({
+      type,
+      payload,
+      parentId,
+      sentFrom: serviceName,
+    })
     await driver.publish(message)
     return message
   }

@@ -3,7 +3,7 @@ import createAmqplibDriver from '@mishguru/turbine-driver-amqplib'
 
 const service = createService({
   serviceName: 'something-amazing',
-  driver: createAmqplibDriver({ url: 'amqp://localhost' })
+  driver: createAmqplibDriver({ url: 'amqp://localhost' }),
 })
 
 service.handle('debug', async (message, dispatch) => {
@@ -13,8 +13,8 @@ service.handle('debug', async (message, dispatch) => {
     type: 'debug',
     payload: {
       userId: 0,
-      info: 'this is a test'
-    }
+      info: 'this is a test',
+    },
   })
 })
 

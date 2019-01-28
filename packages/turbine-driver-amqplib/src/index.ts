@@ -37,7 +37,7 @@ const createDriver = (config: DriverConfig) => {
     subscribe: async (options: SubscribeOptions) => {
       const channel = await assertChannel(config)
       return subscribe(channel, options)
-    }
+    },
   }
 }
 

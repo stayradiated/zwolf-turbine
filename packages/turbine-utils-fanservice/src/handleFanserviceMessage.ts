@@ -25,7 +25,11 @@ const handleCallback = async (
     console.error(`Error handling "${type}" message.`, error)
     Raven.captureException(error)
 
-    if (error != null || error.published === true) {
+    if (error != null ) {
+      if (error.published === true) { // this error has already been handled
+        return
+      }
+
       const userId = payload.userId || 0
 
       return rejectAnyway(

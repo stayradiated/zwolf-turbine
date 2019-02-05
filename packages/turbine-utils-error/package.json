@@ -1,13 +1,11 @@
 {
-  "name": "@mishguru/turbine-types",
-  "version": "4.8.0",
-  "description": "Typescript type definitions for @mishguru/turbine",
+  "name": "@mishguru/turbine-utils-error",
+  "version": "4.10.0",
+  "description": "Utilities for handling and publishing errors.",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "npm run build:ts && npm run build:flow",
-    "build:ts": "../../node_modules/.bin/tsc",
-    "build:flow": "flow check && cp ./src/index.js.flow ./dist",
+    "build": "../../node_modules/.bin/tsc",
     "tidy": "../../node_modules/.bin/prettier --config ../../prettier.json --write \"**/*.ts\""
   },
   "repository": {
@@ -20,7 +18,10 @@
     "url": "https://github.com/mishguruorg/turbine/issues"
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
+  "dependencies": {
+    "@mishguru/turbine-types": "^4.8.0"
+  },
   "devDependencies": {
-    "flow-bin": "^0.92.1"
+    "@types/node": "^10.12.18"
   }
 }

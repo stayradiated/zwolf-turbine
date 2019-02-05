@@ -1,6 +1,7 @@
 import { AnyMessage, SubscriptionHandlerFn } from '@mishguru/turbine-types'
 import Raven from '@mishguru/raven-helper'
 import { rejectAnyway } from '@mishguru/fanout-helpers'
+import { formatError } from '@mishguru/turbine-utils-error'
 
 import parseFanserviceMessage from './parseFanserviceMessage'
 import { RouteMap, FanserviceMessage } from './types'
@@ -32,9 +33,9 @@ const handleCallback = async (
         'unexpectedError',
         {
           userId,
-          message,
           info: `Uncaught error in "${serviceName}" while handling "${type}" message.`,
-          error: error.toString(),
+          error: formatError(error),
+          message,
         },
         error,
       )

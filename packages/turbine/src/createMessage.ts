@@ -1,4 +1,4 @@
-import { v4 as uuid } from 'uuid'
+import { ulid } from 'ulid'
 
 const createMessage = (options: {
   type: string
@@ -6,7 +6,7 @@ const createMessage = (options: {
   sentFrom?: string
   parentId?: string
 }) => ({
-  id: uuid(),
+  id: ulid(),
   sentAt: Date.now(),
   ...options,
 })

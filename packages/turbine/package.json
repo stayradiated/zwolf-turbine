@@ -21,9 +21,6 @@
   "dependencies": {
     "@mishguru/turbine-types": "^4.11.0",
     "@mishguru/turbine-utils-error": "^4.12.0",
-    "uuid": "^3.3.2"
-  },
-  "devDependencies": {
-    "@types/uuid": "^3.4.4"
+    "ulid": "^2.3.0"
   }
 }

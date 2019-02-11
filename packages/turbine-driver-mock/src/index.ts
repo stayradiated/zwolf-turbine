@@ -1,27 +1,56 @@
-import { PublishFn, SubscribeFn } from '@mishguru/turbine-types'
+import {
+  PublishFn,
+  SubscribeFn,
+  SubscriptionHandlerFn,
+  AnyMessage,
+} from '@mishguru/turbine-types'
 
-interface Options {
-  publish?: PublishFn
-  subscribe?: SubscribeFn
+type EventMap = Map<string, SubscriptionHandlerFn[]>
+type MessageList = Array<AnyMessage>
+
+const mockPublish = (
+  eventMap: EventMap,
+  messageList: MessageList,
+): PublishFn => {
+  return async (message) => {
+    const { type } = message
+
+    messageList.push(message)
+
+    if (eventMap.has(type)) {
+      await Promise.all(
+        eventMap
+          .get(type)
+          .map((handler: SubscriptionHandlerFn) => handler(message)),
+      )
+    }
+  }
 }
 
-const mockPublish: PublishFn = async (message) => {
-  console.log(`Publishing message: ${JSON.stringify(message, null, 2)}`)
+const mockSubscribe = (
+  eventMap: EventMap,
+  messageList: MessageList,
+): SubscribeFn => {
+  return async (options) => {
+    options.events.forEach((event) => {
+      const [type, handler] = event
+      if (eventMap.has(type) === false) {
+        eventMap.set(type, [])
+      }
+      eventMap.get(type).push(handler)
+    })
+
+    return messageList
+  }
 }
 
-const mockSubscribe: SubscribeFn = async (options) => {
-  options.events.forEach((event) => {
-    const [type] = event
-    console.log(`Subscribing to message type: "${type}"`)
-  })
-}
-
-const createDriver = (options: Options = {}) => {
-  const { publish = mockPublish, subscribe = mockSubscribe } = options
+const createDriver = () => {
+  const eventMap = new Map<string, SubscriptionHandlerFn[]>()
+  const messageList = new Array<AnyMessage>()
 
   return {
-    publish,
-    subscribe,
+    publish: mockPublish(eventMap, messageList),
+    subscribe: mockSubscribe(eventMap, messageList),
   }
 }
 

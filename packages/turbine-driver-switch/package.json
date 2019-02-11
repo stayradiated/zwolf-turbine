@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "devDependencies": {
-    "@types/node": "^10.12.23"
+    "@types/node": "^10.12.24"
   }
 }

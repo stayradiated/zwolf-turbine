@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-types",
-  "version": "4.19.0",
+  "version": "4.20.0",
   "description": "Typescript type definitions for @mishguru/turbine",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",

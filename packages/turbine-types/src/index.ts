@@ -44,5 +44,5 @@ export type ServiceConfig = {
 export interface Service {
   handle(type: string, callback: HandlerFn): Promise<void>
   dispatch: DispatchFn
-  start(): Promise<void>
+  start(): Promise<any>
 }

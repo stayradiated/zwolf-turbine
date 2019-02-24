@@ -25,6 +25,6 @@
     "@mishguru/turbine-utils-error": "^4.20.0"
   },
   "devDependencies": {
-    "@types/node": "^11.9.4"
+    "@types/node": "^11.9.5"
   }
 }

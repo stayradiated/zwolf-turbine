@@ -1,7 +1,7 @@
 const formatError = (error: Error) => {
   return {
     message: error.toString(),
-    stack: error.stack.toString()
+    stack: error.stack.toString(),
   }
 }
 

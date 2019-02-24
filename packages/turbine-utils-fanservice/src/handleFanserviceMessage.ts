@@ -33,15 +33,17 @@ const handleCallback = async (
 
       error.published = true
 
-      return publish(createMessage({
-        type: 'unexpectedError',
-        payload: {
-          userId,
-          info: `Uncaught error in "${serviceName}" while handling "${type}" message.`,
-          error: formatError(error),
-          message,
-        },
-      }))
+      return publish(
+        createMessage({
+          type: 'unexpectedError',
+          payload: {
+            userId,
+            info: `Uncaught error in "${serviceName}" while handling "${type}" message.`,
+            error: formatError(error),
+            message,
+          },
+        }),
+      )
     }
 
     throw error

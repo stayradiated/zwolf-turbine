@@ -8,6 +8,8 @@ import {
 type EventMap = Map<string, SubscriptionHandlerFn[]>
 type MessageList = Array<AnyMessage>
 
+const STAR_TYPE = '*'
+
 const mockPublish = (
   eventMap: EventMap,
   messageList: MessageList,
@@ -17,13 +19,17 @@ const mockPublish = (
 
     messageList.push(message)
 
+    const handlers: SubscriptionHandlerFn[] = []
+
     if (eventMap.has(type)) {
-      await Promise.all(
-        eventMap
-          .get(type)
-          .map((handler: SubscriptionHandlerFn) => handler(message)),
-      )
+      handlers.push(...eventMap.get(type))
     }
+
+    if (eventMap.has(STAR_TYPE)) {
+      handlers.push(...eventMap.get(STAR_TYPE))
+    }
+
+    await Promise.all(handlers.map((handler) => handler(message)))
   }
 }
 

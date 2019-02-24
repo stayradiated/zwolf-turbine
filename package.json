@@ -5,6 +5,7 @@
     "bootstrap": "lerna bootstrap --hoist",
     "build": "lerna run build",
     "publish": "npm run build && lerna publish",
+    "tidy": "lerna run tidy",
     "ncu": "lerna exec -- ncu -a && lerna exec -- npm install"
   },
   "devDependencies": {

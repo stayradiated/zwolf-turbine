@@ -33,7 +33,9 @@ const subscribe = async (subscribeOptions: SubscribeOptions) => {
   await createFanoutForEnvironment(AWS_CREDENTIALS, FANOUT_ENV)
 
   console.info('Polling for messages...')
-  await pollForMessages(routeMap, serviceName)
+
+  // this is not awaited on purpose, because it never returns
+  pollForMessages(routeMap, serviceName)
 }
 
 const pollForMessages = async (

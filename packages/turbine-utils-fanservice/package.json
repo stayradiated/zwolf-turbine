@@ -21,6 +21,7 @@
   "dependencies": {
     "@mishguru/fanout-helpers": "16.3.0",
     "@mishguru/raven-helper": "^2.4.4",
+    "@mishguru/turbine": "^4.21.0",
     "@mishguru/turbine-types": "^4.21.0",
     "@mishguru/turbine-utils-error": "^4.21.0"
   },

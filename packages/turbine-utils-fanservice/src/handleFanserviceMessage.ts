@@ -2,9 +2,11 @@ import { AnyMessage, SubscriptionHandlerFn } from '@mishguru/turbine-types'
 import Raven from '@mishguru/raven-helper'
 import { rejectAnyway } from '@mishguru/fanout-helpers'
 import { formatError } from '@mishguru/turbine-utils-error'
+import { createMessage } from '@mishguru/turbine'
 
 import parseFanserviceMessage from './parseFanserviceMessage'
 import { RouteMap, FanserviceMessage } from './types'
+import publish from './publish'
 
 const STAR_TYPE = '*'
 
@@ -29,16 +31,17 @@ const handleCallback = async (
     if (error != null && !error.published) {
       const userId = payload.userId || 0
 
-      return rejectAnyway(
-        'unexpectedError',
-        {
+      error.published = true
+
+      return publish(createMessage({
+        type: 'unexpectedError',
+        payload: {
           userId,
           info: `Uncaught error in "${serviceName}" while handling "${type}" message.`,
           error: formatError(error),
           message,
         },
-        error,
-      )
+      }))
     }
 
     throw error

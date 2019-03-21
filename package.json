@@ -6,7 +6,7 @@
     "build": "lerna run build",
     "publish": "npm run build && lerna publish",
     "tidy": "lerna run tidy",
-    "ncu": "lerna exec -- ncu -u && lerna exec -- npm install"
+    "ncu": "lerna exec -- ncu -u && npm run bootstrap && npm run build"
   },
   "devDependencies": {
     "lerna": "^3.10.7",

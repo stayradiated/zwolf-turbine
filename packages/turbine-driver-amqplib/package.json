@@ -25,7 +25,7 @@
     "memoizee": "^0.4.14"
   },
   "devDependencies": {
-    "@types/amqplib": "^0.5.10",
+    "@types/amqplib": "^0.5.11",
     "@types/delay": "^3.1.0",
     "@types/memoizee": "^0.4.2"
   }

@@ -22,6 +22,6 @@
     "@mishguru/turbine-types": "^4.26.0"
   },
   "devDependencies": {
-    "@types/node": "^11.10.4"
+    "@types/node": "^11.11.4"
   }
 }

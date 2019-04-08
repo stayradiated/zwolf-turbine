@@ -1,6 +1,5 @@
 import { AnyMessage, SubscriptionHandlerFn } from '@mishguru/turbine-types'
 import Raven from '@mishguru/raven-helper'
-import { rejectAnyway } from '@mishguru/fanout-helpers'
 import { formatError } from '@mishguru/turbine-utils-error'
 import { createMessage } from '@mishguru/turbine'
 

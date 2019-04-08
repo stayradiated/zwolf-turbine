@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "../../node_modules/.bin/tsc",
-    "tidy": "../../node_modules/.bin/prettier --config ../../prettier.json --write \"**/*.ts\""
+    "build": "pkg-build",
+    "tidy": "pkg-tidy"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "memoizee": "^0.4.14"
   },
   "devDependencies": {
+    "@mishguru/package": "^6.0.0-next.28",
     "@types/amqplib": "^0.5.11",
     "@types/delay": "^3.1.0",
     "@types/memoizee": "^0.4.2"

@@ -5,10 +5,10 @@
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "npm run build:ts && npm run build:flow",
+    "build": "pkg-build",
     "build:ts": "../../node_modules/.bin/tsc",
     "build:flow": "flow check && cp ./src/index.js.flow ./dist",
-    "tidy": "../../node_modules/.bin/prettier --config ../../prettier.json --write \"**/*.ts\""
+    "tidy": "pkg-tidy"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "devDependencies": {
-    "flow-bin": "^0.95.1"
+    "@mishguru/package": "^6.0.0-next.28",
+    "flow-bin": "^0.96.0"
   }
 }

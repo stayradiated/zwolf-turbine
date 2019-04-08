@@ -7,8 +7,8 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "start": "node ./dist/index.js",
-    "build": "../../node_modules/.bin/tsc",
-    "tidy": "../../node_modules/.bin/prettier --config ../../prettier.json --write \"**/*.ts\""
+    "build": "pkg-build",
+    "tidy": "pkg-tidy"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
     "@mishguru/turbine-driver-amqplib": "^4.28.0",
     "@mishguru/turbine-driver-fanservice": "^4.29.0",
     "@mishguru/turbine-driver-mock": "^4.28.0"
+  },
+  "devDependencies": {
+    "@mishguru/package": "^6.0.0-next.28"
   }
 }

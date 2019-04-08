@@ -1,7 +1,4 @@
-import {
-  SubscribeOptions,
-  SubscriptionHandlerFn,
-} from '@mishguru/turbine-types'
+import { SubscribeOptions } from '@mishguru/turbine-types'
 import {
   createRouteMap,
   RouteMap,
@@ -10,33 +7,10 @@ import {
   AWS_CREDENTIALS,
 } from '@mishguru/turbine-utils-fanservice'
 import {
-  FanserviceMessage,
   createFanoutForEnvironment,
   authenticatedDeleteMessage,
   authenticatedReceiveMessage,
-  rejectAnyway,
 } from '@mishguru/fanout-helpers'
-
-const HEALTH_CHECK = async (): Promise<void> => undefined
-
-const subscribe = async (subscribeOptions: SubscribeOptions) => {
-  const { serviceName, events } = subscribeOptions
-
-  const routeMap = createRouteMap(events)
-
-  console.log('Subscribing to the following gevents:')
-  for (const key of routeMap.keys()) {
-    console.log(`- ${key}`)
-  }
-
-  console.info('Updating fanout environment...')
-  await createFanoutForEnvironment(AWS_CREDENTIALS, FANOUT_ENV)
-
-  console.info('Polling for messages...')
-
-  // this is not awaited on purpose, because it never returns
-  pollForMessages(routeMap, serviceName)
-}
 
 const pollForMessages = async (
   routeMap: RouteMap,
@@ -59,9 +33,28 @@ const pollForMessages = async (
     }
   } catch (error) {
     console.error('Error polling for messages!', error)
-  } finally {
-    return pollForMessages(routeMap, serviceName)
   }
+
+  return pollForMessages(routeMap, serviceName)
+}
+
+const subscribe = async (subscribeOptions: SubscribeOptions) => {
+  const { serviceName, events } = subscribeOptions
+
+  const routeMap = createRouteMap(events)
+
+  console.log('Subscribing to the following gevents:')
+  for (const key of routeMap.keys()) {
+    console.log(`- ${key}`)
+  }
+
+  console.info('Updating fanout environment...')
+  await createFanoutForEnvironment(AWS_CREDENTIALS, FANOUT_ENV)
+
+  console.info('Polling for messages...')
+
+  // this is not awaited on purpose, because it never returns
+  pollForMessages(routeMap, serviceName)
 }
 
 export default subscribe

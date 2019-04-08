@@ -8,7 +8,6 @@ import {
 import {
   createFanoutForEnvironment,
   createServer,
-  rejectAnyway,
 } from '@mishguru/fanout-helpers'
 
 const HEALTH_CHECK = async (): Promise<void> => undefined

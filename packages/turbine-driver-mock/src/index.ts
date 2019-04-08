@@ -6,7 +6,7 @@ import {
 } from '@mishguru/turbine-types'
 
 type EventMap = Map<string, SubscriptionHandlerFn[]>
-type MessageList = Array<AnyMessage>
+type MessageList = AnyMessage[]
 
 const STAR_TYPE = '*'
 

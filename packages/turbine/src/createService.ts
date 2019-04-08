@@ -30,7 +30,7 @@ const createService = (config: ServiceConfig): Service => {
   const hasStarted = false
 
   return {
-    async handle(type, handlerFn) {
+    async handle (type, handlerFn) {
       if (hasStarted) {
         throw new Error('Cannot add new event after service has started.')
       }
@@ -41,11 +41,11 @@ const createService = (config: ServiceConfig): Service => {
       events.push([type, callback])
     },
 
-    dispatch(options) {
+    dispatch (options) {
       return createDispatch(null)(options)
     },
 
-    async start(): Promise<any> {
+    async start (): Promise<any> {
       return driver.subscribe({ serviceName, events })
     },
   }

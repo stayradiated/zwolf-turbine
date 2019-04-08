@@ -2,15 +2,13 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap --hoist",
-    "build": "lerna run build",
+    "bootstrap": "lerna bootstrap",
+    "build": "pkg-build",
     "publish": "npm run build && lerna publish",
-    "tidy": "lerna run tidy",
+    "tidy": "pkg-tidy",
     "ncu": "lerna exec -- ncu -u && npm run bootstrap && npm run build"
   },
   "devDependencies": {
-    "lerna": "^3.10.7",
-    "prettier": "^1.16.1",
-    "typescript": "^3.2.4"
+    "lerna": "^3.10.7"
   }
 }

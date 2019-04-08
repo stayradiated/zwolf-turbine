@@ -8,8 +8,8 @@ import publish from './publish'
 
 import { EXCHANGE } from './config'
 
-type DriverConfig = {
-  url: string
+interface DriverConfig {
+  url: string,
 }
 
 const createChannel = async (config: DriverConfig): Promise<Channel> => {

@@ -1,5 +1,5 @@
-type Options = {
-  defaultDriver?: string
+interface Options {
+  defaultDriver?: string,
 }
 
 const createDriver = (options: Options) => {

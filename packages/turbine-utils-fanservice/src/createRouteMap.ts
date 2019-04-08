@@ -1,4 +1,4 @@
-import { EventList, SubscriptionHandlerFn } from '@mishguru/turbine-types'
+import { EventList } from '@mishguru/turbine-types'
 
 import { RouteMap } from './types'
 

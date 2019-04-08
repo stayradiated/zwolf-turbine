@@ -4,10 +4,10 @@ import { SubscriptionHandlerFn } from '@mishguru/turbine-types'
 import { EXCHANGE } from './config'
 
 interface Options {
-  channel: Channel
-  serviceName: string
-  type: string
-  callback: SubscriptionHandlerFn
+  channel: Channel,
+  serviceName: string,
+  type: string,
+  callback: SubscriptionHandlerFn,
 }
 
 const subscribeType = async (options: Options) => {

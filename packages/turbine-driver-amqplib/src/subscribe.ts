@@ -1,7 +1,6 @@
-import amqp, { Channel } from 'amqplib'
+import { Channel } from 'amqplib'
 import { SubscribeOptions } from '@mishguru/turbine-types'
 
-import { EXCHANGE } from './config'
 import subscribeType from './subscribeType'
 
 const subscribe = async (channel: Channel, options: SubscribeOptions) => {

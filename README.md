@@ -57,8 +57,8 @@ npm run build
 
 When publishing changes, you should not use `npm publish` manually.
 
-Instead use `lerna publish`. This is also available as:
+Instead use:
 
 ```
-npm run publish
+npm run deploy
 ```

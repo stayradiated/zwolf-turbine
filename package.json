@@ -4,9 +4,10 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "pkg-build",
-    "publish": "npm run build && lerna publish",
+    "deploy": "npm run build && lerna publish",
     "tidy": "pkg-tidy",
-    "ncu": "lerna exec -- ncu -u && npm run bootstrap && npm run build"
+    "ncu": "lerna exec -- ncu -u && npm run bootstrap && npm run build",
+    "publish": "echo '===========================================================================\nWarning: `npm run publish` has been deprecated. Please use `npm run deploy`\n===========================================================================' && npm run deploy"
   },
   "devDependencies": {
     "lerna": "^3.10.7"

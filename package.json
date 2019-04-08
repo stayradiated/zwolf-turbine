@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "pkg-build",
+    "build": "lerna run build",
     "deploy": "npm run build && lerna publish",
     "tidy": "pkg-tidy",
     "ncu": "lerna exec -- ncu -u && npm run bootstrap && npm run build",

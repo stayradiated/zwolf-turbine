@@ -11,5 +11,10 @@
   },
   "devDependencies": {
     "lerna": "^3.10.7"
+  },
+  "dependencies": {
+    "@mishguru/fanout-helpers": "^16.11.0",
+    "@mishguru/fanservice": "^12.20.0",
+    "@mishguru/turbine": "^4.30.0"
   }
 }

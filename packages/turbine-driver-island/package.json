@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-driver-island",
-  "version": "4.30.0",
+  "version": "4.31.0",
   "description": "A turbine driver for @mish/island",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
-    "@mishguru/turbine-types": "^4.30.0"
+    "@mishguru/turbine-types": "^4.31.0"
   },
   "devDependencies": {
     "@mishguru/package": "^6.0.0-next.28"

@@ -22,6 +22,6 @@
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "devDependencies": {
     "@mishguru/package": "^6.0.0-next.28",
-    "flow-bin": "^0.96.0"
+    "flow-bin": "^0.97.0"
   }
 }

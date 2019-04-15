@@ -21,7 +21,7 @@
   "dependencies": {
     "@mishguru/turbine-types": "^4.31.0",
     "amqplib": "^0.5.3",
-    "delay": "^4.1.0",
+    "delay": "^4.2.0",
     "memoizee": "^0.4.14"
   },
   "devDependencies": {

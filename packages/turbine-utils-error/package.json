@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-utils-error",
-  "version": "4.33.0",
+  "version": "4.33.1",
   "description": "Utilities for handling and publishing errors.",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
-    "@mishguru/turbine-types": "^4.33.0"
+    "@mishguru/turbine-types": "^4.33.1"
   },
   "devDependencies": {
     "@mishguru/package": "^6.0.0-next.28",

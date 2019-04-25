@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-example",
-  "version": "4.33.1",
+  "version": "4.33.2",
   "private": true,
   "description": "Example turbine project",
   "main": "dist/index.js",
@@ -23,7 +23,7 @@
   "dependencies": {
     "@mishguru/turbine": "^4.33.1",
     "@mishguru/turbine-driver-amqplib": "^4.33.1",
-    "@mishguru/turbine-driver-fanservice": "^4.33.1",
+    "@mishguru/turbine-driver-fanservice": "^4.33.2",
     "@mishguru/turbine-driver-mock": "^4.33.1"
   },
   "devDependencies": {

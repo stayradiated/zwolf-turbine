@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine",
-  "version": "4.33.1",
+  "version": "4.34.0",
   "description": "Minimal message passing",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,8 +19,8 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
-    "@mishguru/turbine-types": "^4.33.1",
-    "@mishguru/turbine-utils-error": "^4.33.1",
+    "@mishguru/turbine-types": "^4.34.0",
+    "@mishguru/turbine-utils-error": "^4.34.0",
     "ulid": "^2.3.0"
   },
   "devDependencies": {

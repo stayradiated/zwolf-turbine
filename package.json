@@ -10,11 +10,11 @@
     "publish": "echo '===========================================================================\nWarning: `npm run publish` has been deprecated. Please use `npm run deploy`\n===========================================================================' && npm run deploy"
   },
   "devDependencies": {
-    "lerna": "^3.13.3"
+    "lerna": "^3.13.4"
   },
   "dependencies": {
-    "@mishguru/fanout-helpers": "^16.14.0",
-    "@mishguru/fanservice": "^12.24.0",
-    "@mishguru/turbine": "^4.32.0"
+    "@mishguru/fanout-helpers": "^16.18.0",
+    "@mishguru/fanservice": "^12.32.0",
+    "@mishguru/turbine": "^4.39.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-utils-error",
-  "version": "4.40.0",
+  "version": "4.41.0",
   "description": "Utilities for handling and publishing errors.",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",

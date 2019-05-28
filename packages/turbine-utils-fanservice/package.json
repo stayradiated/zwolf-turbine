@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-utils-fanservice",
-  "version": "5.0.2",
+  "version": "5.1.0",
   "description": "Utilities for publish to SQS/SNS queues via fanservice",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -21,9 +21,9 @@
   "dependencies": {
     "@mishguru/fanout-helpers": "18.0.1",
     "@mishguru/raven-helper": "^2.4.4",
-    "@mishguru/turbine": "^5.0.2",
-    "@mishguru/turbine-types": "^5.0.2",
-    "@mishguru/turbine-utils-error": "^5.0.2"
+    "@mishguru/turbine": "^5.1.0",
+    "@mishguru/turbine-types": "^5.1.0",
+    "@mishguru/turbine-utils-error": "^5.1.0"
   },
   "devDependencies": {
     "@mishguru/package": "^6.2.2",

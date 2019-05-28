@@ -41,6 +41,10 @@ const pollForMessages = async (
 const subscribe = async (subscribeOptions: SubscribeOptions) => {
   const { serviceName, events } = subscribeOptions
 
+  if (events.length === 0) {
+    return
+  }
+
   const routeMap = createRouteMap(events)
 
   console.log('Subscribing to the following gevents:')

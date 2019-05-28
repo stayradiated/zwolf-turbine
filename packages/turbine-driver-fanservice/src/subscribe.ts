@@ -15,6 +15,10 @@ const HEALTH_CHECK = async (): Promise<void> => undefined
 const subscribe = async (subscribeOptions: SubscribeOptions) => {
   const { serviceName, events } = subscribeOptions
 
+  if (events.length === 0) {
+    return
+  }
+
   const routeMap = createRouteMap(events)
 
   await createFanoutForEnvironment(AWS_CREDENTIALS, FANOUT_ENV)

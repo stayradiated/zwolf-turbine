@@ -1,30 +1,9 @@
-import {
-  Service,
-  ServiceConfig,
-  AnyMessage,
-  EventList,
-  MessageTemplate,
-} from '@mishguru/turbine-types'
+import { Service, ServiceConfig, AnyMessage, EventList } from './types'
 
-import createMessage from './createMessage'
+import createDispatch from './createDispatch'
 
 const createService = (config: ServiceConfig): Service => {
   const { serviceName, driver } = config
-
-  const createDispatch = (parent?: AnyMessage) => async (
-    options: MessageTemplate,
-  ) => {
-    const { type, payload } = options
-    const parentId = parent != null ? parent.id : null
-    const message = createMessage({
-      type,
-      payload,
-      parentId,
-      sentFrom: serviceName,
-    })
-    await driver.publish(message)
-    return message
-  }
 
   const events: EventList = []
   const hasStarted = false
@@ -35,14 +14,22 @@ const createService = (config: ServiceConfig): Service => {
         throw new Error('Cannot add new event after service has started.')
       }
       const callback = async (message: AnyMessage) => {
-        const dispatch = createDispatch(message)
+        const dispatch = createDispatch({
+          parent: message,
+          serviceName,
+          publishFn: driver.publish,
+        })
         await handlerFn(message, dispatch)
       }
       events.push([type, callback])
     },
 
     dispatch (options) {
-      return createDispatch(null)(options)
+      return createDispatch({
+        parent: null,
+        serviceName,
+        publishFn: driver.publish,
+      })(options)
     },
 
     async start (): Promise<any> {

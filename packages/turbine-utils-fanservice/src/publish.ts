@@ -1,4 +1,4 @@
-import { AnyMessage } from '@mishguru/turbine-types'
+import { AnyMessage } from '@mishguru/turbine'
 import { authenticatedPublish } from '@mishguru/fanout-helpers'
 
 const publish = async (message: AnyMessage) => {

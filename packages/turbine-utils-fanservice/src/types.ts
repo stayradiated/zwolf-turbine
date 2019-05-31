@@ -1,4 +1,4 @@
-import { SubscriptionHandlerFn } from '@mishguru/turbine-types'
+import { SubscriptionHandlerFn } from '@mishguru/turbine'
 
 export type RouteMap = Map<string, SubscriptionHandlerFn>
 

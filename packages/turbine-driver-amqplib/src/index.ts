@@ -1,7 +1,7 @@
 import memoize from 'memoizee'
 import amqp, { Channel } from 'amqplib'
 import delay from 'delay'
-import { AnyMessage, SubscribeOptions } from '@mishguru/turbine-types'
+import { AnyMessage, SubscribeOptions } from '@mishguru/turbine'
 
 import subscribe from './subscribe'
 import publish from './publish'

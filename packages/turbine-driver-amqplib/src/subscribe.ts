@@ -1,5 +1,5 @@
 import { Channel } from 'amqplib'
-import { SubscribeOptions } from '@mishguru/turbine-types'
+import { SubscribeOptions } from '@mishguru/turbine'
 
 import subscribeType from './subscribeType'
 

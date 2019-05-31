@@ -1,4 +1,10 @@
-export { formatError } from '@mishguru/turbine-utils-error'
+import createService from './createService'
 
-export { default } from './createService'
+export { createService }
 export { default as createMessage } from './createMessage'
+export { default as createDispatch } from './createDispatch'
+export { default as formatError } from './formatError'
+
+export * from './types'
+
+export default createService

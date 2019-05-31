@@ -19,13 +19,13 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
-    "@mishguru/turbine-types": "^5.1.0",
+    "@mishguru/turbine": "^5.1.0",
     "amqplib": "^0.5.3",
     "delay": "^4.2.0",
     "memoizee": "^0.4.14"
   },
   "devDependencies": {
-    "@mishguru/package": "^6.2.2",
+    "@mishguru/package": "^6.3.1",
     "@types/amqplib": "^0.5.12",
     "@types/delay": "^3.1.0",
     "@types/memoizee": "^0.4.2"

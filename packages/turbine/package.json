@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "pkg-build",
+    "build": "pkg-build && npm run build:flow",
+    "build:flow": "pkg-flow && cp ./src/index.js.flow ./dist",
     "tidy": "pkg-tidy"
   },
   "repository": {
@@ -19,11 +20,10 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
-    "@mishguru/turbine-types": "^5.1.0",
     "@mishguru/turbine-utils-error": "^5.1.0",
     "ulid": "^2.3.0"
   },
   "devDependencies": {
-    "@mishguru/package": "^6.2.2"
+    "@mishguru/package": "^6.3.1"
   }
 }

@@ -1,4 +1,4 @@
-import { PublishFn, SubscribeFn } from '@mishguru/turbine-types'
+import { PublishFn, SubscribeFn } from '@mishguru/turbine'
 
 const publish: PublishFn = async (message) => {
   console.log(`Publishing message: ${JSON.stringify(message, null, 2)}`)

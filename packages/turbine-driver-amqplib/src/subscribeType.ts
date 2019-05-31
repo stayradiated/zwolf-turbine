@@ -1,5 +1,5 @@
 import { Channel } from 'amqplib'
-import { SubscriptionHandlerFn } from '@mishguru/turbine-types'
+import { SubscriptionHandlerFn } from '@mishguru/turbine'
 
 import { EXCHANGE } from './config'
 

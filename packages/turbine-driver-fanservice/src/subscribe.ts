@@ -1,4 +1,4 @@
-import { SubscribeOptions } from '@mishguru/turbine-types'
+import { SubscribeOptions } from '@mishguru/turbine'
 import {
   createRouteMap,
   handleFanserviceMessage,

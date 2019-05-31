@@ -1,4 +1,4 @@
-import { EventList } from '@mishguru/turbine-types'
+import { EventList } from '@mishguru/turbine'
 
 import { RouteMap } from './types'
 

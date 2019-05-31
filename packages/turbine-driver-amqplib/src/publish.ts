@@ -1,5 +1,5 @@
 import { Channel } from 'amqplib'
-import { AnyMessage } from '@mishguru/turbine-types'
+import { AnyMessage } from '@mishguru/turbine'
 
 import { EXCHANGE } from './config'
 

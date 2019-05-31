@@ -3,7 +3,7 @@ import {
   SubscribeFn,
   SubscriptionHandlerFn,
   AnyMessage,
-} from '@mishguru/turbine-types'
+} from '@mishguru/turbine'
 
 type EventMap = Map<string, SubscriptionHandlerFn[]>
 type MessageList = AnyMessage[]

@@ -1,14 +1,18 @@
 import { ulid } from 'ulid'
 
-const createMessage = (options: {
+interface Options {
   type: string,
   payload: any,
   sentFrom?: string,
   parentId?: string,
-}) => ({
-  id: ulid(),
-  sentAt: Date.now(),
-  ...options,
-})
+}
+
+const createMessage = (options: Options) => {
+  return {
+    id: ulid(),
+    sentAt: Date.now(),
+    ...options,
+  }
+}
 
 export default createMessage

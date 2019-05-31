@@ -1,7 +1,10 @@
-import { AnyMessage, SubscriptionHandlerFn } from '@mishguru/turbine-types'
+import {
+  createDispatch,
+  AnyMessage,
+  SubscriptionHandlerFn,
+} from '@mishguru/turbine'
 import Raven from '@mishguru/raven-helper'
 import { formatError } from '@mishguru/turbine-utils-error'
-import { createMessage } from '@mishguru/turbine'
 
 import parseFanserviceMessage from './parseFanserviceMessage'
 import { RouteMap, FanserviceMessage } from './types'
@@ -32,17 +35,19 @@ const handleCallback = async (
 
       error.published = true
 
-      return publish(
-        createMessage({
-          type: 'unexpectedError',
-          payload: {
-            userId,
-            info: `Uncaught error in "${serviceName}" while handling "${type}" message.`,
-            error: formatError(error),
-            message,
-          },
-        }),
-      )
+      return createDispatch({
+        parent: message,
+        serviceName,
+        publishFn: publish,
+      })({
+        type: 'unexpectedError',
+        payload: {
+          userId,
+          info: `Uncaught error in "${serviceName}" while handling "${type}" message.`,
+          error: formatError(error),
+          message,
+        },
+      })
     }
 
     throw error

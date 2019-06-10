@@ -4,6 +4,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
+    "clean": "lerna clean",
     "deploy": "npm run build && lerna publish",
     "tidy": "lerna run tidy",
     "ncu": "lerna exec -- ncu -u && npm run bootstrap && npm run build",

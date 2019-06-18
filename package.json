@@ -14,7 +14,7 @@
     "lerna": "^3.14.1"
   },
   "dependencies": {
-    "@mishguru/fanout-helpers": "^18.0.1",
+    "@mishguru/fanout-helpers": "^18.2.4",
     "@mishguru/fanservice": "^14.0.1",
     "@mishguru/turbine": "^5.0.0"
   }

@@ -24,6 +24,6 @@
     "ulid": "^2.3.0"
   },
   "devDependencies": {
-    "@mishguru/package": "^6.3.1"
+    "@mishguru/package": "^7.0.1"
   }
 }

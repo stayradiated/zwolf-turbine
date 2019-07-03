@@ -25,5 +25,6 @@
   },
   "devDependencies": {
     "@mishguru/package": "^7.0.1"
-  }
+  },
+  "gitHead": "1fdd63f0e3fafa788a3b4ac66f15b67b04092bfb"
 }

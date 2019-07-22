@@ -27,6 +27,6 @@
     "@mishguru/turbine-driver-mock": "^6.3.3"
   },
   "devDependencies": {
-    "@mishguru/package": "^7.0.1"
+    "@mishguru/package": "^7.1.0"
   }
 }

@@ -19,10 +19,10 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
-    "@mishguru/turbine": "^6.3.7"
+    "@mishguru/turbine": "6.3.7"
   },
   "devDependencies": {
-    "@mishguru/package": "^7.1.0"
+    "@mishguru/package": "7.1.0"
   },
   "gitHead": "5c50a445d673752507cce3530c93825f9173020f"
 }

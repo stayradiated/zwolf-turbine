@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@mishguru/fanout-helpers": "18.3.0",
-    "@mishguru/fanservice": "14.7.0",
-    "@mishguru/turbine": "6.3.7"
+    "@mishguru/fanservice": "14.8.0",
+    "@mishguru/turbine": "6.4.0"
   }
 }

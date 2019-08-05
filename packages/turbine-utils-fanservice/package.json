@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-utils-fanservice",
-  "version": "6.5.1",
+  "version": "6.6.0",
   "description": "Utilities for publish to SQS/SNS queues via fanservice",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",

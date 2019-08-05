@@ -35,7 +35,7 @@ const handleCallback = async (
 
       error.published = true
 
-      return createDispatch({
+      await createDispatch({
         parent: message,
         serviceName,
         publishFn: publish,

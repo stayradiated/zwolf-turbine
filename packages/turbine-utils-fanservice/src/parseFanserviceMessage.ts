@@ -21,10 +21,14 @@ const parseFanserviceMessage = (message: FanserviceMessage) => {
   const turbine = payload.__turbine__ != null ? payload.__turbine__ : {}
 
   const id = turbine.id != null ? turbine.id : messageId
+  const parentId = turbine.parentId != null ? turbine.parentId : undefined
+  const sentFrom = turbine.sentFrom != null ? turbine.sentFrom : undefined
   const sentAt = turbine.sentAt != null ? turbine.sentAt : timestamp
 
   return {
     id,
+    parentId,
+    sentFrom,
     sentAt,
     type,
     payload,

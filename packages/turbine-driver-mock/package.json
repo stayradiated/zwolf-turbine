@@ -22,7 +22,7 @@
     "@mishguru/turbine": "^6.5.1"
   },
   "devDependencies": {
-    "@mishguru/package": "7.2.0"
+    "@mishguru/package": "7.5.0"
   },
   "gitHead": "5c50a445d673752507cce3530c93825f9173020f"
 }

@@ -11,27 +11,23 @@ import { RouteMap, FanserviceMessage } from './types'
 import publish from './publish'
 
 const STAR_TYPE = '*'
+const FALLBACK_USER_ID = 0
 
 const handleCallback = async (
   serviceName: string,
   message: AnyMessage,
   callback: SubscriptionHandlerFn,
 ) => {
-  const { id, sentAt, type, payload } = message
+  const { type, payload } = message
 
   try {
-    await callback({
-      id,
-      sentAt,
-      type,
-      payload,
-    })
+    await callback(message)
   } catch (error) {
     console.error(`Error handling "${type}" message.`, error)
     Raven.captureException(error)
 
     if (error != null && !error.published) {
-      const userId = payload.userId || 0
+      const userId = payload.userId || FALLBACK_USER_ID
 
       error.published = true
 

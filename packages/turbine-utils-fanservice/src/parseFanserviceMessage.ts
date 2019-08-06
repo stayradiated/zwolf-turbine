@@ -19,6 +19,7 @@ const parseFanserviceMessage = (message: FanserviceMessage) => {
     message != null ? new Date(message.Timestamp).getTime() : undefined
 
   const turbine = payload.__turbine__ != null ? payload.__turbine__ : {}
+  delete payload.__turbine__
 
   const id = turbine.id != null ? turbine.id : messageId
   const parentId = turbine.parentId != null ? turbine.parentId : undefined

@@ -14,14 +14,13 @@ const parseFanserviceMessage = (message: FanserviceMessage) => {
       ? JSON.parse(message.Message)
       : {}
 
-  const messageId = message != null ? message.MessageId : undefined
   const timestamp =
     message != null ? new Date(message.Timestamp).getTime() : undefined
 
   const turbine = payload.__turbine__ != null ? payload.__turbine__ : {}
   delete payload.__turbine__
 
-  const id = turbine.id != null ? turbine.id : messageId
+  const id = turbine.id != null ? turbine.id : undefined
   const parentId = turbine.parentId != null ? turbine.parentId : undefined
   const sentFrom = turbine.sentFrom != null ? turbine.sentFrom : undefined
   const sentAt = turbine.sentAt != null ? turbine.sentAt : timestamp

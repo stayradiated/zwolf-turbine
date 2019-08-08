@@ -1,3 +1,4 @@
+import { ulid } from 'ulid'
 import { decodeNameFromTopicArn } from '@mishguru/fanout-helpers'
 
 import { FANOUT_ENV } from './constants'
@@ -20,7 +21,7 @@ const parseFanserviceMessage = (message: FanserviceMessage) => {
   const turbine = payload.__turbine__ != null ? payload.__turbine__ : {}
   delete payload.__turbine__
 
-  const id = turbine.id != null ? turbine.id : undefined
+  const id = turbine.id != null ? turbine.id : ulid()
   const parentId = turbine.parentId != null ? turbine.parentId : undefined
   const sentFrom = turbine.sentFrom != null ? turbine.sentFrom : undefined
   const sentAt = turbine.sentAt != null ? turbine.sentAt : timestamp

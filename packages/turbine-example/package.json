@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-example",
-  "version": "6.16.0",
+  "version": "6.17.0",
   "private": true,
   "description": "Example turbine project",
   "main": "dist/index.js",
@@ -23,7 +23,7 @@
   "dependencies": {
     "@mishguru/turbine": "^6.16.0",
     "@mishguru/turbine-driver-amqplib": "^6.16.0",
-    "@mishguru/turbine-driver-fanservice": "^6.16.0",
+    "@mishguru/turbine-driver-fanservice": "^6.17.0",
     "@mishguru/turbine-driver-mock": "^6.16.0"
   },
   "devDependencies": {

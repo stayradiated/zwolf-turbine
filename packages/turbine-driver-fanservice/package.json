@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
-    "@mishguru/fanout-helpers": "18.8.0",
+    "@mishguru/fanout-helpers": "18.9.0",
     "@mishguru/turbine": "^6.16.0",
     "@mishguru/turbine-utils-fanservice": "^6.17.0"
   },

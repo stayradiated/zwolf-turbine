@@ -25,40 +25,36 @@ const subscribe = async (subscribeOptions: SubscribeOptions) => {
 
   const queueName = FANOUT_ENV + '-' + serviceName
   const topicNames = events.map(([topic]) => FANOUT_ENV + '-' + topic)
-
-  console.log(`Listening to queue: ${queueName}`)
-  await fanout.setQueuePolicy(AWS_CREDENTIALS, {
-    queueName,
-    topicNames,
-    ignoreExistingPolicy: false,
-  })
-
-  await Promise.all(
-    topicNames.map((topicName) => {
-      console.log(`Subscribing to topic: ${topicName}`)
-      return fanout.subscribeQueueToTopic(AWS_CREDENTIALS, {
-        queueName,
-        topicName,
-      })
-    }),
-  )
-
   const deadLetterQueueName = FANOUT_ENV + '-' + AWS_FANOUT_DEAD_LETTER_QUEUE
   const maxReceiveCount = AWS_FANOUT_MAX_RECEIVE_COUNT
 
-  console.log(`Using dead letter queue: ${deadLetterQueueName}`)
-  console.log(`Using max receive count: ${maxReceiveCount}`)
+  console.log(`
+Queue: ${queueName}
+Topics: ${topicNames.join(', ')}
+Dead Letter Queue: ${deadLetterQueueName}
+Max Receive Count: ${maxReceiveCount}
+`)
 
-  await fanout.setQueueRedrivePolicy(AWS_CREDENTIALS, {
-    queueName,
-    deadLetterQueueName,
-    maxReceiveCount,
-  })
+  await Promise.all([
+    fanout.setQueuePolicy(AWS_CREDENTIALS, {
+      queueName,
+      topicNames,
+      ignoreExistingPolicy: true,
+    }),
+    fanout.setQueueRedrivePolicy(AWS_CREDENTIALS, {
+      queueName,
+      deadLetterQueueName,
+      maxReceiveCount,
+    }),
+    ...topicNames.map((topicName) => fanout.subscribeQueueToTopic(AWS_CREDENTIALS, {
+      queueName,
+      topicName,
+    }))
+  ])
 
   const routeMap = createRouteMap(events)
 
   const app = express()
-
   app.use(bodyParser.json())
 
   app.post('/handle', async (req: Request, res: Response) => {

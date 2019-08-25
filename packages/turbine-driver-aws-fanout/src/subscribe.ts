@@ -1,20 +1,20 @@
 import { SubscribeOptions } from '@mishguru/turbine'
 import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
-
 import { v2 as fanout } from 'aws-fanout'
-
 import {
   createRouteMap,
   handleFanserviceMessage,
-  FANOUT_ENV,
   AWS_CREDENTIALS,
 } from '@mishguru/turbine-utils-fanservice'
 
-const PORT = process.env.PORT || 8080
+import withFanoutEnvPrefix from './withFanoutEnvPrefix'
 
-const AWS_FANOUT_DEAD_LETTER_QUEUE = 'deadLetter'
-const AWS_FANOUT_MAX_RECEIVE_COUNT = 5
+import {
+  PORT,
+  AWS_FANOUT_DEAD_LETTER_QUEUE,
+  AWS_FANOUT_MAX_RECEIVE_COUNT,
+} from './constants'
 
 const subscribe = async (subscribeOptions: SubscribeOptions) => {
   const { serviceName, events } = subscribeOptions
@@ -23,17 +23,10 @@ const subscribe = async (subscribeOptions: SubscribeOptions) => {
     return
   }
 
-  const queueName = FANOUT_ENV + '-' + serviceName
-  const topicNames = events.map(([topic]) => FANOUT_ENV + '-' + topic)
-  const deadLetterQueueName = FANOUT_ENV + '-' + AWS_FANOUT_DEAD_LETTER_QUEUE
+  const queueName = withFanoutEnvPrefix(serviceName)
+  const topicNames = events.map(([topic]) => withFanoutEnvPrefix(topic))
+  const deadLetterQueueName = withFanoutEnvPrefix(AWS_FANOUT_DEAD_LETTER_QUEUE)
   const maxReceiveCount = AWS_FANOUT_MAX_RECEIVE_COUNT
-
-  console.log(`
-Queue: ${queueName}
-Topics: ${topicNames.join(', ')}
-Dead Letter Queue: ${deadLetterQueueName}
-Max Receive Count: ${maxReceiveCount}
-`)
 
   await Promise.all([
     fanout.setQueuePolicy(AWS_CREDENTIALS, {
@@ -46,10 +39,12 @@ Max Receive Count: ${maxReceiveCount}
       deadLetterQueueName,
       maxReceiveCount,
     }),
-    ...topicNames.map((topicName) => fanout.subscribeQueueToTopic(AWS_CREDENTIALS, {
-      queueName,
-      topicName,
-    }))
+    ...topicNames.map((topicName) =>
+      fanout.subscribeQueueToTopic(AWS_CREDENTIALS, {
+        queueName,
+        topicName,
+      }),
+    ),
   ])
 
   const routeMap = createRouteMap(events)

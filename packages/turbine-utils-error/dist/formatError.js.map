@@ -1,1 +1,0 @@
-{"version":3,"file":"formatError.js","sourceRoot":"","sources":["../src/formatError.ts"],"names":[],"mappings":";;AAAA,MAAM,WAAW,GAAG,CAAC,KAAY,EAAE,EAAE;IACnC,OAAO;QACL,OAAO,EAAE,KAAK,CAAC,QAAQ,EAAE;QACzB,KAAK,EAAE,KAAK,CAAC,KAAK,CAAC,QAAQ,EAAE;KAC9B,CAAA;AACH,CAAC,CAAA;AAED,kBAAe,WAAW,CAAA"}

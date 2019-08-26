@@ -63,9 +63,11 @@ const subscribe = async (subscribeOptions: SubscribeOptions) => {
     }
   })
 
-  app.listen(PORT, () => {
+  const server = app.listen(PORT, () => {
     console.info(`Listening for messages localhost:${PORT}/handle`)
   })
+
+  server.setTimeout(60 * 60 * 1000) // 1 hour
 }
 
 export default subscribe

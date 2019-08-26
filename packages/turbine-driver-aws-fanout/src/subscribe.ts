@@ -39,12 +39,14 @@ const subscribe = async (subscribeOptions: SubscribeOptions) => {
       deadLetterQueueName,
       maxReceiveCount,
     }),
-    ...topicNames.map((topicName) =>
-      fanout.subscribeQueueToTopic(AWS_CREDENTIALS, {
-        queueName,
-        topicName,
-      }),
-    ),
+    ...topicNames.map((topicName) => {
+      if (topicName.includes('*') === false) {
+        return fanout.subscribeQueueToTopic(AWS_CREDENTIALS, {
+          queueName,
+          topicName,
+        })
+      }
+    }),
   ])
 
   const routeMap = createRouteMap(events)

@@ -24,7 +24,7 @@
     "ulid": "2.3.0"
   },
   "devDependencies": {
-    "@mishguru/package": "7.5.0"
+    "@mishguru/package": "7.7.0"
   },
   "gitHead": "6d0e228346ca82fbe2cdbc4d6b7b0d565d52daf1"
 }

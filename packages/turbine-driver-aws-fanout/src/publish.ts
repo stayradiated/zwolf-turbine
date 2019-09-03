@@ -3,7 +3,7 @@ import { v2 as fanout } from 'aws-fanout'
 import { AWS_CREDENTIALS } from '@mishguru/turbine-utils-fanservice'
 
 import { AWS_FANOUT_LOG_QUEUE } from './constants'
-import withFanoutEnvPrefix from './withFanoutEnvPrefix'
+import withFanoutEnvPrefix from './with-fanout-env-prefix'
 
 const publish = async (message: AnyMessage) => {
   const { type, id, parentId, sentFrom, sentAt, payload } = message

@@ -1,20 +1,20 @@
 import { SubscribeOptions } from '@mishguru/turbine'
-import express, { Request, Response } from 'express'
-import bodyParser from 'body-parser'
 import { v2 as fanout } from 'aws-fanout'
 import {
   createRouteMap,
-  handleFanserviceMessage,
   AWS_CREDENTIALS,
 } from '@mishguru/turbine-utils-fanservice'
 
-import withFanoutEnvPrefix from './withFanoutEnvPrefix'
+import withFanoutEnvPrefix from './with-fanout-env-prefix'
 
 import {
   PORT,
   AWS_FANOUT_DEAD_LETTER_QUEUE,
   AWS_FANOUT_MAX_RECEIVE_COUNT,
 } from './constants'
+
+import subscribeViaPolling from './subscribe-via-polling'
+import subscribeViaHTTP from './subscribe-via-http'
 
 const subscribe = async (subscribeOptions: SubscribeOptions) => {
   const { serviceName, events } = subscribeOptions
@@ -51,25 +51,13 @@ const subscribe = async (subscribeOptions: SubscribeOptions) => {
 
   const routeMap = createRouteMap(events)
 
-  const app = express()
-  app.use(bodyParser.json())
-
-  app.post('/handle', async (req: Request, res: Response) => {
-    try {
-      const rawMessage = req.body
-      await handleFanserviceMessage(serviceName, routeMap, rawMessage)
-      res.status(200).end()
-    } catch (error) {
-      console.error(error)
-      res.status(500).end()
-    }
-  })
-
-  const server = app.listen(PORT, () => {
-    console.info(`Listening for messages localhost:${PORT}/handle`)
-  })
-
-  server.setTimeout(60 * 60 * 1000) // 1 hour
+  if (PORT != null) {
+    console.info('Subscribing to queue using HTTP server')
+    return subscribeViaHTTP({ routeMap, serviceName })
+  } else {
+    console.info('Subscribing to queue using polling')
+    return subscribeViaPolling({ routeMap, serviceName })
+  }
 }
 
 export default subscribe

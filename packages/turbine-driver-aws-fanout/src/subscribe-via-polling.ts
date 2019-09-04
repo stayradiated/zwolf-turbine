@@ -5,6 +5,8 @@ import {
   handleFanserviceMessage,
 } from '@mishguru/turbine-utils-fanservice'
 
+import withFanoutEnvPrefix from './with-fanout-env-prefix'
+
 interface PollForMessagesOptions {
   routeMap: RouteMap,
   serviceName: string,
@@ -16,11 +18,14 @@ const pollForMessages = async (
   const { routeMap, serviceName } = options
 
   try {
-    console.info('Polling for messages...')
+    const queueName = withFanoutEnvPrefix(serviceName)
+
+    console.info(`Polling queue "${queueName}" for messages...`)
+
     const res = await fanout.receiveMessage(AWS_CREDENTIALS, {
       maxNumberOfMessages: 5,
       visibilityTimeout: 120,
-      queueName: serviceName,
+      queueName,
     })
 
     const messages = res != null && res.Messages != null ? res.Messages : []
@@ -35,7 +40,7 @@ const pollForMessages = async (
           JSON.parse(message.Body),
         )
         await fanout.deleteMessage(AWS_CREDENTIALS, {
-          queueName: serviceName,
+          queueName,
           receiptHandle: message.ReceiptHandle,
         })
       }),

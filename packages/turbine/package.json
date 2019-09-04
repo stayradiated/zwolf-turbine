@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine",
-  "version": "6.24.0",
+  "version": "6.27.0",
   "description": "Minimal message passing",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",

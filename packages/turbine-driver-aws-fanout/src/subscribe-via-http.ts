@@ -18,6 +18,10 @@ const subscribeViaHTTP = (options: SubscribeViaHTTPOptions) => {
   const app = express()
   app.use(bodyParser.json())
 
+  app.get('/health_check', (_req: Request, res: Response) => {
+    res.status(200).end()
+  })
+
   app.post('/handle', async (req: Request, res: Response) => {
     try {
       const rawMessage = req.body

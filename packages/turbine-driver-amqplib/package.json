@@ -28,7 +28,7 @@
     "@mishguru/package": "7.8.2",
     "@types/amqplib": "0.5.13",
     "@types/delay": "3.1.0",
-    "@types/memoizee": "0.4.2"
+    "@types/memoizee": "0.4.3"
   },
   "gitHead": "8f813b4137bb99240fe20fe06da1acf80a59213f"
 }

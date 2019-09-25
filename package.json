@@ -5,19 +5,19 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "clean": "lerna clean",
-    "clean:npm": "find ./ -type f -iname 'package-lock.json' -o -iname 'yarn.lock' | xargs rm && find ./ -name 'node_modules' | xargs rm -rf",
+    "clean:npm": "find . -type f \\( -name 'package-lock.json' -o -name 'yarn.lock' \\) -delete && find . -name 'node_modules' -type d -prune -exec rm -rf \"{}\" \\;",
     "deploy": "npm run build && lerna publish",
     "tidy": "lerna run tidy",
     "ncu": "lerna exec -- ncu -u && npm run bootstrap && npm run build",
-    "ncu:minor:deep": "npm run clean:npm && ncu -u --semverLevel major && npm install && lerna exec -- ncu '/^@mishguru//' -u --semverLevel major && lerna clean -y && npm run bootstrap && npm run build",
+    "ncu:major:deep": "npm run clean:npm && ncu -u && npm install && lerna exec -- ncu -u && lerna clean -y && npm run bootstrap && npm run build",
     "publish": "echo '===========================================================================\nWarning: `npm run publish` has been deprecated. Please use `npm run deploy`\n===========================================================================' && npm run deploy"
   },
   "devDependencies": {
     "lerna": "3.16.4"
   },
   "dependencies": {
-    "@mishguru/fanout-helpers": "18.12.0",
-    "@mishguru/fanservice": "14.11.0",
-    "@mishguru/turbine": "6.16.0"
+    "@mishguru/fanout-helpers": "19.4.0",
+    "@mishguru/fanservice": "16.5.0",
+    "@mishguru/turbine": "6.30.0"
   }
 }

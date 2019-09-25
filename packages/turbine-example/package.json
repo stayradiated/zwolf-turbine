@@ -21,12 +21,12 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
-    "@mishguru/turbine": "^6.30.0",
-    "@mishguru/turbine-driver-amqplib": "^6.30.0",
-    "@mishguru/turbine-driver-fanservice": "^6.30.0",
-    "@mishguru/turbine-driver-mock": "^6.30.0"
+    "@mishguru/turbine": "6.30.0",
+    "@mishguru/turbine-driver-amqplib": "6.30.0",
+    "@mishguru/turbine-driver-fanservice": "6.30.0",
+    "@mishguru/turbine-driver-mock": "6.30.0"
   },
   "devDependencies": {
-    "@mishguru/package": "7.8.2"
+    "@mishguru/package": "7.8.3"
   }
 }

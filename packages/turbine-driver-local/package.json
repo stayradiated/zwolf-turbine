@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-driver-local",
-  "version": "6.31.1",
+  "version": "6.32.0",
   "description": "An in-memory driver for running a single service",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
-    "@mishguru/turbine": "^6.31.1"
+    "@mishguru/turbine": "^6.32.0"
   },
   "devDependencies": {
     "@mishguru/package": "7.8.3"

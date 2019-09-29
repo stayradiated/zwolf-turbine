@@ -1,6 +1,6 @@
 {
   "name": "@mishguru/turbine-driver-amqplib",
-  "version": "6.31.1",
+  "version": "6.32.0",
   "description": "Turbine driver for RabbitMQ (via amqplib)",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
-    "@mishguru/turbine": "^6.31.1",
+    "@mishguru/turbine": "^6.32.0",
     "amqplib": "0.5.5",
     "delay": "4.3.0",
     "memoizee": "0.4.14"

@@ -1,12 +1,13 @@
 {
-  "name": "@mishguru/turbine-driver-switch",
+  "name": "@mishguru/turbine-driver-local",
   "version": "6.31.1",
-  "description": "Select which turbine driver to use at runtime.",
+  "description": "An in-memory driver for running a single service",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "pkg-build",
-    "tidy": "pkg-tidy"
+    "tidy": "pkg-tidy",
+    "test": "pkg-test"
   },
   "repository": {
     "type": "git",
@@ -18,9 +19,11 @@
     "url": "https://github.com/mishguruorg/turbine/issues"
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
+  "dependencies": {
+    "@mishguru/turbine": "^6.31.1"
+  },
   "devDependencies": {
-    "@mishguru/package": "7.8.3",
-    "@types/node": "12.7.8"
+    "@mishguru/package": "7.8.3"
   },
   "gitHead": "a3819377e766f1bf7872add3518db5101288fc06"
 }

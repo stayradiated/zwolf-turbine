@@ -19,14 +19,14 @@
   },
   "homepage": "https://github.com/mishguruorg/turbine#readme",
   "dependencies": {
-    "@mishguru/fanout-helpers": "19.4.1",
+    "@mishguru/fanout-helpers": "19.5.0",
     "@mishguru/raven-helper": "2.4.4",
     "@mishguru/turbine": "^6.33.1",
     "@mishguru/turbine-utils-error": "5.1.0"
   },
   "devDependencies": {
     "@mishguru/package": "7.8.3",
-    "@types/node": "12.7.8"
+    "@types/node": "12.7.9"
   },
   "gitHead": "a3819377e766f1bf7872add3518db5101288fc06"
 }

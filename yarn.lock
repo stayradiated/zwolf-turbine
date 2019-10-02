@@ -758,13 +758,13 @@
     eslint-plugin-mishguru "2.1.0"
     typescript "3.4.5"
 
-"@mishguru/fanout-helpers@19.4.1":
-  version "19.4.1"
-  resolved "https://registry.yarnpkg.com/@mishguru/fanout-helpers/-/fanout-helpers-19.4.1.tgz#172cfd3132f5054b32839232ce8b050d91514173"
-  integrity sha512-ELaTtNiWd9Dwy86rANsDCqfKA4w/eczLZp3R5ugOEMaHj6yyy5Cdk9QKQrZKcIinq64guHRcplTcqJTZX5+QhQ==
+"@mishguru/fanout-helpers@19.5.0":
+  version "19.5.0"
+  resolved "https://registry.yarnpkg.com/@mishguru/fanout-helpers/-/fanout-helpers-19.5.0.tgz#2dc2985ad98921e8c83a5ccf8711744de6f863af"
+  integrity sha512-jI9EsXZlhAdoaYQVo9RFqeFUXwJP2TIHrBJTcFOz4d39WfMc1st9+Nxje5tQcSuqzjHrx7GqyoJdRJqFENsDeg==
   dependencies:
     "@mishguru/commandquery" "23.0.0"
-    "@mishguru/fanservice" "16.5.1"
+    "@mishguru/fanservice" "16.6.0"
     bluebird "3.5.5"
     good "7.3.0"
     good-console "6.4.0"
@@ -774,10 +774,10 @@
     ramda "0.26.1"
     winston "3.2.1"
 
-"@mishguru/fanservice@16.5.1":
-  version "16.5.1"
-  resolved "https://registry.yarnpkg.com/@mishguru/fanservice/-/fanservice-16.5.1.tgz#1a48cc2239097b09468a6190a632df40d37c2d73"
-  integrity sha512-JeHH5xf4y7EyJ6aBPaGYxqBzkjxQd92mHbsmsasTO3H/ObKXC2vRlE+41ekpNACoaOdRDApKMdsL+Qy372KT1g==
+"@mishguru/fanservice@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@mishguru/fanservice/-/fanservice-16.6.0.tgz#35c8df100ad7f2b98394f769e64147297e299557"
+  integrity sha512-U/lgIiBC6kQELDbzAZ0wnWXAbO2gzf23eEl/rQ+/3WX2o3yDduVVw2tD70oaG4ahHtEPGOgMfTeiDOXy8zce7Q==
   dependencies:
     aws-fanout "2.1.0"
     jsonschema "1.2.4"
@@ -1011,10 +1011,15 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
-"@types/node@*", "@types/node@12.7.8":
+"@types/node@*":
   version "12.7.8"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.8.tgz#cb1bf6800238898bc2ff6ffa5702c3cadd350708"
   integrity sha512-FMdVn84tJJdV+xe+53sYiZS4R5yn1mAIxfj+DVoNiQjTYz1+OYmjwEZr1ev9nU0axXwda0QDbYl06QHanRVH3A==
+
+"@types/node@12.7.9":
+  version "12.7.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.9.tgz#da0210f91096aa67138cf5afd04c4d629f8a406a"
+  integrity sha512-P57oKTJ/vYivL2BCfxCC5tQjlS8qW31pbOL6qt99Yrjm95YdHgNZwjrTTjMBh+C2/y6PXIX4oz253+jUzxKKfQ==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"

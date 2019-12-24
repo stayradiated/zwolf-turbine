@@ -1,4 +1,4 @@
-import memoize from 'memoizee'
+import mem from 'mem'
 import amqp, { Channel } from 'amqplib'
 import delay from 'delay'
 import { AnyMessage, SubscribeOptions } from '@stayradiated/turbine'
@@ -26,7 +26,7 @@ const createChannel = async (config: DriverConfig): Promise<Channel> => {
   }
 }
 
-const assertChannel = memoize(createChannel, { promise: true })
+const assertChannel = mem(createChannel)
 
 const createDriver = (config: DriverConfig) => {
   return {

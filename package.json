@@ -1,0 +1,15 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "lerna run build",
+    "clean": "find . -type f -name 'yarn.lock' -delete && lerna clean -y",
+    "deploy": "yarn run build && lerna publish",
+    "ncu": "ncu -u && lerna exec -- ncu -u && yarn && lerna run build",
+    "tidy": "lerna run tidy",
+    "preinstall": "echo \"$npm_execpath\" | grep -q \"yarn\\.js$\" || (echo '⚠️  Use yarn not npm! ⚠️ ' && echo && exit 1)"
+  }
+}

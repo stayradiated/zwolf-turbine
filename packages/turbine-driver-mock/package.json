@@ -1,0 +1,27 @@
+{
+  "name": "@stayradiated/turbine-driver-mock",
+  "version": "1.0.0",
+  "description": "A fake turbine driver that just logs to console. Good for tests.",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "pkg-build",
+    "tidy": "pkg-tidy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stayradiated/turbine.git"
+  },
+  "author": "George Czabania <george@czabania.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stayradiated/turbine/issues"
+  },
+  "homepage": "https://github.com/stayradiated/turbine#readme",
+  "dependencies": {
+    "@stayradiated/turbine": "1.0.0"
+  },
+  "devDependencies": {
+    "@stayradiated/pkg": "3.6.0"
+  }
+}

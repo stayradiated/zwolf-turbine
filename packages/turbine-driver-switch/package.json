@@ -1,0 +1,25 @@
+{
+  "name": "@stayradiated/turbine-driver-switch",
+  "version": "1.0.0",
+  "description": "Select which turbine driver to use at runtime.",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "pkg-build",
+    "tidy": "pkg-tidy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stayradiated/turbine.git"
+  },
+  "author": "George Czabania <george@czabania.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stayradiated/turbine/issues"
+  },
+  "homepage": "https://github.com/stayradiated/turbine#readme",
+  "devDependencies": {
+    "@stayradiated/pkg": "3.6.0",
+    "@types/node": "13.1.0"
+  }
+}

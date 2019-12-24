@@ -1,0 +1,27 @@
+{
+  "name": "@stayradiated/turbine",
+  "version": "1.0.0",
+  "description": "Minimal message passing",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "pkg-build",
+    "tidy": "pkg-tidy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stayradiated/turbine.git"
+  },
+  "author": "George Czabania <george@czabania.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stayradiated/turbine/issues"
+  },
+  "homepage": "https://github.com/stayradiated/turbine#readme",
+  "dependencies": {
+    "ulid": "2.3.0"
+  },
+  "devDependencies": {
+    "@stayradiated/pkg": "3.6.0"
+  }
+}

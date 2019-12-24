@@ -1,0 +1,32 @@
+{
+  "name": "@stayradiated/turbine-example",
+  "version": "6.34.0",
+  "private": true,
+  "description": "Example turbine project",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "build": "pkg-build",
+    "tidy": "pkg-tidy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stayradiated/turbine.git"
+  },
+  "author": "George Czabania <george@czabania.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stayradiated/turbine/issues"
+  },
+  "homepage": "https://github.com/stayradiated/turbine#readme",
+  "dependencies": {
+    "@stayradiated/turbine": "1.0.0",
+    "@stayradiated/turbine-driver-amqplib": "1.0.0",
+    "@stayradiated/turbine-driver-aws-fanout": "1.0.0",
+    "@stayradiated/turbine-driver-mock": "1.0.0"
+  },
+  "devDependencies": {
+    "@stayradiated/pkg": "3.6.0"
+  }
+}

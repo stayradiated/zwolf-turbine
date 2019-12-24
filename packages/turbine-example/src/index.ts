@@ -39,7 +39,7 @@ service
     console.log('Kicking things off with a ping')
     return service.dispatch({
       type: 'ping',
-      payload: { },
+      payload: {},
     })
   })
   .catch(console.error)

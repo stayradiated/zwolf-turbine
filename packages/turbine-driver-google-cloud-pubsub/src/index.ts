@@ -1,18 +1,15 @@
 import mem from 'mem'
 import { PubSub } from '@google-cloud/pubsub'
+import { ClientConfig } from '@google-cloud/pubsub/build/src/pubsub'
 import { AnyMessage, SubscribeOptions } from '@stayradiated/turbine'
 
-interface DriverConfig {
-  projectId: string,
-}
-
-const createPubSub = mem((config: DriverConfig) => {
+const createPubSub = mem((config: ClientConfig) => {
   const { projectId } = config
   return new PubSub({ projectId })
 })
 
 const createTopic = mem(
-  async (config: DriverConfig, topicName: string) => {
+  async (config: ClientConfig, topicName: string) => {
     const pubsub = createPubSub(config)
     const topic = pubsub.topic(topicName)
     const [topicExists] = await topic.exists()
@@ -23,11 +20,11 @@ const createTopic = mem(
   },
   {
     cacheKey: JSON.stringify,
-  }
+  },
 )
 
 const createSubscription = mem(
-  async (config: DriverConfig, topicName: string, subscriptionName: string) => {
+  async (config: ClientConfig, topicName: string, subscriptionName: string) => {
     const topic = await createTopic(config, topicName)
     const subscription = topic.subscription(subscriptionName)
     const [subscriptionExists] = await subscription.exists()
@@ -41,7 +38,7 @@ const createSubscription = mem(
   },
 )
 
-const createDriver = (config: DriverConfig) => {
+const createDriver = (config?: ClientConfig) => {
   return {
     publish: async (message: AnyMessage) => {
       const { type: topicName, payload } = message

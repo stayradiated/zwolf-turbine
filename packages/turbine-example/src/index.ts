@@ -1,21 +1,45 @@
+import delay from 'delay'
 import createService from '@stayradiated/turbine'
-import createAmqplibDriver from '@stayradiated/turbine-driver-amqplib'
+import createDriver from '@stayradiated/turbine-driver-google-cloud-pubsub'
 
 const service = createService({
-  serviceName: 'something-amazing',
-  driver: createAmqplibDriver({ url: 'amqp://localhost' }),
+  serviceName: 'turbine-example',
+  driver: createDriver({ projectId: 'twenty-twenty' }),
 })
 
-service.handle('debug', async (message, dispatch) => {
-  console.log(message)
+service.handle('ping', async (message, dispatch) => {
+  console.log('Received PING', message)
 
-  dispatch({
-    type: 'debug',
-    payload: {
-      userId: 0,
-      info: 'this is a test',
-    },
+  await delay(1000 * 1)
+
+  console.log('Sending PONG')
+
+  await dispatch({
+    type: 'pong',
+    payload: { pong: true },
   })
 })
 
-service.start().catch(console.error)
+service.handle('pong', async (message, dispatch) => {
+  console.log('Received PONG', message)
+
+  await delay(1000 * 1)
+
+  console.log('Sending PING')
+
+  await dispatch({
+    type: 'ping',
+    payload: { ping: true },
+  })
+})
+
+service
+  .start()
+  .then(() => {
+    console.log('Kicking things off with a ping')
+    return service.dispatch({
+      type: 'ping',
+      payload: { },
+    })
+  })
+  .catch(console.error)

@@ -22,9 +22,8 @@
   "homepage": "https://github.com/stayradiated/turbine#readme",
   "dependencies": {
     "@stayradiated/turbine": "1.0.0",
-    "@stayradiated/turbine-driver-amqplib": "1.0.0",
-    "@stayradiated/turbine-driver-aws-fanout": "1.0.0",
-    "@stayradiated/turbine-driver-mock": "1.0.0"
+    "@stayradiated/turbine-driver-google-cloud-pubsub": "1.0.0",
+    "delay": "4.3.0"
   },
   "devDependencies": {
     "@stayradiated/pkg": "3.6.0"

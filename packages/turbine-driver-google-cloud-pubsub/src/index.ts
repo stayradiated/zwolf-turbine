@@ -4,8 +4,7 @@ import { ClientConfig } from '@google-cloud/pubsub/build/src/pubsub'
 import { AnyMessage, SubscribeOptions } from '@stayradiated/turbine'
 
 const createPubSub = mem((config: ClientConfig) => {
-  const { projectId } = config
-  return new PubSub({ projectId })
+  return new PubSub(config)
 })
 
 const createTopic = mem(

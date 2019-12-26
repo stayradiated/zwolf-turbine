@@ -3,6 +3,13 @@ import { PubSub } from '@google-cloud/pubsub'
 import { ClientConfig } from '@google-cloud/pubsub/build/src/pubsub'
 import { AnyMessage, SubscribeOptions } from '@stayradiated/turbine'
 
+import subscribeViaHTTP from './subscribe-via-http'
+
+interface CreateDriverOptions {
+  subscribeViaHTTP?: boolean,
+  config?: ClientConfig,
+}
+
 const createPubSub = mem((config: ClientConfig) => {
   return new PubSub(config)
 })
@@ -37,7 +44,9 @@ const createSubscription = mem(
   },
 )
 
-const createDriver = (config?: ClientConfig) => {
+const createDriver = (options?: CreateDriverOptions) => {
+  const { config, subscribeViaHTTP: shouldSubscribeViaHTTP } = options
+
   return {
     publish: async (message: AnyMessage) => {
       const { type: topicName, payload } = message
@@ -48,23 +57,29 @@ const createDriver = (config?: ClientConfig) => {
     subscribe: async (options: SubscribeOptions) => {
       const { serviceName, events } = options
 
-      await Promise.all(events.map(async (event) => {
-        const [topicName, handle] = event
+      if (shouldSubscribeViaHTTP) {
+        return subscribeViaHTTP()
+      }
 
-        const subscriptionName = `${serviceName}-${topicName}`
-        const subscription = await createSubscription(
-          config,
-          topicName,
-          subscriptionName,
-        )
+      await Promise.all(
+        events.map(async (event) => {
+          const [topicName, handle] = event
 
-        subscription.on('message', async (message) => {
-          const { data } = message
-          const payload = JSON.parse(data.toString('utf8'))
-          await handle(payload)
-          message.ack()
-        })
-      }))
+          const subscriptionName = `${serviceName}-${topicName}`
+          const subscription = await createSubscription(
+            config,
+            topicName,
+            subscriptionName,
+          )
+
+          subscription.on('message', async (message) => {
+            const { data } = message
+            const payload = JSON.parse(data.toString('utf8'))
+            await handle(payload)
+            message.ack()
+          })
+        }),
+      )
     },
   }
 }

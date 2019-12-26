@@ -1715,6 +1715,11 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
+env-var@5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/env-var/-/env-var-5.2.0.tgz#3ce888131793723b57f4602d8970a1cdbc7e6f27"
+  integrity sha512-D4vkwxt0aPY9SiQi6l/K57BvLn2aqASzExVlEpz7dHXVczbQmd1V3DQMMkTaPf4/tKvYAivX8oSRl86XGiDpTQ==
+
 equal-length@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/equal-length/-/equal-length-1.0.1.tgz#21ca112d48ab24b4e1e7ffc0e5339d31fdfc274c"

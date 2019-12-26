@@ -58,7 +58,7 @@ const createDriver = (options?: CreateDriverOptions) => {
       const { serviceName, events } = options
 
       if (shouldSubscribeViaHTTP) {
-        return subscribeViaHTTP()
+        return subscribeViaHTTP(options)
       }
 
       await Promise.all(

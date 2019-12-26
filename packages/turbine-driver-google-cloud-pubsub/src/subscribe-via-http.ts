@@ -1,9 +1,19 @@
-import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
+import express, { Request, Response } from 'express'
+import { SubscribeOptions } from '@stayradiated/turbine'
 
 import { PORT } from './constants'
 
-const subscribeViaHTTP = () => {
+const parseSubscriptionPath = (subscriptionPath: string) => {
+  const segments = subscriptionPath.split('/')
+  const subscriptionName = segments[segments.length - 1]
+  const topicName = subscriptionName.match(/\+(.+)$/)[1]
+  return { subscriptionName, topicName }
+}
+
+const subscribeViaHTTP = (options: SubscribeOptions) => {
+  const { events } = options
+
   const app = express()
 
   app.use(bodyParser.json())
@@ -24,13 +34,18 @@ const subscribeViaHTTP = () => {
     }
 
     try {
+      const { topicName } = parseSubscriptionPath(req.body.subscription)
+
       const pubSubMessage = req.body.message
       const payload = JSON.parse(
         Buffer.from(pubSubMessage.data, 'base64').toString('utf8'),
       )
 
-      console.log('req.body', req.body)
-      console.log('PAYLOAD', payload)
+      await Promise.all(
+        events
+          .filter((event) => event[0] === topicName)
+          .map((event) => event[1](payload)),
+      )
 
       res.status(204).end()
     } catch (error) {

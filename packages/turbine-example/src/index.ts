@@ -4,7 +4,7 @@ import createDriver from '@stayradiated/turbine-driver-google-cloud-pubsub'
 
 const service = createService({
   serviceName: 'turbine-example',
-  driver: createDriver({ projectId: 'twenty-twenty' }),
+  driver: createDriver(),
 })
 
 service.handle('ping', async (message, dispatch) => {

@@ -48,7 +48,7 @@ const createDriver = (config?: ClientConfig) => {
     subscribe: async (options: SubscribeOptions) => {
       const { serviceName, events } = options
 
-      events.forEach(async (event) => {
+      await Promise.all(events.map(async (event) => {
         const [topicName, handle] = event
 
         const subscriptionName = `${serviceName}-${topicName}`
@@ -64,7 +64,7 @@ const createDriver = (config?: ClientConfig) => {
           await handle(payload)
           message.ack()
         })
-      })
+      }))
     },
   }
 }

@@ -41,10 +41,18 @@ const subscribeViaHTTP = (options: SubscribeOptions) => {
         Buffer.from(pubSubMessage.data, 'base64').toString('utf8'),
       )
 
+      console.log('RECEIVED TOPIC NAME:', topicName)
+
       await Promise.all(
         events
-          .filter((event) => event[0] === topicName)
-          .map((event) => event[1](payload)),
+          .filter((event) => {
+            console.log('EVENT?', event, event[0] === topicName)
+            return event[0] === topicName
+          })
+          .map((event) => {
+            console.log('HANDLING MESSAGE...')
+            return event[1](payload)
+          }),
       )
 
       res.status(204).end()

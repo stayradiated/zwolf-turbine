@@ -41,16 +41,12 @@ const subscribeViaHTTP = (options: SubscribeOptions) => {
         Buffer.from(pubSubMessage.data, 'base64').toString('utf8'),
       )
 
-      console.log('RECEIVED TOPIC NAME:', topicName)
-
       await Promise.all(
         events
           .filter((event) => {
-            console.log('EVENT?', event, event[0] === topicName)
             return event[0] === topicName
           })
           .map((event) => {
-            console.log('HANDLING MESSAGE...')
             return event[1](payload)
           }),
       )
@@ -66,7 +62,7 @@ const subscribeViaHTTP = (options: SubscribeOptions) => {
   })
 
   const server = app.listen(PORT, () => {
-    console.info(`Listening for messages localhost:${PORT}/handle`)
+    console.info(`Listening for messages on port ${PORT}`)
   })
 
   server.setTimeout(60 * 60 * 1000) // 1 hour

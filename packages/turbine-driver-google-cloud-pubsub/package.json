@@ -1,6 +1,6 @@
 {
   "name": "@stayradiated/turbine-driver-google-cloud-pubsub",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Turbine driver using @google-cloud/pubsub",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",

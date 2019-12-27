@@ -1,6 +1,6 @@
 {
   "name": "@stayradiated/turbine-example",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "private": true,
   "description": "Example turbine project",
   "main": "dist/index.js",
@@ -22,7 +22,7 @@
   "homepage": "https://github.com/stayradiated/turbine#readme",
   "dependencies": {
     "@stayradiated/turbine": "^1.1.0",
-    "@stayradiated/turbine-driver-google-cloud-pubsub": "^1.7.0",
+    "@stayradiated/turbine-driver-google-cloud-pubsub": "^1.8.0",
     "delay": "4.3.0"
   },
   "devDependencies": {

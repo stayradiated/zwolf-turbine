@@ -1,5 +1,6 @@
 import mem from 'mem'
 import { ClientConfig } from '@google-cloud/pubsub/build/src/pubsub'
+import { debuglog } from '@stayradiated/turbine'
 
 import createTopic from './create-topic'
 
@@ -17,6 +18,7 @@ const createPullSubscription = mem(
     const subscription = topic.subscription(subscriptionName)
     const [subscriptionExists] = await subscription.exists()
     if (!subscriptionExists) {
+      debuglog(`Creating pull subscription: ${subscriptionName}`)
       await topic.createSubscription(subscriptionName)
     }
     return subscription

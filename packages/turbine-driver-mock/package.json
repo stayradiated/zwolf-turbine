@@ -22,6 +22,6 @@
     "@stayradiated/turbine": "^1.1.0"
   },
   "devDependencies": {
-    "@stayradiated/pkg": "3.6.0"
+    "@stayradiated/pkg": "3.7.0"
   }
 }

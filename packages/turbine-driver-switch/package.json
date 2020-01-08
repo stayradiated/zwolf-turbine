@@ -1,6 +1,6 @@
 {
   "name": "@stayradiated/turbine-driver-switch",
-  "version": "1.1.0",
+  "version": "1.10.0",
   "description": "Select which turbine driver to use at runtime.",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",

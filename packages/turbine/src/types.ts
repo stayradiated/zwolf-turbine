@@ -6,7 +6,7 @@ export type SubscribeFn = (options: SubscribeOptions) => Promise<any>
 export type HandlerFn<T = any> = (
   message: Message<T>,
   dispatch: DispatchFn,
-) => Promise<void>
+) => Promise<any>
 export type DispatchFn<T = any> = (
   message: MessageTemplate,
 ) => Promise<Message<T>>

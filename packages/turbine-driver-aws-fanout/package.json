@@ -26,6 +26,6 @@
     "express": "4.17.1"
   },
   "devDependencies": {
-    "@stayradiated/pkg": "3.7.0"
+    "@stayradiated/pkg": "3.8.0"
   }
 }

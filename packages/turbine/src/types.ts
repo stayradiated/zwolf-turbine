@@ -8,15 +8,15 @@ export type HandlerFn<T = any> = (
   dispatch: DispatchFn,
 ) => Promise<any>
 export type DispatchFn<T = any> = (
-  message: MessageTemplate,
+  message: MessageTemplate<T>,
 ) => Promise<Message<T>>
 
 export type Event = [string, SubscriptionHandlerFn]
 export type EventList = Event[]
 
-export interface MessageTemplate {
+export interface MessageTemplate<T = any> {
   type: string,
-  payload: any,
+  payload: T,
 }
 
 export interface Message<T> {

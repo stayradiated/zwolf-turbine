@@ -1,6 +1,6 @@
 {
   "name": "@stayradiated/turbine-driver-mock",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "description": "A fake turbine driver that just logs to console. Good for tests.",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/stayradiated/turbine#readme",
   "dependencies": {
-    "@stayradiated/turbine": "^1.10.0"
+    "@stayradiated/turbine": "^1.11.0"
   },
   "devDependencies": {
     "@stayradiated/pkg": "3.8.0"

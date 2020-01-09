@@ -1,6 +1,6 @@
 {
   "name": "@stayradiated/turbine",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "description": "Minimal message passing",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",

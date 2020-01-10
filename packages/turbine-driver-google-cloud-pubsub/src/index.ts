@@ -10,7 +10,7 @@ interface CreateDriverOptions {
   config?: ClientConfig,
 }
 
-const createDriver = (options?: CreateDriverOptions) => {
+const createDriver = (options: CreateDriverOptions = {}) => {
   const { config, pushEndpoint } = options
 
   return {

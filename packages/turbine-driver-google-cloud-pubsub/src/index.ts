@@ -7,11 +7,12 @@ import subscribeViaPolling from './subscribe-via-polling'
 
 interface CreateDriverOptions {
   pushEndpoint?: string,
+  serviceAccount?: string,
   config?: ClientConfig,
 }
 
 const createDriver = (options: CreateDriverOptions = {}) => {
-  const { config, pushEndpoint } = options
+  const { config, pushEndpoint, serviceAccount } = options
 
   return {
     publish: async (message: AnyMessage) => {
@@ -25,7 +26,7 @@ const createDriver = (options: CreateDriverOptions = {}) => {
         console.info(
           `Subscribing to Google Cloud PubSub via HTTP [${pushEndpoint}]...`,
         )
-        return subscribeViaHTTP(config, options, pushEndpoint)
+        return subscribeViaHTTP(config, options, pushEndpoint, serviceAccount)
       } else {
         console.info('Subscribing to Google Cloud PubSub via polling...')
         return subscribeViaPolling(config, options)

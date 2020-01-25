@@ -20,11 +20,10 @@ const subscribeViaPolling = async (
         subscriptionName,
       })
 
-      subscription.on('message', async (message) => {
-        const { data } = message
-        const payload = JSON.parse(data.toString('utf8'))
-        await handle(payload)
-        message.ack()
+      subscription.on('message', async (pubSubMessage) => {
+        const message = JSON.parse(pubSubMessage.data.toString('utf8'))
+        await handle(message)
+        pubSubMessage.ack()
       })
     }),
   )

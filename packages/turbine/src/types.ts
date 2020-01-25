@@ -1,24 +1,3 @@
-export type PublishFn<T = any> = (message: Message<T>) => Promise<void>
-export type SubscriptionHandlerFn<T = any> = (
-  message: Message<T>,
-) => Promise<void>
-export type SubscribeFn = (options: SubscribeOptions) => Promise<any>
-export type HandlerFn<T = any> = (
-  message: Message<T>,
-  dispatch: DispatchFn,
-) => Promise<any>
-export type DispatchFn<T = any> = (
-  message: MessageTemplate<T>,
-) => Promise<Message<T>>
-
-export type Event = [string, SubscriptionHandlerFn]
-export type EventList = Event[]
-
-export interface MessageTemplate<T = any> {
-  type: string,
-  payload: T,
-}
-
 export interface Message<T> {
   id: string,
   parentId?: string,
@@ -28,12 +7,37 @@ export interface Message<T> {
   payload: T,
 }
 
-export type AnyMessage = Message<any>
+export type PublishFn<T = any> = (message: Message<T>) => Promise<void>
+
+export type SubscriptionHandlerFn<T = any> = (
+  message: Message<T>,
+) => Promise<void>
+
+export type Event = [string, SubscriptionHandlerFn]
+export type EventList = Event[]
 
 export interface SubscribeOptions {
   serviceName: string,
   events: EventList,
 }
+
+export type SubscribeFn = (options: SubscribeOptions) => Promise<any>
+
+export interface MessageTemplate<T = any> {
+  type: string,
+  payload: T,
+}
+
+export type DispatchFn<T = any> = (
+  message: MessageTemplate<T>,
+) => Promise<Message<T>>
+
+export type HandlerFn<T = any> = (
+  message: Message<T>,
+  dispatch: DispatchFn,
+) => Promise<any>
+
+export type AnyMessage = Message<any>
 
 export interface Driver {
   publish: PublishFn,

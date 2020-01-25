@@ -7,13 +7,6 @@ import { PORT } from './constants'
 
 import createPushSubscription from './create-push-subscription'
 
-const parseSubscriptionPath = (subscriptionPath: string) => {
-  const segments = subscriptionPath.split('/')
-  const subscriptionName = segments[segments.length - 1]
-  const topicName = subscriptionName.match(/\+(.+)$/)[1]
-  return { subscriptionName, topicName }
-}
-
 const subscribeViaHTTP = async (
   config: ClientConfig,
   options: SubscribeOptions,
@@ -42,20 +35,17 @@ const subscribeViaHTTP = async (
     }
 
     try {
-      const { topicName } = parseSubscriptionPath(req.body.subscription)
-
-      const pubSubMessage = req.body.message
-      const payload = JSON.parse(
-        Buffer.from(pubSubMessage.data, 'base64').toString('utf8'),
+      const message = JSON.parse(
+        Buffer.from(req.body.message.data, 'base64').toString('utf8'),
       )
 
       await Promise.all(
         events
           .filter((event) => {
-            return event[0] === topicName
+            return event[0] === message.type
           })
           .map((event) => {
-            return event[1](payload)
+            return event[1](message)
           }),
       )
 

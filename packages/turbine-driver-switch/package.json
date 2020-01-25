@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/stayradiated/turbine#readme",
   "devDependencies": {
-    "@stayradiated/pkg": "3.8.0",
-    "@types/node": "13.1.6"
+    "@stayradiated/pkg": "3.13.0",
+    "@types/node": "13.5.0"
   }
 }

@@ -16,8 +16,8 @@ const createDriver = (options: CreateDriverOptions = {}) => {
 
   return {
     publish: async (message: AnyMessage) => {
-      const { type: topicName, payload } = message
-      const dataBuffer = Buffer.from(JSON.stringify(payload), 'utf8')
+      const { type: topicName } = message
+      const dataBuffer = Buffer.from(JSON.stringify(message), 'utf8')
       const topic = await createTopic(config, topicName)
       await topic.publish(dataBuffer)
     },

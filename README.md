@@ -1,4 +1,4 @@
-# turbine
+![Turbine](./turbine.png)
 
 > A minimal library for event based microservices
 

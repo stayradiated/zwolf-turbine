@@ -5,12 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.2.0](https://github.com/stayradiated/turbine/compare/v2.1.0...v2.2.0) (2020-01-26)
 
-**Note:** Version bump only for package @stayradiated/turbine-example
-
-
-
-
-
-# [2.1.0](https://github.com/stayradiated/turbine/compare/v2.0.0...v2.1.0) (2020-01-26)
-
-**Note:** Version bump only for package @stayradiated/turbine-example
+**Note:** Version bump only for package @stayradiated/turbine

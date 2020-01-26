@@ -11,7 +11,7 @@ const subscribeViaHTTP = async (
   config: ClientConfig,
   options: SubscribeOptions,
   pushEndpoint: string,
-  serviceAccount: string,
+  serviceAccountEmail: string,
 ) => {
   const { serviceName, events } = options
 
@@ -70,7 +70,7 @@ const subscribeViaHTTP = async (
         topicName,
         subscriptionName,
         pushEndpoint,
-        serviceAccount,
+        serviceAccountEmail,
       })
     }),
   )

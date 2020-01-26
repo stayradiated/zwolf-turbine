@@ -46,16 +46,25 @@ const createPushSubscription = mem(
 
     const topic = await createTopic(config, topicName)
     const subscription = topic.subscription(subscriptionName)
+
     const [subscriptionExists] = await subscription.exists()
 
     if (subscriptionExists) {
-      debuglog(`Modifying push subscription: ${subscriptionName}`)
-      await subscription.modifyPushConfig({
-        pushEndpoint,
-        oidcToken: {
-          serviceAccountEmail,
-        },
-      } as any)
+      const [metadata] = await subscription.getMetadata()
+      const { pushConfig } = metadata
+
+      if (
+        pushConfig?.pushEndpoint !== pushEndpoint ||
+        pushConfig?.oidcToken?.serviceAccountEmail === serviceAccountEmail
+      ) {
+        debuglog(`Modifying push subscription: ${subscriptionName}`)
+        await subscription.modifyPushConfig({
+          pushEndpoint,
+          oidcToken: {
+            serviceAccountEmail,
+          },
+        } as any)
+      }
     } else {
       debuglog(`Creating push subscription: ${subscriptionName}`)
       await topic.createSubscription(subscriptionName, {

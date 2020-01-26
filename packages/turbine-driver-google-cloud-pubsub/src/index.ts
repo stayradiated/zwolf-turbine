@@ -14,6 +14,17 @@ interface CreateDriverOptions {
 const createDriver = (options: CreateDriverOptions = {}) => {
   const { config, pushEndpoint, serviceAccount } = options
 
+  if (pushEndpoint != null && pushEndpoint !== pushEndpoint.trim()) {
+    console.warn(
+      'Warning: Your `pushEndpoint` has untrimmed spaces. This can cause issues with Google Cloud PubSub.',
+    )
+  }
+  if (serviceAccount != null && serviceAccount !== serviceAccount.trim()) {
+    console.warn(
+      'Warning: Your `serviceAccount` has untrimmed spaces. This can cause issues with Google Cloud PubSub.',
+    )
+  }
+
   return {
     publish: async (message: AnyMessage) => {
       const { type: topicName } = message

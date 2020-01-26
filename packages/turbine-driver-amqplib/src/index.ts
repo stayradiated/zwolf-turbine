@@ -20,7 +20,7 @@ const createChannel = async (config: DriverConfig): Promise<Channel> => {
     return channel
   } catch (error) {
     console.error(error)
-    console.log('Could not create channel. Waiting 10 seconds...')
+    console.warn('Warning: could not create channel. Waiting 10 seconds...')
     await delay(10 * 1000)
     return createChannel(config)
   }

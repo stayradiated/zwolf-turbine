@@ -25,7 +25,7 @@
     "mem": "6.0.1"
   },
   "devDependencies": {
-    "@stayradiated/pkg": "3.13.0",
+    "@stayradiated/pkg": "3.14.0",
     "@types/amqplib": "0.5.13"
   }
 }

@@ -60,12 +60,15 @@ const createSubscription = mem(
         pushConfig?.pushEndpoint !== pushEndpoint ||
         pushConfig?.oidcToken?.serviceAccountEmail ===
           oidcToken?.serviceAccountEmail ||
-        pushConfig?.oidcToken?.audience === oidcToken?.audience
+        pushConfig?.oidcToken?.audience === oidcToken?.audience ||
+        metadata.ackDeadlineSeconds === ackDeadlineSeconds
       ) {
         debuglog(`Modifying subscription: ${subscriptionName}`)
         await subscription.modifyPushConfig({
           pushEndpoint,
           oidcToken,
+          ackDeadlineSeconds,
+          /** todo(george): remove any after nodejs-pubsub supports oidcToken **/
         } as any)
       }
     } else {

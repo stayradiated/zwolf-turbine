@@ -1,28 +1,19 @@
-import { ClientConfig } from '@google-cloud/pubsub/build/src/pubsub'
+import { Subscription } from '@google-cloud/pubsub'
 import { SubscribeOptions } from '@stayradiated/turbine'
 
-import createPullSubscription from './create-pull-subscription'
-
 const subscribeViaPolling = async (
-  config: ClientConfig,
-  options: SubscribeOptions,
+  subscribeOptions: SubscribeOptions,
+  subscriptions: Subscription[],
 ) => {
-  const { serviceName, events } = options
+  const { subscriptionHandlers } = subscribeOptions
 
   await Promise.all(
-    events.map(async (event) => {
-      const [topicName, handle] = event
-
-      const subscriptionName = `pull-${serviceName}+${topicName}`
-      const subscription = await createPullSubscription({
-        config,
-        topicName,
-        subscriptionName,
-      })
+    subscriptionHandlers.map(async (subscriptionHandler, index) => {
+      const subscription = subscriptions[index]
 
       subscription.on('message', async (pubSubMessage) => {
         const message = JSON.parse(pubSubMessage.data.toString('utf8'))
-        await handle(message)
+        await subscriptionHandler.handlerFn(message)
         pubSubMessage.ack()
       })
     }),

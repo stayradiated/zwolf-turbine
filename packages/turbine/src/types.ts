@@ -13,12 +13,14 @@ export type SubscriptionHandlerFn<T = any> = (
   message: Message<T>,
 ) => Promise<void>
 
-export type Event = [string, SubscriptionHandlerFn]
-export type EventList = Event[]
+export type SubscriptionHandler<T = any> = {
+  type: string,
+  handlerFn: SubscriptionHandlerFn<T>,
+}
 
 export interface SubscribeOptions {
   serviceName: string,
-  events: EventList,
+  subscriptionHandlers: SubscriptionHandler[],
 }
 
 export type SubscribeFn = (options: SubscribeOptions) => Promise<any>

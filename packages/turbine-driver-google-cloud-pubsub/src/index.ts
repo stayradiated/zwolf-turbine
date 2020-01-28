@@ -1,49 +1,74 @@
-import { ClientConfig } from '@google-cloud/pubsub/build/src/pubsub'
 import { AnyMessage, SubscribeOptions } from '@stayradiated/turbine'
 
+import { CreateDriverOptions, SubscriptionDeliveryType } from './types'
+
 import createTopic from './create-topic'
-import subscribeViaHTTP from './subscribe-via-http'
-import subscribeViaPolling from './subscribe-via-polling'
+import subscribe from './subscribe'
 
-interface CreateDriverOptions {
-  pushEndpoint?: string,
-  serviceAccount?: string,
-  config?: ClientConfig,
-}
+const validateCreateDriverOptions = (options: CreateDriverOptions): void => {
+  const { deliveryType, pushEndpoint, oidcToken, ackDeadlineSeconds } = options
+  const { serviceAccountEmail, audience } = oidcToken
 
-const createDriver = (options: CreateDriverOptions = {}) => {
-  const { config, pushEndpoint, serviceAccount } = options
+  if (deliveryType === SubscriptionDeliveryType.PUSH && pushEndpoint == null) {
+    console.warn(
+      'Warning: You have set `deliveryType=PUSH` but have not provided a `pushEndpoint` URL - this is a required property and the Push Subscription will not work without it.',
+    )
+  }
+  if (deliveryType === SubscriptionDeliveryType.PULL && pushEndpoint != null) {
+    console.warn(
+      'Warning: You have provided a `pushEndpoint` URL, but this will be ignored as you have also set `deliveryType=PULL`. Change this to `deliveryType=PUSH` if you want to create a Push Subscription.',
+    )
+  }
 
   if (pushEndpoint != null && pushEndpoint !== pushEndpoint.trim()) {
     console.warn(
-      'Warning: Your `pushEndpoint` has untrimmed spaces. This can cause issues with Google Cloud PubSub.',
+      'Warning: Your `pushEndpoint` has untrimmed spaces. This may cause you issues with Google Cloud PubSub.',
     )
   }
-  if (serviceAccount != null && serviceAccount !== serviceAccount.trim()) {
+  if (
+    serviceAccountEmail != null &&
+    serviceAccountEmail !== serviceAccountEmail.trim()
+  ) {
     console.warn(
-      'Warning: Your `serviceAccount` has untrimmed spaces. This can cause issues with Google Cloud PubSub.',
+      'Warning: Your `serviceAccountEmail` has untrimmed spaces. This may cause you issues with Google Cloud PubSub.',
     )
   }
+  if (audience != null && audience !== audience.trim()) {
+    console.warn(
+      'Warning: Your `audience` has untrimmed spaces. This may cause you issues with Google Cloud PubSub.',
+    )
+  }
+
+  if (ackDeadlineSeconds != null) {
+    if (ackDeadlineSeconds < 10) {
+      console.warn(
+        'Warning: Your `ackDeadlineSeconds` is less than the minimum value of 10.',
+      )
+    } else if (ackDeadlineSeconds > 600) {
+      console.warn(
+        'Warning: Your `ackDeadlineSeconds` is greater than the maximum value of 600.',
+      )
+    }
+  }
+}
+
+const createDriver = (createDriverOptions: CreateDriverOptions) => {
+  const { clientConfig } = createDriverOptions
+
+  validateCreateDriverOptions(createDriverOptions)
 
   return {
     publish: async (message: AnyMessage) => {
       const { type: topicName } = message
       const dataBuffer = Buffer.from(JSON.stringify(message), 'utf8')
-      const topic = await createTopic(config, topicName)
+      const topic = await createTopic(clientConfig, topicName)
       await topic.publish(dataBuffer)
     },
-    subscribe: async (options: SubscribeOptions) => {
-      if (pushEndpoint) {
-        console.info(
-          `Subscribing to Google Cloud PubSub via HTTP [${pushEndpoint}]...`,
-        )
-        return subscribeViaHTTP(config, options, pushEndpoint, serviceAccount)
-      } else {
-        console.info('Subscribing to Google Cloud PubSub via polling...')
-        return subscribeViaPolling(config, options)
-      }
+    subscribe: (subscribeOptions: SubscribeOptions) => {
+      return subscribe(createDriverOptions, subscribeOptions)
     },
   }
 }
 
 export default createDriver
+export * from './types'

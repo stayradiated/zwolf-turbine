@@ -1,19 +1,11 @@
 import bodyParser from 'body-parser'
 import express, { Request, Response } from 'express'
 import { SubscribeOptions } from '@stayradiated/turbine'
-import { ClientConfig } from '@google-cloud/pubsub/build/src/pubsub'
 
 import { PORT } from './constants'
 
-import createPushSubscription from './create-push-subscription'
-
-const subscribeViaHTTP = async (
-  config: ClientConfig,
-  options: SubscribeOptions,
-  pushEndpoint: string,
-  serviceAccountEmail: string,
-) => {
-  const { serviceName, events } = options
+const subscribeViaHTTP = async (subscribeOptions: SubscribeOptions) => {
+  const { subscriptionHandlers } = subscribeOptions
 
   const app = express()
 
@@ -40,12 +32,12 @@ const subscribeViaHTTP = async (
       )
 
       await Promise.all(
-        events
-          .filter((event) => {
-            return event[0] === message.type
+        subscriptionHandlers
+          .filter((subscriptionHandler) => {
+            return subscriptionHandler.type === message.type
           })
-          .map((event) => {
-            return event[1](message)
+          .map((subscriptionHandler) => {
+            return subscriptionHandler.handlerFn(message)
           }),
       )
 
@@ -58,22 +50,6 @@ const subscribeViaHTTP = async (
         .end()
     }
   })
-
-  await Promise.all(
-    events.map(async (event) => {
-      const [topicName] = event
-
-      const subscriptionName = `push-${serviceName}+${topicName}`
-
-      await createPushSubscription({
-        config,
-        topicName,
-        subscriptionName,
-        pushEndpoint,
-        serviceAccountEmail,
-      })
-    }),
-  )
 
   const server = app.listen(PORT, () => {
     console.info(`Listening for messages on port ${PORT}`)

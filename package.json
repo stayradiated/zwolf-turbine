@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build",
+    "build": "lerna run build --concurrency 2",
     "clean": "find . -type f -name 'yarn.lock' -delete && lerna clean -y",
     "deploy": "yarn run build && lerna publish --conventional-commits",
     "ncu": "ncu -u && lerna exec -- ncu -u && yarn && lerna run build",

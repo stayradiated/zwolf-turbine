@@ -1,17 +1,22 @@
-import { Service, ServiceConfig, AnyMessage, EventList } from './types'
+import {
+  Service,
+  ServiceConfig,
+  AnyMessage,
+  SubscriptionHandler,
+} from './types'
 
 import createDispatch from './createDispatch'
 
 const createService = (config: ServiceConfig): Service => {
   const { serviceName, driver } = config
 
-  const events: EventList = []
+  const subscriptionHandlers = [] as SubscriptionHandler[]
   const hasStarted = false
 
   return {
     async handle (type, handlerFn) {
       if (hasStarted) {
-        throw new Error('Cannot add new event after service has started.')
+        throw new Error('Cannot add new handler after service has started.')
       }
       const callback = async (message: AnyMessage) => {
         const dispatch = createDispatch({
@@ -21,7 +26,7 @@ const createService = (config: ServiceConfig): Service => {
         })
         await handlerFn(message, dispatch)
       }
-      events.push([type, callback])
+      subscriptionHandlers.push({ type, handlerFn: callback })
     },
 
     dispatch (options) {
@@ -33,7 +38,7 @@ const createService = (config: ServiceConfig): Service => {
     },
 
     async start (): Promise<any> {
-      return driver.subscribe({ serviceName, events })
+      return driver.subscribe({ serviceName, subscriptionHandlers })
     },
   }
 }

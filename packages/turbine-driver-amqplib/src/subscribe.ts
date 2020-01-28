@@ -4,15 +4,15 @@ import { SubscribeOptions } from '@stayradiated/turbine'
 import subscribeType from './subscribeType'
 
 const subscribe = async (channel: Channel, options: SubscribeOptions) => {
-  const { serviceName, events } = options
+  const { serviceName, subscriptionHandlers } = options
 
-  for (const event of events) {
-    const [type, callback] = event
+  for (const subscriptionHandler of subscriptionHandlers) {
+    const { type, handlerFn } = subscriptionHandler
     await subscribeType({
       channel,
       serviceName,
       type,
-      callback,
+      handlerFn,
     })
   }
 }

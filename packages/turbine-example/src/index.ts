@@ -1,10 +1,14 @@
 import delay from 'delay'
 import createService from '@stayradiated/turbine'
-import createDriver from '@stayradiated/turbine-driver-google-cloud-pubsub'
+import createDriver, {
+  SubscriptionDeliveryType,
+} from '@stayradiated/turbine-driver-google-cloud-pubsub'
 
 const service = createService({
   serviceName: 'turbine-example',
-  driver: createDriver(),
+  driver: createDriver({
+    deliveryType: SubscriptionDeliveryType.PULL,
+  }),
 })
 
 service.handle('ping', async (message, dispatch) => {

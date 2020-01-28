@@ -5,13 +5,11 @@ import {
   AnyMessage,
 } from '@stayradiated/turbine'
 
-type EventMap = Map<string, SubscriptionHandlerFn[]>
+type SubscriptionHandlerMap = Map<string, SubscriptionHandlerFn[]>
 type MessageList = AnyMessage[]
 
-const STAR_TYPE = '*'
-
 const mockPublish = (
-  eventMap: EventMap,
+  subscriptionHandlerMap: SubscriptionHandlerMap,
   messageList: MessageList,
 ): PublishFn => {
   return async (message) => {
@@ -21,12 +19,8 @@ const mockPublish = (
 
     const handlers: SubscriptionHandlerFn[] = []
 
-    if (eventMap.has(type)) {
-      handlers.push(...eventMap.get(type))
-    }
-
-    if (eventMap.has(STAR_TYPE)) {
-      handlers.push(...eventMap.get(STAR_TYPE))
+    if (subscriptionHandlerMap.has(type)) {
+      handlers.push(...subscriptionHandlerMap.get(type))
     }
 
     await Promise.all(handlers.map((handler) => handler(message)))
@@ -34,16 +28,16 @@ const mockPublish = (
 }
 
 const mockSubscribe = (
-  eventMap: EventMap,
+  subscriptionHandlerMap: SubscriptionHandlerMap,
   messageList: MessageList,
 ): SubscribeFn => {
   return async (options) => {
-    options.events.forEach((event) => {
-      const [type, handler] = event
-      if (eventMap.has(type) === false) {
-        eventMap.set(type, [])
+    options.subscriptionHandlers.forEach((subscriptionHandler) => {
+      const { type, handlerFn } = subscriptionHandler
+      if (subscriptionHandlerMap.has(type) === false) {
+        subscriptionHandlerMap.set(type, [])
       }
-      eventMap.get(type).push(handler)
+      subscriptionHandlerMap.get(type).push(handlerFn)
     })
 
     return messageList
@@ -51,12 +45,12 @@ const mockSubscribe = (
 }
 
 const createDriver = () => {
-  const eventMap = new Map<string, SubscriptionHandlerFn[]>()
+  const subscriptionHandlerMap = new Map<string, SubscriptionHandlerFn[]>()
   const messageList = new Array<AnyMessage>()
 
   return {
-    publish: mockPublish(eventMap, messageList),
-    subscribe: mockSubscribe(eventMap, messageList),
+    publish: mockPublish(subscriptionHandlerMap, messageList),
+    subscribe: mockSubscribe(subscriptionHandlerMap, messageList),
   }
 }
 

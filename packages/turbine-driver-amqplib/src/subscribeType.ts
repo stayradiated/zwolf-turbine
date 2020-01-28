@@ -7,11 +7,11 @@ interface Options {
   channel: Channel,
   serviceName: string,
   type: string,
-  callback: SubscriptionHandlerFn,
+  handlerFn: SubscriptionHandlerFn,
 }
 
 const subscribeType = async (options: Options) => {
-  const { channel, serviceName, type, callback } = options
+  const { channel, serviceName, type, handlerFn } = options
 
   const queue = `${serviceName}_${type}`
   await channel.assertQueue(queue)
@@ -20,7 +20,7 @@ const subscribeType = async (options: Options) => {
   await channel.consume(queue, async (msg) => {
     const message = JSON.parse(msg.content.toString())
     try {
-      await callback(message)
+      await handlerFn(message)
     } catch (error) {
       console.error(`Error handling "${message.type}" message!`, error)
       return

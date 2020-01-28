@@ -15,14 +15,16 @@ import subscribeViaPolling from './subscribe-via-polling'
 import subscribeViaHTTP from './subscribe-via-http'
 
 const subscribe = async (subscribeOptions: SubscribeOptions) => {
-  const { serviceName, events } = subscribeOptions
+  const { serviceName, subscriptionHandlers } = subscribeOptions
 
-  if (events.length === 0) {
+  if (subscriptionHandlers.length === 0) {
     return
   }
 
   const queueName = withFanoutEnvPrefix(serviceName)
-  const topicNames = events.map(([topic]) => withFanoutEnvPrefix(topic))
+  const topicNames = subscriptionHandlers.map((subscriptionHandler) => {
+    return withFanoutEnvPrefix(subscriptionHandler.type)
+  })
   const deadLetterQueueName = withFanoutEnvPrefix(AWS_FANOUT_DEAD_LETTER_QUEUE)
   const maxReceiveCount = AWS_FANOUT_MAX_RECEIVE_COUNT
 
@@ -47,7 +49,7 @@ const subscribe = async (subscribeOptions: SubscribeOptions) => {
     }),
   ])
 
-  const routeMap = createRouteMap(events)
+  const routeMap = createRouteMap(subscriptionHandlers)
 
   if (PORT != null) {
     console.info('Subscribing to queue using HTTP server')

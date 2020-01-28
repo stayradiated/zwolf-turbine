@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/stayradiated/turbine/compare/v3.0.0...v3.1.0) (2020-01-28)
+
+
+### Features
+
+* **turbine-driver-google-cloud-pubsub:** support modifying ackDeadlineSeconds ([93fcabb](https://github.com/stayradiated/turbine/commit/93fcabb4c03bf35905ec82114f6376fa259992a6))
+
+
+
+
+
 # [3.0.0](https://github.com/stayradiated/turbine/compare/v2.2.0...v3.0.0) (2020-01-28)
 
 

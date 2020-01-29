@@ -15,8 +15,15 @@ const subscribe = async (
     deliveryType,
     pushEndpoint,
     oidcToken,
-    ackDeadlineSeconds,
+    ackDeadlineSeconds = 60,
   } = createDriverOptions
+
+  if (deliveryType === SubscriptionDeliveryType.PUSH) {
+    // start the HTTP server as soon as possible
+    await subscribeViaHTTP(subscribeOptions, {
+      requestTimeoutSeconds: ackDeadlineSeconds
+    })
+  }
 
   const { serviceName, subscriptionHandlers } = subscribeOptions
 
@@ -38,15 +45,8 @@ const subscribe = async (
     }),
   )
 
-  switch (deliveryType) {
-    case SubscriptionDeliveryType.PUSH: {
-      await subscribeViaHTTP(subscribeOptions)
-      break
-    }
-    case SubscriptionDeliveryType.PULL: {
-      await subscribeViaPolling(subscribeOptions, subscriptions)
-      break
-    }
+  if (deliveryType === SubscriptionDeliveryType.PULL) {
+    await subscribeViaPolling(subscribeOptions, subscriptions)
   }
 }
 

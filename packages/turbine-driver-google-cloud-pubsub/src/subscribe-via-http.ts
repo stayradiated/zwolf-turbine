@@ -4,8 +4,16 @@ import { SubscribeOptions } from '@stayradiated/turbine'
 
 import { PORT } from './constants'
 
-const subscribeViaHTTP = async (subscribeOptions: SubscribeOptions) => {
+interface ServerOptions {
+  requestTimeoutSeconds: number,
+}
+
+const subscribeViaHTTP = async (
+  subscribeOptions: SubscribeOptions,
+  serverOptions: ServerOptions,
+) => {
   const { subscriptionHandlers } = subscribeOptions
+  const { requestTimeoutSeconds } = serverOptions
 
   const app = express()
 
@@ -55,7 +63,7 @@ const subscribeViaHTTP = async (subscribeOptions: SubscribeOptions) => {
     console.info(`Listening for messages on port ${PORT}`)
   })
 
-  server.setTimeout(60 * 60 * 1000) // 1 hour
+  server.setTimeout(requestTimeoutSeconds * 1000)
 }
 
 export default subscribeViaHTTP

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/stayradiated/turbine/compare/v3.3.0...v3.4.0) (2020-01-30)
+
+
+### Features
+
+* **turbine-driver-google-cloud-pubsub:** add /refresh-subscriptions handler ([a4b53fc](https://github.com/stayradiated/turbine/commit/a4b53fcce26a38d86de9ca4053f3ad93f5c19ce9))
+
+
+
+
+
 # [3.3.0](https://github.com/stayradiated/turbine/compare/v3.2.0...v3.3.0) (2020-01-29)
 
 

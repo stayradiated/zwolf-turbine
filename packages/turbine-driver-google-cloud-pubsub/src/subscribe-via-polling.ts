@@ -2,10 +2,12 @@ import { Subscription } from '@google-cloud/pubsub'
 import { SubscribeOptions } from '@stayradiated/turbine'
 
 const subscribeViaPolling = async (
+  createSubscriptions: () => Promise<Subscription[]>,
   subscribeOptions: SubscribeOptions,
-  subscriptions: Subscription[],
 ) => {
   const { subscriptionHandlers } = subscribeOptions
+
+  const subscriptions = await createSubscriptions()
 
   await Promise.all(
     subscriptionHandlers.map(async (subscriptionHandler, index) => {

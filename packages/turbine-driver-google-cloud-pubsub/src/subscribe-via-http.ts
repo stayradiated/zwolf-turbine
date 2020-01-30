@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser'
 import express, { Request, Response } from 'express'
 import { SubscribeOptions } from '@stayradiated/turbine'
+import { Subscription } from '@google-cloud/pubsub'
 
 import { PORT } from './constants'
 
@@ -9,6 +10,7 @@ interface ServerOptions {
 }
 
 const subscribeViaHTTP = async (
+  createSubscriptions: () => Promise<Subscription[]>,
   subscribeOptions: SubscribeOptions,
   serverOptions: ServerOptions,
 ) => {
@@ -18,6 +20,11 @@ const subscribeViaHTTP = async (
   const app = express()
 
   app.use(bodyParser.json())
+
+  app.post('/refresh-subscriptions', async (req: Request, res: Response) => {
+    await createSubscriptions()
+    res.status(200).end()
+  })
 
   app.post('/', async (req: Request, res: Response) => {
     if (!req.body) {

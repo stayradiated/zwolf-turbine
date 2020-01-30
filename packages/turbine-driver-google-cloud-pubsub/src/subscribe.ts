@@ -18,35 +18,39 @@ const subscribe = async (
     ackDeadlineSeconds = 60,
   } = createDriverOptions
 
-  if (deliveryType === SubscriptionDeliveryType.PUSH) {
-    // start the HTTP server as soon as possible
-    await subscribeViaHTTP(subscribeOptions, {
-      requestTimeoutSeconds: ackDeadlineSeconds
-    })
+  const createSubscriptions = () => {
+    const { serviceName, subscriptionHandlers } = subscribeOptions
+
+    return Promise.all(
+      subscriptionHandlers.map(async (subscriptionHandler) => {
+        const topicName = subscriptionHandler.type
+        const subscriptionName = `${deliveryType.toLowerCase()}-${serviceName}+${topicName}`
+
+        const subscription = await createSubscription({
+          clientConfig,
+          topicName,
+          subscriptionName,
+          pushEndpoint,
+          oidcToken,
+          ackDeadlineSeconds,
+        })
+
+        return subscription
+      }),
+    )
   }
 
-  const { serviceName, subscriptionHandlers } = subscribeOptions
-
-  const subscriptions = await Promise.all(
-    subscriptionHandlers.map(async (subscriptionHandler) => {
-      const topicName = subscriptionHandler.type
-      const subscriptionName = `${deliveryType.toLowerCase()}-${serviceName}+${topicName}`
-
-      const subscription = await createSubscription({
-        clientConfig,
-        topicName,
-        subscriptionName,
-        pushEndpoint,
-        oidcToken,
-        ackDeadlineSeconds,
+  switch (deliveryType) {
+    case SubscriptionDeliveryType.PUSH: {
+      await subscribeViaHTTP(createSubscriptions, subscribeOptions, {
+        requestTimeoutSeconds: ackDeadlineSeconds,
       })
-
-      return subscription
-    }),
-  )
-
-  if (deliveryType === SubscriptionDeliveryType.PULL) {
-    await subscribeViaPolling(subscribeOptions, subscriptions)
+      break
+    }
+    case SubscriptionDeliveryType.PULL: {
+      await subscribeViaPolling(createSubscriptions, subscribeOptions)
+      break
+    }
   }
 }
 

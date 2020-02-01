@@ -4,6 +4,9 @@
   "description": "A fake turbine driver that just logs to console. Good for tests.",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "pkg-build",
     "tidy": "pkg-tidy"
@@ -23,6 +26,5 @@
   },
   "devDependencies": {
     "@stayradiated/pkg": "3.14.0"
-  },
-  "gitHead": "e0f1ddfe00affc454594b17db4e71175449b0201"
+  }
 }

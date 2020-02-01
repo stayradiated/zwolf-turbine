@@ -26,5 +26,6 @@
   },
   "devDependencies": {
     "@stayradiated/pkg": "3.14.0"
-  }
+  },
+  "gitHead": "8ba8192d705aceb63b5b61bb02a48e5efdd9061a"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@zwolf/turbine-driver-mock",
-  "version": "3.0.0",
+  "version": "3.4.1",
   "description": "A fake turbine driver that just logs to console. Good for tests.",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/stayradiated/zwolf-turbine#readme",
   "dependencies": {
-    "@zwolf/turbine": "^3.0.0"
+    "@zwolf/turbine": "^3.4.1"
   },
   "devDependencies": {
     "@stayradiated/pkg": "3.14.0"

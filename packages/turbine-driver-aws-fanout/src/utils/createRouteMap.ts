@@ -1,4 +1,4 @@
-import { SubscriptionHandler } from '@stayradiated/turbine'
+import { SubscriptionHandler } from '@zwolf/turbine'
 
 import { RouteMap } from './types'
 

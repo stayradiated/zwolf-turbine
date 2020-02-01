@@ -3,7 +3,7 @@ import {
   SubscribeFn,
   SubscriptionHandlerFn,
   AnyMessage,
-} from '@stayradiated/turbine'
+} from '@zwolf/turbine'
 
 type SubscriptionHandlerMap = Map<string, SubscriptionHandlerFn[]>
 type MessageList = AnyMessage[]

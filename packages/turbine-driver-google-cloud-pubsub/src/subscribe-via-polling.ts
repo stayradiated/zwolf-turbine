@@ -1,5 +1,5 @@
 import { Subscription } from '@google-cloud/pubsub'
-import { SubscribeOptions } from '@stayradiated/turbine'
+import { SubscribeOptions } from '@zwolf/turbine'
 
 const subscribeViaPolling = async (
   createSubscriptions: () => Promise<Subscription[]>,

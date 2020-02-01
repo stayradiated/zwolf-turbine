@@ -1,8 +1,8 @@
 import delay from 'delay'
-import createService from '@stayradiated/turbine'
+import createService from '@zwolf/turbine'
 import createDriver, {
   SubscriptionDeliveryType,
-} from '@stayradiated/turbine-driver-google-cloud-pubsub'
+} from '@zwolf/turbine-driver-google-cloud-pubsub'
 
 const service = createService({
   serviceName: 'turbine-example',

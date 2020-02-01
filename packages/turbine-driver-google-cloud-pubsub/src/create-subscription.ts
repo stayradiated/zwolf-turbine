@@ -1,6 +1,6 @@
 import mem from 'mem'
 import { ClientConfig } from '@google-cloud/pubsub/build/src/pubsub'
-import { debuglog } from '@stayradiated/turbine'
+import { debuglog } from '@zwolf/turbine'
 import { Subscription } from '@google-cloud/pubsub'
 
 import { OidcToken } from './types'

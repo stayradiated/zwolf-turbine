@@ -1,4 +1,4 @@
-import { Driver } from '@stayradiated/turbine'
+import { Driver } from '@zwolf/turbine'
 
 import subscribe from './subscribe'
 import publish from './publish'

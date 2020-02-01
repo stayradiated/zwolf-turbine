@@ -4,7 +4,7 @@ import {
   AnyMessage,
   SubscriptionHandlerFn,
   PublishFn,
-} from '@stayradiated/turbine'
+} from '@zwolf/turbine'
 
 import parseFanserviceMessage from './parseFanserviceMessage'
 import { RouteMap, FanserviceMessage } from './types'

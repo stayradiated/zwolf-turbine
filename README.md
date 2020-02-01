@@ -3,8 +3,8 @@
 > A minimal library for event based microservices
 
 ```javascript
-import createService from '@stayradiated/turbine'
-import createAmqpDriver from '@stayradiated/turbine-driver-amqplib'
+import createService from '@zwolf/turbine'
+import createAmqpDriver from '@zwolf/turbine-driver-amqplib'
 
 const service = createService({
   serviceName: 'scheduler',
@@ -35,19 +35,19 @@ service.start()
 You will need the core turbine service.
 
 ```shell
-npm install --save @stayradiated/turbine
+npm install --save @zwolf/turbine
 ```
 
 As well as a driver to use.
 
-- `@stayradiated/turbine-driver-amqplib`
-- `@stayradiated/turbine-driver-aws-fanout`
-- `@stayradiated/turbine-driver-mock`
+- `@zwolf/turbine-driver-amqplib`
+- `@zwolf/turbine-driver-aws-fanout`
+- `@zwolf/turbine-driver-mock`
 
 ## Development
 
 ```
-git clone https://github.com/stayradiated/turbine
+git clone https://github.com/stayradiated/zwolf-turbine
 npm install
 npm run bootstrap
 npm run build

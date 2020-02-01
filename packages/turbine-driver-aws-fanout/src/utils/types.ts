@@ -1,4 +1,4 @@
-import { SubscriptionHandlerFn } from '@stayradiated/turbine'
+import { SubscriptionHandlerFn } from '@zwolf/turbine'
 
 export type RouteMap = Map<string, SubscriptionHandlerFn>
 

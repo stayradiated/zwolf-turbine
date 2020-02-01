@@ -1,5 +1,5 @@
 {
-  "name": "@stayradiated/turbine-driver-aws-fanout",
+  "name": "@zwolf/turbine-driver-aws-fanout",
   "version": "3.0.0",
   "description": "Turbine driver using for SQS/SNS queues via aws-faonut",
   "main": "dist/index.js",
@@ -10,16 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stayradiated/turbine.git"
+    "url": "git+https://github.com/stayradiated/zwolf-turbine.git"
   },
   "author": "George Czabania <george@czabania.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/stayradiated/turbine/issues"
+    "url": "https://github.com/stayradiated/zwolf-turbine/issues"
   },
-  "homepage": "https://github.com/stayradiated/turbine#readme",
+  "homepage": "https://github.com/stayradiated/zwolf-turbine#readme",
   "dependencies": {
-    "@stayradiated/turbine": "^3.0.0",
+    "@zwolf/turbine": "^3.0.0",
     "@types/express": "4.17.2",
     "aws-fanout": "2.1.0",
     "body-parser": "1.19.0",

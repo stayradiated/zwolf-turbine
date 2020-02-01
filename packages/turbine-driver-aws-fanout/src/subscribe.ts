@@ -1,4 +1,4 @@
-import { SubscribeOptions } from '@stayradiated/turbine'
+import { SubscribeOptions } from '@zwolf/turbine'
 import { v2 as fanout } from 'aws-fanout'
 
 import { createRouteMap } from './utils'

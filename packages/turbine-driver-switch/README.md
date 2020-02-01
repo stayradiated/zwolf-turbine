@@ -3,13 +3,13 @@
 > Switch between different turbine drivers using an environment variable.
 
 ```javascript
-import createDriver from '@stayradiated/turbine-driver-switch'
-import createService from '@stayradiated/turbine'
+import createDriver from '@zwolf/turbine-driver-switch'
+import createService from '@zwolf/turbine'
 
 const service = createService({
   name: 'myService',
   driver: createDriver({
-    defaultDriver: '@stayradiated/turbine-driver-aws-fanout'
+    defaultDriver: '@zwolf/turbine-driver-aws-fanout'
   })
 })
 
@@ -18,6 +18,6 @@ const service = createService({
 
 
 ```shell
-TURBINE_DRIVER=@stayradiated/turbine-driver-amqp npm start
+TURBINE_DRIVER=@zwolf/turbine-driver-amqp npm start
 TURBINE_DRIVER_ARGS_JSON='{"url":"amqp://localhost"}'
 ```

@@ -1,4 +1,4 @@
-import { SubscribeOptions } from '@stayradiated/turbine'
+import { SubscribeOptions } from '@zwolf/turbine'
 
 import { CreateDriverOptions, SubscriptionDeliveryType } from './types'
 

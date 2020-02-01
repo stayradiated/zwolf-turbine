@@ -1,5 +1,5 @@
 import { Channel } from 'amqplib'
-import { SubscriptionHandlerFn } from '@stayradiated/turbine'
+import { SubscriptionHandlerFn } from '@zwolf/turbine'
 
 import { EXCHANGE } from './config'
 

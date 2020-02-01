@@ -1,7 +1,7 @@
 import mem from 'mem'
 import amqp, { Channel } from 'amqplib'
 import delay from 'delay'
-import { AnyMessage, SubscribeOptions } from '@stayradiated/turbine'
+import { AnyMessage, SubscribeOptions } from '@zwolf/turbine'
 
 import subscribe from './subscribe'
 import publish from './publish'

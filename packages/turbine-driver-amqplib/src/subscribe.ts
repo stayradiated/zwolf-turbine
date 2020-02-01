@@ -1,5 +1,5 @@
 import { Channel } from 'amqplib'
-import { SubscribeOptions } from '@stayradiated/turbine'
+import { SubscribeOptions } from '@zwolf/turbine'
 
 import subscribeType from './subscribeType'
 

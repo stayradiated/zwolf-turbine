@@ -1,5 +1,5 @@
 {
-  "name": "@stayradiated/turbine-example",
+  "name": "@zwolf/turbine-example",
   "version": "3.4.0",
   "private": true,
   "description": "Example turbine project",
@@ -12,17 +12,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stayradiated/turbine.git"
+    "url": "git+https://github.com/stayradiated/zwolf-turbine.git"
   },
   "author": "George Czabania <george@czabania.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/stayradiated/turbine/issues"
+    "url": "https://github.com/stayradiated/zwolf-turbine/issues"
   },
-  "homepage": "https://github.com/stayradiated/turbine#readme",
+  "homepage": "https://github.com/stayradiated/zwolf-turbine#readme",
   "dependencies": {
-    "@stayradiated/turbine": "^3.0.0",
-    "@stayradiated/turbine-driver-google-cloud-pubsub": "^3.4.0",
+    "@zwolf/turbine": "^3.0.0",
+    "@zwolf/turbine-driver-google-cloud-pubsub": "^3.4.0",
     "delay": "4.3.0"
   },
   "devDependencies": {

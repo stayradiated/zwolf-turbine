@@ -1,5 +1,5 @@
 import { Channel } from 'amqplib'
-import { AnyMessage } from '@stayradiated/turbine'
+import { AnyMessage } from '@zwolf/turbine'
 
 import { EXCHANGE } from './config'
 

@@ -1,4 +1,4 @@
-import { AnyMessage } from '@stayradiated/turbine'
+import { AnyMessage } from '@zwolf/turbine'
 import { v2 as fanout } from 'aws-fanout'
 
 import { AWS_CREDENTIALS, AWS_FANOUT_LOG_QUEUE } from './constants'

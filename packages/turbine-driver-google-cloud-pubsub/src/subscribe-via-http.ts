@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser'
 import express, { Request, Response } from 'express'
-import { SubscribeOptions } from '@stayradiated/turbine'
+import { SubscribeOptions } from '@zwolf/turbine'
 import { Subscription } from '@google-cloud/pubsub'
 
 import { PORT } from './constants'

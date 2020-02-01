@@ -56,3 +56,8 @@ export interface Service {
   dispatch: DispatchFn,
   start(): Promise<any>,
 }
+
+export interface FormattedError {
+  message: string,
+  stack: string,
+}

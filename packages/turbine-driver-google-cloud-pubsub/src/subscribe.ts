@@ -42,14 +42,12 @@ const subscribe = async (
 
   switch (deliveryType) {
     case SubscriptionDeliveryType.PUSH: {
-      await subscribeViaHTTP(createSubscriptions, subscribeOptions, {
+      return subscribeViaHTTP(createSubscriptions, subscribeOptions, {
         requestTimeoutSeconds: ackDeadlineSeconds,
       })
-      break
     }
     case SubscriptionDeliveryType.PULL: {
-      await subscribeViaPolling(createSubscriptions, subscribeOptions)
-      break
+      return subscribeViaPolling(createSubscriptions, subscribeOptions)
     }
   }
 }

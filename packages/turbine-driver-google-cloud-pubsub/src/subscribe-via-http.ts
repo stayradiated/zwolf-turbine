@@ -17,16 +17,14 @@ const subscribeViaHTTP = async (
   const { subscriptionHandlers } = subscribeOptions
   const { requestTimeoutSeconds } = serverOptions
 
-  const app = express()
+  const router = express.Router()
 
-  app.use(bodyParser.json())
-
-  app.post('/refresh-subscriptions', async (req: Request, res: Response) => {
+  router.post('/refresh-subscriptions', async (req: Request, res: Response) => {
     await createSubscriptions()
     res.status(200).end()
   })
 
-  app.post('/', async (req: Request, res: Response) => {
+  router.post('/', async (req: Request, res: Response) => {
     if (!req.body) {
       const msg = 'no Pub/Sub message received'
       console.error(`error: ${msg}`)
@@ -66,11 +64,20 @@ const subscribeViaHTTP = async (
     }
   })
 
+  const app = express()
+  app.use(bodyParser.json())
+  app.use(router)
+
   const server = app.listen(PORT, () => {
     console.info(`Listening for messages on port ${PORT}`)
   })
 
   server.setTimeout(requestTimeoutSeconds * 1000)
+
+  return {
+    router,
+    server,
+  }
 }
 
 export default subscribeViaHTTP

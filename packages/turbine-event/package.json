@@ -1,6 +1,6 @@
 {
   "name": "@zwolf/turbine-event",
-  "version": "3.4.5",
+  "version": "3.5.0",
   "description": "Typed events for @zwolf/turbine",
   "author": "George Czabania <george@czabania.com>",
   "main": "./dist/index.js",
@@ -23,7 +23,7 @@
     "tidy": "pkg-tidy"
   },
   "dependencies": {
-    "@zwolf/turbine": "^3.4.5"
+    "@zwolf/turbine": "^3.5.0"
   },
   "devDependencies": {
     "@stayradiated/pkg": "3.14.0",

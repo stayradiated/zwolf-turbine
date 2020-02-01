@@ -20,6 +20,6 @@
   "homepage": "https://github.com/stayradiated/zwolf-turbine#readme",
   "devDependencies": {
     "@stayradiated/pkg": "3.14.0",
-    "@types/node": "13.5.0"
+    "@types/node": "13.7.0"
   }
 }

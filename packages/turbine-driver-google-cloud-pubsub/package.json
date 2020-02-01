@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/stayradiated/zwolf-turbine#readme",
   "dependencies": {
-    "@google-cloud/pubsub": "1.4.0",
+    "@google-cloud/pubsub": "1.4.1",
     "@zwolf/turbine": "^3.0.0",
     "body-parser": "1.19.0",
     "env-var": "5.2.0",

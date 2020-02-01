@@ -1,6 +1,6 @@
 {
   "name": "@zwolf/turbine",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "description": "Minimal message passing",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",

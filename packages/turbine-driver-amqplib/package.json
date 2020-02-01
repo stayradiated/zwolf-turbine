@@ -4,6 +4,9 @@
   "description": "Turbine driver for RabbitMQ (via amqplib)",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "pkg-build",
     "tidy": "pkg-tidy"
@@ -27,6 +30,5 @@
   "devDependencies": {
     "@stayradiated/pkg": "3.14.0",
     "@types/amqplib": "0.5.13"
-  },
-  "gitHead": "30069233def122b41382a29685dd305a77d1a8b5"
+  }
 }

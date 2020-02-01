@@ -3,6 +3,9 @@
   "version": "3.4.3",
   "description": "Select which turbine driver to use at runtime.",
   "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "pkg-build",
@@ -21,6 +24,5 @@
   "devDependencies": {
     "@stayradiated/pkg": "3.14.0",
     "@types/node": "13.7.0"
-  },
-  "gitHead": "30069233def122b41382a29685dd305a77d1a8b5"
+  }
 }

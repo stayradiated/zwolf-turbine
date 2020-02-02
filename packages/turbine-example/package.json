@@ -1,6 +1,6 @@
 {
   "name": "@zwolf/turbine-example",
-  "version": "3.7.0",
+  "version": "3.7.1",
   "private": true,
   "description": "Example turbine project",
   "main": "dist/index.js",
@@ -22,7 +22,7 @@
   "homepage": "https://github.com/stayradiated/zwolf-turbine#readme",
   "dependencies": {
     "@zwolf/turbine": "^3.7.0",
-    "@zwolf/turbine-driver-google-cloud-pubsub": "^3.7.0",
+    "@zwolf/turbine-driver-google-cloud-pubsub": "^3.7.1",
     "delay": "4.3.0"
   },
   "devDependencies": {

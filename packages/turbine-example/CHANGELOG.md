@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/stayradiated/zwolf-turbine/compare/v3.6.0...v3.7.0) (2020-02-02)
+
+
+### Features
+
+* **turbine-driver-google-cloud-pubsub:** add types for service.start() ([4104f5d](https://github.com/stayradiated/zwolf-turbine/commit/4104f5da6e940325c5f8cbdb4990ceadc082e36c))
+
+
+
+
+
 # [3.6.0](https://github.com/stayradiated/zwolf-turbine/compare/v3.5.0...v3.6.0) (2020-02-01)
 
 **Note:** Version bump only for package @zwolf/turbine-example

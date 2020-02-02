@@ -1,6 +1,6 @@
 {
   "name": "@zwolf/turbine-driver-amqplib",
-  "version": "3.5.0",
+  "version": "3.7.0",
   "description": "Turbine driver for RabbitMQ (via amqplib)",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/stayradiated/zwolf-turbine#readme",
   "dependencies": {
-    "@zwolf/turbine": "^3.5.0",
+    "@zwolf/turbine": "^3.7.0",
     "amqplib": "0.5.5",
     "delay": "4.3.0",
     "mem": "6.0.1"

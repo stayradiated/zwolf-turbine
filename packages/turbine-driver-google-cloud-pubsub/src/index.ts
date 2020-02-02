@@ -1,12 +1,24 @@
 import { AnyMessage, SubscribeOptions } from '@zwolf/turbine'
+import { Router } from 'express'
+import { Server } from 'http'
 
 import { CreateDriverOptions, SubscriptionDeliveryType } from './types'
 
 import createTopic from './create-topic'
 import subscribe from './subscribe'
 
+export interface GoogleCloudPubSubService {
+  router: Router,
+  server: Server,
+}
+
 const validateCreateDriverOptions = (options: CreateDriverOptions): void => {
-  const { deliveryType, pushEndpoint, oidcToken, ackDeadlineSeconds } = options
+  const {
+    deliveryType,
+    pushEndpoint,
+    oidcToken = {},
+    ackDeadlineSeconds,
+  } = options
   const { serviceAccountEmail, audience } = oidcToken
 
   if (deliveryType === SubscriptionDeliveryType.PUSH && pushEndpoint == null) {

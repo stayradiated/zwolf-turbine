@@ -7,7 +7,7 @@ import {
 
 import createDispatch from './createDispatch'
 
-const createService = (config: ServiceConfig): Service => {
+const createService = <T = any>(config: ServiceConfig): Service<T> => {
   const { serviceName, driver } = config
 
   const subscriptionHandlers = [] as SubscriptionHandler[]
@@ -37,7 +37,7 @@ const createService = (config: ServiceConfig): Service => {
       })(options)
     },
 
-    async start (): Promise<any> {
+    async start () {
       return driver.subscribe({ serviceName, subscriptionHandlers })
     },
   }

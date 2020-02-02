@@ -2,9 +2,10 @@ import delay from 'delay'
 import createService from '@zwolf/turbine'
 import createDriver, {
   SubscriptionDeliveryType,
+  GoogleCloudPubSubService,
 } from '@zwolf/turbine-driver-google-cloud-pubsub'
 
-const service = createService({
+const service = createService<GoogleCloudPubSubService>({
   serviceName: 'turbine-example',
   driver: createDriver({
     deliveryType: SubscriptionDeliveryType.PULL,
@@ -37,13 +38,19 @@ service.handle('pong', async (message, dispatch) => {
   })
 })
 
-service
-  .start()
-  .then(() => {
-    console.log('Kicking things off with a ping')
-    return service.dispatch({
-      type: 'ping',
-      payload: {},
-    })
+async function start () {
+  const { router } = await service.start()
+
+  router.get('/greet', (req, res) => {
+    res.send('hello world!')
   })
-  .catch(console.error)
+
+  console.log('Kicking things off with a ping')
+
+  await service.dispatch({
+    type: 'ping',
+    payload: {},
+  })
+}
+
+start()

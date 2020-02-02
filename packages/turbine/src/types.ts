@@ -51,10 +51,10 @@ export interface ServiceConfig {
   driver: Driver,
 }
 
-export interface Service {
+export interface Service<T> {
   handle(type: string, callback: HandlerFn): Promise<void>,
   dispatch: DispatchFn,
-  start(): Promise<any>,
+  start(): Promise<T>,
 }
 
 export interface FormattedError {

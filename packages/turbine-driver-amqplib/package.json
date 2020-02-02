@@ -28,7 +28,7 @@
     "mem": "6.0.1"
   },
   "devDependencies": {
-    "@stayradiated/pkg": "3.14.0",
+    "@stayradiated/pkg": "4.1.0",
     "@types/amqplib": "0.5.13"
   },
   "gitHead": "8ba8192d705aceb63b5b61bb02a48e5efdd9061a"

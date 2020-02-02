@@ -25,7 +25,7 @@
     "ulid": "2.3.0"
   },
   "devDependencies": {
-    "@stayradiated/pkg": "3.14.0"
+    "@stayradiated/pkg": "4.1.0"
   },
   "gitHead": "8ba8192d705aceb63b5b61bb02a48e5efdd9061a"
 }

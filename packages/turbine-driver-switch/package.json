@@ -22,7 +22,7 @@
     "tidy": "pkg-tidy"
   },
   "devDependencies": {
-    "@stayradiated/pkg": "3.14.0",
+    "@stayradiated/pkg": "4.1.0",
     "@types/node": "13.7.0"
   }
 }

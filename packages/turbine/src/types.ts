@@ -1,21 +1,21 @@
-export interface Message<T> {
+export interface Message<Payload> {
   id: string,
   parentId?: string,
   sentFrom?: string,
   sentAt: number,
   type: string,
-  payload: T,
+  payload: Payload,
 }
 
-export type PublishFn<T = any> = (message: Message<T>) => Promise<void>
+export type PublishFn<Payload = any> = (message: Message<Payload>) => Promise<void>
 
-export type SubscriptionHandlerFn<T = any> = (
-  message: Message<T>,
+export type SubscriptionHandlerFn<Payload = any> = (
+  message: Message<Payload>,
 ) => Promise<void>
 
-export type SubscriptionHandler<T = any> = {
+export type SubscriptionHandler<Payload = any> = {
   type: string,
-  handlerFn: SubscriptionHandlerFn<T>,
+  handlerFn: SubscriptionHandlerFn<Payload>,
 }
 
 export interface SubscribeOptions {
@@ -25,17 +25,17 @@ export interface SubscribeOptions {
 
 export type SubscribeFn = (options: SubscribeOptions) => Promise<any>
 
-export interface MessageTemplate<T = any> {
+export interface MessageTemplate<Payload = any> {
   type: string,
-  payload: T,
+  payload: Payload,
 }
 
-export type DispatchFn<T = any> = (
-  message: MessageTemplate<T>,
-) => Promise<Message<T>>
+export type DispatchFn<Payload = any> = (
+  message: MessageTemplate<Payload>,
+) => Promise<Message<Payload>>
 
-export type HandlerFn<T = any> = (
-  message: Message<T>,
+export type HandlerFn<Payload = any> = (
+  message: Message<Payload>,
   dispatch: DispatchFn,
 ) => Promise<any>
 
@@ -51,10 +51,10 @@ export interface ServiceConfig {
   driver: Driver,
 }
 
-export interface Service<T> {
+export interface Service<StartReturnValue> {
   handle(type: string, callback: HandlerFn): Promise<void>,
   dispatch: DispatchFn,
-  start(): Promise<T>,
+  start(): Promise<StartReturnValue>,
 }
 
 export interface FormattedError {

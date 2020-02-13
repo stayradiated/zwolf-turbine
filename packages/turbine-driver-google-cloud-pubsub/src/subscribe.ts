@@ -16,6 +16,7 @@ const subscribe = async (
     pushEndpoint,
     oidcToken,
     ackDeadlineSeconds = 60,
+    expressServer,
   } = createDriverOptions
 
   const createSubscriptions = () => {
@@ -43,6 +44,7 @@ const subscribe = async (
   switch (deliveryType) {
     case SubscriptionDeliveryType.PUSH: {
       return subscribeViaHTTP(createSubscriptions, subscribeOptions, {
+        expressServer,
         requestTimeoutSeconds: ackDeadlineSeconds,
       })
     }

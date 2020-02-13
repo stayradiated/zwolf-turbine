@@ -26,6 +26,6 @@
     "delay": "4.3.0"
   },
   "devDependencies": {
-    "@stayradiated/pkg": "4.1.0"
+    "@stayradiated/pkg": "4.2.0"
   }
 }

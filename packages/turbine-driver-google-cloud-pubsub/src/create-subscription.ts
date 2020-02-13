@@ -85,6 +85,7 @@ const createSubscription = mem(
         /** todo(george): remove any after nodejs-pubsub supports oidcToken **/
       } as any)
     }
+
     return subscription
   },
   {

@@ -1,11 +1,12 @@
 import bodyParser from 'body-parser'
-import express, { Request, Response } from 'express'
+import express, { Router, Express, Request, Response } from 'express'
 import { SubscribeOptions } from '@zwolf/turbine'
 import { Subscription } from '@google-cloud/pubsub'
 
 import { PORT } from './constants'
 
 interface ServerOptions {
+  expressServer: Express,
   requestTimeoutSeconds: number,
 }
 
@@ -15,9 +16,11 @@ const subscribeViaHTTP = async (
   serverOptions: ServerOptions,
 ) => {
   const { subscriptionHandlers } = subscribeOptions
-  const { requestTimeoutSeconds } = serverOptions
+  const { requestTimeoutSeconds, expressServer = express() } = serverOptions
 
-  const router = express.Router()
+  const router = Router()
+
+  router.use(bodyParser.json())
 
   router.post('/refresh-subscriptions', async (req: Request, res: Response) => {
     await createSubscriptions()
@@ -64,19 +67,18 @@ const subscribeViaHTTP = async (
     }
   })
 
-  const app = express()
-  app.use(bodyParser.json())
-  app.use(router)
+  expressServer.use(router)
 
-  const server = app.listen(PORT, () => {
-    console.info(`Listening for messages on port ${PORT}`)
-  })
-
-  server.setTimeout(requestTimeoutSeconds * 1000)
+  // only start the server if it wasn't pass as an option
+  if (serverOptions.expressServer == null) {
+    const server = expressServer.listen(PORT, () => {
+      console.info(`Listening for messages on port ${PORT}`)
+    })
+    server.setTimeout(requestTimeoutSeconds * 1000)
+  }
 
   return {
     router,
-    server,
   }
 }
 

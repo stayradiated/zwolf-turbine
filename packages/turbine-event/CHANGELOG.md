@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/stayradiated/zwolf-turbine/compare/v3.7.1...v4.0.0) (2020-02-13)
+
+
+### Features
+
+* **turbine-driver-google-cloud-pubsub:** allow custom express server to be used ([4b65f08](https://github.com/stayradiated/zwolf-turbine/commit/4b65f08aa87b0cc4f7d218d8e4902e370cc562cc))
+
+
+### BREAKING CHANGES
+
+* **turbine-driver-google-cloud-pubsub:** The driver no longer returns the "server" property
+
+
+
+
+
 # [3.7.0](https://github.com/stayradiated/zwolf-turbine/compare/v3.6.0...v3.7.0) (2020-02-02)
 
 **Note:** Version bump only for package @zwolf/turbine-event

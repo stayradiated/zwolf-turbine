@@ -1,12 +1,12 @@
 import bodyParser from 'body-parser'
-import express, { Router, Express, Request, Response } from 'express'
+import express, { Router, Application, Request, Response } from 'express'
 import { SubscribeOptions } from '@zwolf/turbine'
 import { Subscription } from '@google-cloud/pubsub'
 
 import { PORT } from './constants'
 
 interface ServerOptions {
-  expressServer: Express,
+  expressServer: Application,
   requestTimeoutSeconds: number,
 }
 

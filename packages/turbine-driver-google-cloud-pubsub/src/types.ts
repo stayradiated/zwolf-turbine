@@ -1,5 +1,5 @@
 import { ClientConfig } from '@google-cloud/pubsub/build/src/pubsub'
-import { Express, Router } from 'express'
+import { Application, Router } from 'express'
 
 export enum SubscriptionDeliveryType {
   PUSH = 'PUSH',
@@ -17,7 +17,7 @@ export interface CreateDriverOptions {
   pushEndpoint?: string,
   oidcToken?: OidcToken,
   ackDeadlineSeconds?: number,
-  expressServer?: Express,
+  expressServer?: Application,
 }
 
 export interface GoogleCloudPubSubService {

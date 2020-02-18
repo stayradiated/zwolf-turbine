@@ -22,11 +22,6 @@ const subscribeViaHTTP = async (
 
   router.use(bodyParser.json())
 
-  router.post('/refresh-subscriptions', async (req: Request, res: Response) => {
-    await createSubscriptions()
-    res.status(200).end()
-  })
-
   router.post('/', async (req: Request, res: Response) => {
     if (!req.body) {
       const msg = 'no Pub/Sub message received'
@@ -76,6 +71,8 @@ const subscribeViaHTTP = async (
     })
     server.setTimeout(requestTimeoutSeconds * 1000)
   }
+
+  await createSubscriptions()
 
   return {
     router,

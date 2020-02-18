@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/stayradiated/zwolf-turbine/compare/v4.1.0...v4.2.0) (2020-02-18)
+
+
+### Features
+
+* **turbine-driver-google-cloud-pubsub:** create subscriptions on start ([a9e6bd7](https://github.com/stayradiated/zwolf-turbine/commit/a9e6bd7fdfe0383c0d10c6b4d6bfc83c0546d834))
+
+
+
+
+
 # [4.1.0](https://github.com/stayradiated/zwolf-turbine/compare/v4.0.0...v4.1.0) (2020-02-13)
 
 

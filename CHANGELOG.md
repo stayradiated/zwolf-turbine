@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/stayradiated/zwolf-turbine/compare/v4.2.0...v4.3.0) (2020-02-19)
+
+
+### Features
+
+* **turbine-driver-google-cloud-pubsub:** set maxAge for createTopic cache ([8cc837b](https://github.com/stayradiated/zwolf-turbine/commit/8cc837bcd396eb8de83319b0d711557f5f4cea02))
+
+
+
+
+
 # [4.2.0](https://github.com/stayradiated/zwolf-turbine/compare/v4.1.0...v4.2.0) (2020-02-18)
 
 

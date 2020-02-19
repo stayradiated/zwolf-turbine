@@ -16,6 +16,7 @@ const createTopic = mem(
     return topic
   },
   {
+    maxAge: 1000 * 60 * 60, // 1 hour
     cacheKey: JSON.stringify,
   },
 )

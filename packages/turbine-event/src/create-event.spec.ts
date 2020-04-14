@@ -103,7 +103,7 @@ test('request.createHandler - should dispatch error', async (t) => {
   )
   const dispatch = sinon.stub().resolves()
 
-  await t.throwsAsync(handler(message, dispatch))
+  await handler(message, dispatch)
 
   t.deepEqual(dispatch.args, [
     [

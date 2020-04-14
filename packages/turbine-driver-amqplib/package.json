@@ -25,10 +25,10 @@
     "@zwolf/turbine": "^4.0.0",
     "amqplib": "0.5.5",
     "delay": "4.3.0",
-    "mem": "6.0.1"
+    "mem": "6.1.0"
   },
   "devDependencies": {
-    "@stayradiated/pkg": "4.2.0",
+    "@stayradiated/pkg": "4.4.0",
     "@types/amqplib": "0.5.13"
   },
   "gitHead": "8ba8192d705aceb63b5b61bb02a48e5efdd9061a"

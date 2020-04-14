@@ -39,7 +39,6 @@ RequiredFailurePayload
         },
       })
     }
-    throw error
   },
   onSuccess: async (result, event, message, dispatch) => {
     if (message.type === event.request.type) {

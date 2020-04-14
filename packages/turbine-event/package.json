@@ -26,9 +26,9 @@
     "@zwolf/turbine": "^4.0.0"
   },
   "devDependencies": {
-    "@stayradiated/pkg": "4.2.0",
-    "@types/node": "13.7.1",
-    "@types/sinon": "7.5.1",
-    "sinon": "8.1.1"
+    "@stayradiated/pkg": "4.4.0",
+    "@types/node": "13.11.1",
+    "@types/sinon": "9.0.0",
+    "sinon": "9.0.2"
   }
 }

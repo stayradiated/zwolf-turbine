@@ -27,7 +27,7 @@
     "@zwolf/turbine": "^4.4.0",
     "body-parser": "1.19.0",
     "env-var": "6.0.4",
-    "express": "4.17.1",
+    "express": "4.17.3",
     "mem": "6.1.0"
   },
   "devDependencies": {
